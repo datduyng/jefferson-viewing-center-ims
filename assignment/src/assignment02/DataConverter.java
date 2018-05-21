@@ -25,7 +25,6 @@ public class DataConverter {
 		if(s.hasNext()) {
 			numberOfPeople = Integer.parseInt(s.nextLine());
 		}
-		System.out.println(numberOfPeople);
 		for(int i = 0; i < numberOfPeople; i++) {
 			String nextLine = s.nextLine();
 			Person p = new Person(nextLine);
@@ -36,7 +35,7 @@ public class DataConverter {
 		s = DataConverter.openFile("data/Customers.dat");
 		int numberOfCustomers = 0;
 		if(s.hasNext()) {
-			numberOfPeople = Integer.parseInt(s.nextLine());
+			numberOfCustomers = Integer.parseInt(s.nextLine());
 		}
 		
 		for(int i = 0; i < numberOfCustomers; i++) {
@@ -70,17 +69,35 @@ public class DataConverter {
 		
 		s.close();
 		
-		for(Person p : persons) {
-			System.out.println(p.getEmailAddresses());
+		for(Person person : persons) {
+			System.out.println(person.toString());
 			
 		}
 		
+		System.out.println();
+		
+		for(Customer customer : customers) {
+			System.out.println(customer.toString());
+			
+		}
+		
+		System.out.println();
+		
+		for(Product product : products) {
+			System.out.println(product.toString());
+			
+		}
+		
+		System.out.println();
+		
+		/*
 		Gson gson = new Gson();
 		
 		//use to print neat tree model JSON result 
 		gson = new GsonBuilder().setPrettyPrinting().create();
 		String jsonInString = gson.toJson(customers);
 		System.out.println(jsonInString);
+		*/
 		
 		
 		

@@ -22,5 +22,12 @@ public class Product {
 		return productType;
 	}
 	
+	/**
+	 * @Override
+	 */
+	public String toString() {
+		return this.productCode + ";" + this.productType;
+	}
+	
 	
 }

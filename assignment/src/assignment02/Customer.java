@@ -44,6 +44,10 @@ public class Customer {
 		return customerAddress;
 	}
 	
+	public String toString() {
+		return this.customerCode + ";" + this.customerType + ";" + this.primaryContact.getPersonCode() + ";" + this.customerName + ";" + this.customerAddress.toString();
+	}
+	
 	
 
 }

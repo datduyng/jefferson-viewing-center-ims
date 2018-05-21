@@ -41,5 +41,12 @@ public class MovieTicket extends Product {
 		return pricePerUnit;
 	}
 	
+	/**
+	 * @Override
+	 */
+	public String toString() {
+		return this.getProductCode() + ";" + this.getProductType() + ";" + this.dateTime + ";" + this.movieName + ";" + this.theaterAddress.toString() + this.screenNumber + ";" + this.pricePerUnit;
+	}
+	
 
 }

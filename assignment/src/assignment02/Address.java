@@ -45,4 +45,13 @@ public class Address {
 	}
 	
 	
+	/**@Override 
+	 * 
+	 */
+	public String toString(){
+		return this.street + "," + this.city + "," + this.state + "," + this.zipCode + "," + this.country + ";";
+		
+	}
+	
+	
 }

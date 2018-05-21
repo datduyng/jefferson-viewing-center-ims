@@ -21,7 +21,7 @@ public class Person {
 			this.personCode = tokens[0];
 			String[] nameTokens = tokens[1].split(",");
 			this.lastName = nameTokens[0];
-			this.firstName = nameTokens[1];
+			this.firstName = nameTokens[1].trim();
 			this.address = new Address(tokens[2]);
 			if(tokens.length == 4) {
 				this.emailAddresses = new HashSet<String>();
@@ -51,5 +51,12 @@ public class Person {
 	public Set<String> getEmailAddresses() {
 		return emailAddresses;
 	}	
+	
+	/**
+	 * @Override 
+	 */
+	public String toString() {
+		return this.personCode + ";" + this.lastName + ", " + this.firstName + ";" + this.address.toString() + this.emailAddresses; 
+	}
 	
 }

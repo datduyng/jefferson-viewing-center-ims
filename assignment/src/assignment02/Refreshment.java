@@ -22,5 +22,12 @@ public class Refreshment extends Product {
 	public double getCost() {
 		return cost;
 	}
+	
+	/**
+	 * @Override
+	 */
+	public String toString() {
+		return this.getProductCode() + ";" + this.getProductType() + ";" + this.getName() + ";" + this.getCost();
+	}
 
 }

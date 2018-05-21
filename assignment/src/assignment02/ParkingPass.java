@@ -16,4 +16,11 @@ public class ParkingPass extends Product {
 	public double getParkingFee() {
 		return parkingFee;
 	}
+	
+	/**
+	 * @Override 
+	 */
+	public String toString() {
+		return this.getProductCode() + ";" + this.getProductType() + ";" + this.getParkingFee();
+	}
 }
