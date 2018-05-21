@@ -1,0 +1,99 @@
+{
+"products": [
+  {
+    "movieDateTime": "2016-30-13 15:30",
+    "movieName": "The Wild Life",
+    "cost": 11.0,
+    "address": {
+      "street": "755 Willard Drive",
+      "city": "Ashwaubenon",
+      "state": "WI",
+      "zip": "54304",
+      "country": "USA"
+    },
+    "screenNumber": "12F",
+    "pricePerUnit": 0.0,
+    "discounted": true,
+    "productCode": "1239"
+  },
+  {
+    "name": "Double Cheeseburger",
+    "cost": 9.0,
+    "productCode": "yp23"
+  },
+  {
+    "name": "Winter Special",
+    "cost": 120.0,
+    "seasonStartDate": "2016-00-13 00:00",
+    "seasonEndDate": "2017-00-07 00:00",
+    "productCode": "b29e"
+  },
+  {
+    "cost": 55.0,
+    "productCode": "3289"
+  },
+  {
+    "name": "BlackFriday Deal",
+    "cost": 58.0,
+    "seasonStartDate": "2016-00-24 00:00",
+    "seasonEndDate": "2016-00-29 00:00",
+    "productCode": "3y92"
+  },
+  {
+    "name": "FiveWeeks-Unlimited",
+    "cost": 185.0,
+    "seasonStartDate": "2016-00-07 00:00",
+    "seasonEndDate": "2016-00-11 00:00",
+    "productCode": "xer4"
+  },
+  {
+    "cost": 25.0,
+    "productCode": "90fa"
+  },
+  {
+    "cost": 20.0,
+    "productCode": "90fb"
+  },
+  {
+    "name": "Caramel Popcorn",
+    "cost": 5.5,
+    "productCode": "32f4"
+  },
+  {
+    "movieDateTime": "2016-10-21 13:10",
+    "movieName": "A Monster Calls",
+    "cost": 21.5,
+    "address": {
+      "street": "3555 South 140th Plaza",
+      "city": "Omaha",
+      "state": "NE",
+      "zip": "68144",
+      "country": "USA"
+    },
+    "screenNumber": "2A",
+    "pricePerUnit": 0.0,
+    "discounted": false,
+    "productCode": "fp12"
+  },
+  {
+    "name": "Labatt Beer-20oz",
+    "cost": 4.99,
+    "productCode": "ff23"
+  },
+  {
+    "movieDateTime": "2016-00-10 10:00",
+    "movieName": "Shut In",
+    "cost": 25.0,
+    "address": {
+      "street": "6301 University Ave",
+      "city": "Cedar Falls",
+      "state": "IA",
+      "zip": "50613",
+      "country": "USA"
+    },
+    "screenNumber": "32D",
+    "pricePerUnit": 0.0,
+    "discounted": true,
+    "productCode": "782g"
+  }
+]}
