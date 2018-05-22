@@ -25,5 +25,3 @@
 
 
 ### XML version
-   - convert java object to xml
-      - http://x-stream.github.io/tutorial.html

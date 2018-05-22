@@ -1,15 +1,19 @@
 package assignment02;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Scanner;
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.util.Set;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import com.thoughtworks.xstream.XStream;
+
 
 
 public class DataConverter {
@@ -18,101 +22,134 @@ public class DataConverter {
 	private static int NUM_OF_PERSON;
 	private static int NUM_OF_PRODUCT;
 	
-	private static ArrayList<Person> personList = new ArrayList<Person>();
+	private static Set<Person> persons = new HashSet<Person>();
+	private static Set<Customer> customers = new HashSet<Customer>();
+	private static Set<Product> products = new HashSet<Product>();
 	
+	
+	public static void main(String[] args){
 
-	
-	
-	public static void main(String[] args) {
-		String buffer = "";
-		int i = 0; // iteration 
 		// read customer.dat file
+		Scanner scan = null;
 		
+		//open Person data file, and create object 
+		scan = DataConverter.openFile("data/Persons.dat");
+		scan.hasNext();
+		NUM_OF_PERSON = Integer.parseInt(scan.nextLine());
 		
-		
-		try {
-			String line = null;
-			
-			// create a BufferReader from File Reader
-			BufferedReader br = new BufferedReader(new FileReader("data/Persons.dat"));
-			// read the first line 
-			line = br.readLine();
-			NUM_OF_PERSON = Integer.parseInt(line);
-			
-			//Person[] personList = new Person[NUM_OF_PERSON];
-			
-			
-			
-//			// read the next line.
-			line = br.readLine();
-			
-			//while not null(end of file) keep reading 
-			while(line != null) {
-				
-
-				
-				// process current line
-				String[] token = line.split(";",-1);
-				String personCode = token[0];
-				
-				String[] name = token[1].split(",");
-				String lastName = name[0];
-				String firstName = name[1];
-				
-				String[] addr = token[2].split(",");
-				String street = addr[0];
-				String city   = addr[1];
-				String state  = addr[2];
-				String zip	  = addr[3];
-				String country= addr[4];
-				//create address object
-				Address address = new Address(street,city,
-						state,zip,country);
-				
-				String email = token[3];
-				
-				// create person object 
-//				persons[i] = new Person(personCode, firstName,
-//						lastName, address, email);
-				
-				
-				// create arraylist of object 
-				personList.add( new Person(personCode, firstName,
-						lastName, address, email) );
-				//print out data
-				//System.out.printf("%s\n",persons[i].toStringPerson());
-
-				
-				// 1. Java object to JSON, and save into a file
-				//gson.toJson(persons[i], new FileWriter("data/Persons.json"));
-				
-				
-				
-				i++;
-
-
-				// read the next line.
-				line = br.readLine();
-			}
-			
-		}catch(Exception e) {
-			e.printStackTrace();
+		for(int i = 0; i < NUM_OF_PERSON; i++) {
+			String nextLine = scan.nextLine();
+			Person p = new Person(nextLine);
+			persons.add(p);
 		}
 		
+		//open Customer.dat file, and create object
+		scan = DataConverter.openFile("data/Customers.dat");
+		scan.hasNext();
+		NUM_OF_CUSTOMER = Integer.parseInt(scan.nextLine());
+		
+		for(int i = 0; i < NUM_OF_CUSTOMER; i++) {
+			String nextLine = scan.nextLine();
+			Customer c = new Customer(nextLine);
+			customers.add(c);
+		}// edn for
+			
+		
+		//parse Product Data File, create appropriate objects
+		scan = DataConverter.openFile("data/Products.dat");
+		
+		// read the first line.
+		NUM_OF_PRODUCT = Integer.parseInt(scan.nextLine());
+		
+		
+		for(int i = 0; i < NUM_OF_PRODUCT; i++) {
+			String nextLine = scan.nextLine();
+			String[] token = nextLine.split(";");
+			Product p = null;
+			if(token[1].equalsIgnoreCase("M")) {
+				p = new MovieTicket(token);
+			} else if (token[1].equalsIgnoreCase("S")) {
+				p = new SeasonPass(token);
+			} else if (token[1].equalsIgnoreCase("P")) {
+				p = new ParkingPass(token);
+			} else if (token[1].equalsIgnoreCase("R")) {
+				p = new Refreshment(token);
+			} 
+			products.add(p);
+		}
+		
+		scan.close();
+		
+		
+		// write to JSON file 
+		toJsonFile("data/Persons.json",DataConverter.persons,"persons");
+		toJsonFile("data/Customers.json",DataConverter.customers,"customers");
+		toJsonFile("data/Products.json",DataConverter.products,"products");
+		
+		
+		// write to XML file format
+		toXmlFile("data/Persons.xml", DataConverter.persons,"persons");
+		toXmlFile("data/Customers.xml", DataConverter.customers,"customers");
+		toXmlFile("data/Products.xml", DataConverter.products,"products");
+		
+	}// end main
+ 
+		
+	private static Scanner openFile(String fileName) {
+		Scanner s;
+		try {
+			s = new Scanner(new File(fileName));
+		} catch (FileNotFoundException e2) {
+			throw new RuntimeException("Error: File Not Found!");
+		}
+		return s;
+	}
+	
+	public static Person findPerson(String personCode, Set<Person> persons) {
+		Person p = null;
+		for(Person person : persons) {
+			if(person.getPersonCode().equals(personCode)) {
+				p = person;
+			}
+		}
+		return p;
+	}
+
+
+	public static Set<Customer> getCustomers() {
+		return customers;
+	}
+
+	public static Set<Product> getProducts() {
+		return products;
+	}
+
+	public static Set<Person> getPersons() {
+		return persons;
+	}
+
+	/**
+	 * This function parse Object to JSON format 
+	 * @param String fileOutputName
+	 * @param givenobject
+	 * return output a file with JSON format
+	 */
+	
+	public static void toJsonFile(String fileOutput, Object obj,String objName) { 		
+
+		
+		//TODO: error checking if obj is null or not
 		Gson gson = new Gson();
-		
-		
-		
-		
+				
 		//use to print neat tree model JSON result 
 		gson = new GsonBuilder().setPrettyPrinting().create();
-		String jsonInString = gson.toJson(personList);
-		System.out.println(jsonInString);
-		
+	
+		String jsonInString = String.format("{\n \"%s\": %s}",objName,gson.toJson(obj) );
+		//System.out.println(jsonInString);
 		// parse JSON output to aa file 
 		FileWriter output = null;
 		try {
-			output = new FileWriter("data/persons.json");
+			output = new FileWriter(fileOutput);
 			output.write(jsonInString);
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -125,7 +162,47 @@ public class DataConverter {
 			e.printStackTrace();
 		}
 		
-	}// end main
- 
-	//test
+	}
+	
+	public static void toXmlFile(String fileOutput, Object obj, String fieldName) {
+		
+		XStream xstream = new XStream();
+
+		xstream.alias("product", Product.class);
+		
+		if(fieldName.equals("persons")) {
+			xstream.alias("person", Person.class);
+			xstream.alias("persons", Set.class);
+		}else if(fieldName.equals("customers")) {
+			xstream.alias("customer", Customer.class);
+			xstream.alias("customers", Set.class);
+		}else if(fieldName.equals("products")) {
+			xstream.alias("product", Customer.class);
+			xstream.alias("products", Set.class);
+			xstream.alias("refreshment", Refreshment.class);
+			xstream.alias("movieticket", MovieTicket.class);
+			xstream.alias("seasonpass", SeasonPass.class);
+			xstream.alias("parkingpass", ParkingPass.class);
+		}else {
+			System.err.println("toXmlFile error"); 
+		}
+		String version = "<?xml version=\"1.0\"?>";
+		String xmlInString = String.format("%s \n %s ", version, xstream.toXML(obj));
+				
+		// parse JSON output to aa file 
+		FileWriter output = null;
+		try {
+			output = new FileWriter(fileOutput);
+			output.write(xmlInString);
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		
+		// close output file
+		try {
+			output.close();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
 }// end DataConverter
