@@ -14,14 +14,28 @@ import com.google.gson.GsonBuilder;
 
 import com.thoughtworks.xstream.XStream;
 
-
+/**
+ * The DataConverter class parses and stores data in newly created objects 
+ * from the old Invoice System located on flat files.  Then the objects are 
+ * serialized into both XML and JSON with the use of appropriate external 
+ * libraries. 
+ * 
+ * @authors Reid Stagemeyer and Dat Nguyen 
+ * @version 1.0
+ * @since 2018-05-20
+ * 
+ */
 
 public class DataConverter {
 	
+	// number of entries in flat files
 	private static int NUM_OF_CUSTOMER;
 	private static int NUM_OF_PERSON;
 	private static int NUM_OF_PRODUCT;
 	
+	/* HashSets created to store created Person, Customer, and Product objects 
+	 * respectively.  Sets chosen to prevent duplicate entries.
+	 */
 	private static Set<Person> persons = new HashSet<Person>();
 	private static Set<Customer> customers = new HashSet<Customer>();
 	private static Set<Product> products = new HashSet<Product>();
@@ -35,7 +49,7 @@ public class DataConverter {
 		//open Person data file, and create object 
 		scan = DataConverter.openFile("data/Persons.dat");
 		scan.hasNext();
-		NUM_OF_PERSON = Integer.parseInt(scan.nextLine());
+		NUM_OF_PERSON = Integer.parseInt(scan.nextLine().trim());
 		
 		for(int i = 0; i < NUM_OF_PERSON; i++) {
 			String nextLine = scan.nextLine();
@@ -46,20 +60,20 @@ public class DataConverter {
 		//open Customer.dat file, and create object
 		scan = DataConverter.openFile("data/Customers.dat");
 		scan.hasNext();
-		NUM_OF_CUSTOMER = Integer.parseInt(scan.nextLine());
+		NUM_OF_CUSTOMER = Integer.parseInt(scan.nextLine().trim());
 		
 		for(int i = 0; i < NUM_OF_CUSTOMER; i++) {
 			String nextLine = scan.nextLine();
 			Customer c = new Customer(nextLine);
 			customers.add(c);
-		}// edn for
+		}// end for
 			
 		
 		//parse Product Data File, create appropriate objects
 		scan = DataConverter.openFile("data/Products.dat");
 		
 		// read the first line.
-		NUM_OF_PRODUCT = Integer.parseInt(scan.nextLine());
+		NUM_OF_PRODUCT = Integer.parseInt(scan.nextLine().trim());
 		
 		
 		for(int i = 0; i < NUM_OF_PRODUCT; i++) {
@@ -94,7 +108,11 @@ public class DataConverter {
 		
 	}// end main
  
-		
+	/**
+	 * Sets scanner to new file of given file name.
+	 * @param fileName name of file to be opened
+	 * @return Scanner object set to new file
+	 */
 	private static Scanner openFile(String fileName) {
 		Scanner s;
 		try {
