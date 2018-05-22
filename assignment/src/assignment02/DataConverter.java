@@ -54,7 +54,17 @@ public class DataConverter {
 		for(int i = 0; i < NUM_OF_PERSON; i++) {
 			String nextLine = scan.nextLine();
 			Person p = new Person(nextLine);
-			persons.add(p);
+			int flag = 0;
+			//check to make sure there is no duplicate
+			for(Person person : persons){
+				if(person.getPersonCode().equals(p.getPersonCode())){
+					flag ++;
+				}
+			}// end for
+			
+			if(flag == 0){
+				persons.add(p);
+			}
 		}
 		
 		//open Customer.dat file, and create object
@@ -65,12 +75,24 @@ public class DataConverter {
 		for(int i = 0; i < NUM_OF_CUSTOMER; i++) {
 			String nextLine = scan.nextLine();
 			Customer c = new Customer(nextLine);
-			customers.add(c);
-		}// end for
+
+			
+			int flag = 0;
+			//check to make sure there is no duplicate
+			for(Customer customer : customers){
+				if(customer.getCustomerCode().equals(c.getCustomerCode())){
+					flag ++;
+				}
+			}// end for
+			
+			if(flag == 0){
+				customers.add(c);
+			}
+		}// end 
 			
 		
 		//parse Product Data File, create appropriate objects
-		scan = DataConverter.openFile("data/Products.dat");
+		scan = DataConverter.openFile("data02/Products.dat");
 		
 		// read the first line.
 		NUM_OF_PRODUCT = Integer.parseInt(scan.nextLine().trim());
@@ -89,7 +111,18 @@ public class DataConverter {
 			} else if (token[1].equalsIgnoreCase("R")) {
 				p = new Refreshment(token);
 			} 
-			products.add(p);
+			
+			int flag = 0;
+			//check to make sure there is no duplicate
+			for(Product product : products){
+				if(product.getProductCode().equals(p.getProductCode())){
+					flag ++;
+				}
+			}// end for
+			
+			if(flag == 0){
+				products.add(p);
+			}
 		}
 		
 		scan.close();
@@ -98,13 +131,13 @@ public class DataConverter {
 		// write to JSON file 
 		toJsonFile("data/Persons.json",DataConverter.persons,"persons");
 		toJsonFile("data/Customers.json",DataConverter.customers,"customers");
-		toJsonFile("data/Products.json",DataConverter.products,"products");
+		toJsonFile("data02/Products.json",DataConverter.products,"products");
 		
 		
 		// write to XML file format
 		toXmlFile("data/Persons.xml", DataConverter.persons,"persons");
 		toXmlFile("data/Customers.xml", DataConverter.customers,"customers");
-		toXmlFile("data/Products.xml", DataConverter.products,"products");
+		toXmlFile("data02/Products.xml", DataConverter.products,"products");
 		
 	}// end main
  
