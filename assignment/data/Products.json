@@ -1,0 +1,105 @@
+{
+ "products": [
+  {
+    "dateTime": "2016-10-21 13:10",
+    "movieName": "A Monster Calls",
+    "theaterAddress": {
+      "street": "3555 South 140th Plaza",
+      "city": "Omaha",
+      "state": " NE",
+      "zipCode": " 68144",
+      "country": " USA"
+    },
+    "screenNumber": "2A",
+    "pricePerUnit": 21.5,
+    "productCode": "fp12",
+    "productType": "M"
+  },
+  {
+    "name": "Caramel Popcorn",
+    "cost": 5.5,
+    "productCode": "32f4",
+    "productType": "R"
+  },
+  {
+    "dateTime": "2016-11-10 10:00",
+    "movieName": "Shut In",
+    "theaterAddress": {
+      "street": "6301 University Ave",
+      "city": "Cedar Falls",
+      "state": " IA",
+      "zipCode": " 50613",
+      "country": " USA"
+    },
+    "screenNumber": "32D",
+    "pricePerUnit": 25.0,
+    "productCode": "782g",
+    "productType": "M"
+  },
+  {
+    "dateTime": "2016-09-13 15:30",
+    "movieName": "The Wild Life",
+    "theaterAddress": {
+      "street": "755 Willard Drive",
+      "city": "Ashwaubenon",
+      "state": " WI",
+      "zipCode": " 54304",
+      "country": " USA"
+    },
+    "screenNumber": "12F",
+    "pricePerUnit": 11.0,
+    "productCode": "1239",
+    "productType": "M"
+  },
+  {
+    "parkingFee": 55.0,
+    "productCode": "3289",
+    "productType": "P"
+  },
+  {
+    "name": "FiveWeeks-Unlimited",
+    "startDate": "2016-10-07",
+    "endDate": "2016-11-11",
+    "cost": 185.0,
+    "productCode": "xer4",
+    "productType": "S"
+  },
+  {
+    "name": "Labatt Beer-20oz",
+    "cost": 4.99,
+    "productCode": "ff23",
+    "productType": "R"
+  },
+  {
+    "parkingFee": 20.0,
+    "productCode": "90fb",
+    "productType": "P"
+  },
+  {
+    "parkingFee": 25.0,
+    "productCode": "90fa",
+    "productType": "P"
+  },
+  {
+    "name": "Double Cheeseburger",
+    "cost": 9.0,
+    "productCode": "yp23",
+    "productType": "R"
+  },
+  {
+    "name": "Winter Special",
+    "startDate": "2016-12-13",
+    "endDate": "2017-01-07",
+    "cost": 120.0,
+    "productCode": "b29e",
+    "productType": "S"
+  },
+  {
+    "name": "BlackFriday Deal",
+    "startDate": "2016-11-24",
+    "endDate": "2016-11-29",
+    "cost": 58.0,
+    "productCode": "3y92",
+    "productType": "S"
+  }
+]}

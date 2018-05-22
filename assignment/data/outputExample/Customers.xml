@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<customers>
+<student>
+  <customerCode>C002</customerCode>
+  <primaryContact>
+    <personCode>944c</personCode>
+    <firstName>Starlin</firstName>
+    <lastName>Castro</lastName>
+    <address>
+      <street>1060 West Addison Street</street>
+      <city>Chicago</city>
+      <state>IL</state>
+      <zip>60613</zip>
+      <country>USA</country>
+    </address>
+    <emails>
+      <email>scastro@cubs.com</email>
+      <email>starlin_castro13@gmail.com</email>
+    </emails>
+  </primaryContact>
+  <customerName>CAS International Fellows</customerName>
+  <customerAddress>
+    <street>1223 Oldfather Hall</street>
+    <city>Lincoln</city>
+    <state>NE</state>
+    <zip>68503</zip>
+    <country>USA</country>
+  </customerAddress>
+</student>
+<general>
+  <customerCode>C001</customerCode>
+  <primaryContact>
+    <personCode>231</personCode>
+    <firstName>Tom</firstName>
+    <lastName>Baker</lastName>
+    <address>
+      <street>1 Blue Jays Way</street>
+      <city>Toronto</city>
+      <state>ON</state>
+      <zip>M5V 1J1</zip>
+      <country>Canada</country>
+    </address>
+    <emails>
+      <email>famousdoc@who.com</email>
+      <email>tbaker@cse.unl.edu</email>
+      <email>mostfamous@whovian.com</email>
+      <email>thedoctor@bbc.com</email>
+    </emails>
+  </primaryContact>
+  <customerName>Clark Consultants</customerName>
+  <customerAddress>
+    <street>259 Concorde Suites</street>
+    <city>Lincoln</city>
+    <state>NE</state>
+    <zip>68588-0115</zip>
+    <country>USA</country>
+  </customerAddress>
+</general>
+<student>
+  <customerCode>C006</customerCode>
+  <primaryContact>
+    <personCode>321dr</personCode>
+    <firstName>C.</firstName>
+    <lastName>Baker</lastName>
+    <address>
+      <street>Avery Hall</street>
+      <city>Lincoln</city>
+      <state>NE</state>
+      <zip>68503</zip>
+      <country>USA</country>
+    </address>
+    <emails>
+      <email>dr@baker.com</email>
+    </emails>
+  </primaryContact>
+  <customerName>Gregory Smith</customerName>
+  <customerAddress>
+    <street>456 West 7th St.</street>
+    <city>Omaha</city>
+    <state>NE</state>
+    <zip>68500</zip>
+    <country>USA</country>
+  </customerAddress>
+</student>
+<general>
+  <customerCode>C005</customerCode>
+  <primaryContact>
+    <personCode>bbchar</personCode>
+    <firstName>Kaylee</firstName>
+    <lastName>Ehrmantraut</lastName>
+    <address>
+      <street>800 West 7th Street</street>
+      <city>Albuquerque</city>
+      <state>NM</state>
+      <zip>87105</zip>
+      <country>USA</country>
+    </address>
+    <emails/>
+  </primaryContact>
+  <customerName>Hewlett Industries</customerName>
+  <customerAddress>
+    <street>1060 West Addison</street>
+    <city>Chicago</city>
+    <state>IL</state>
+    <zip>60601</zip>
+    <country>USA</country>
+  </customerAddress>
+</general>
+<general>
+  <customerCode>C004</customerCode>
+  <primaryContact>
+    <personCode>321f</personCode>
+    <firstName>Bud</firstName>
+    <lastName>Fox</lastName>
+    <address>
+      <street>321 Bronx Street</street>
+      <city>New York</city>
+      <state>NY</state>
+      <zip>10004</zip>
+      <country>USA</country>
+    </address>
+    <emails>
+      <email>bfox@gmail.com</email>
+      <email>csheen@crazy.net</email>
+    </emails>
+  </primaryContact>
+  <customerName>Stony Brook</customerName>
+  <customerAddress>
+    <street>9800 Savage Rd</street>
+    <city>Fort Meade</city>
+    <state>MD</state>
+    <zip>20755</zip>
+    <country>USA</country>
+  </customerAddress>
+</general>
+<student>
+  <customerCode>C003</customerCode>
+  <primaryContact>
+    <personCode>306a</personCode>
+    <firstName>Brock</firstName>
+    <lastName>Sampson</lastName>
+    <address>
+      <street>123 N 1st Street</street>
+      <city>Omaha</city>
+      <state>NE</state>
+      <zip>68116</zip>
+      <country>USA</country>
+    </address>
+    <emails>
+      <email>brock_f_sampson@gmail.com</email>
+      <email>bsampson@venture.com</email>
+    </emails>
+  </primaryContact>
+  <customerName>Valueless Club</customerName>
+  <customerAddress>
+    <street>123 Venture Way</street>
+    <city>Culver City</city>
+    <state>CA</state>
+    <zip>90230</zip>
+    <country>USA</country>
+  </customerAddress>
+</student>
+</customers>
