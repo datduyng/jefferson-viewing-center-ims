@@ -1,0 +1,82 @@
+{
+ "customers": [
+  {
+    "customerCode": "C001",
+    "customerType": "G",
+    "customerName": "Bill\u0027s Volume Sales",
+    "customerAddress": {
+      "street": "123 Bottoms St",
+      "city": "Lincoln",
+      "state": "NE",
+      "zipCode": "68588-0115",
+      "country": "USA"
+    }
+  },
+  {
+    "customerCode": "C004",
+    "customerType": "G",
+    "customerName": "Mc Donald",
+    "customerAddress": {
+      "street": " asdasd",
+      "city": " New York City",
+      "state": "NY",
+      "zipCode": "90210",
+      "country": "USA"
+    }
+  },
+  {
+    "customerCode": "C003",
+    "customerType": "S",
+    "primaryContact": {
+      "personCode": "zzz3",
+      "lastName": "Lebowski",
+      "firstName": "Big",
+      "address": {
+        "street": "666 N 99th Street",
+        "city": "Oklahoma City",
+        "state": "OK",
+        "zipCode": "68116",
+        "country": "USA"
+      },
+      "emails": [
+        "bski@ventura.com",
+        "big_lebo@aol.com"
+      ]
+    },
+    "customerName": "Dirty Mike and the Boyz",
+    "customerAddress": {
+      "street": "The Alley Cove",
+      "city": " New York City",
+      "state": "NY",
+      "zipCode": "90210",
+      "country": "USA"
+    }
+  },
+  {
+    "customerCode": "C002",
+    "customerType": "S",
+    "primaryContact": {
+      "personCode": "wtf72",
+      "lastName": "Miles",
+      "firstName": "Les",
+      "address": {
+        "street": "8754 Turnpike Lane.",
+        "city": "Dallas",
+        "state": "WY",
+        "zipCode": "75031",
+        "country": "USA"
+      },
+      "emails": [
+        "lester@d.com"
+      ]
+    },
+    "customerName": "The Knights Templar",
+    "customerAddress": {
+      "street": "1223 Discreet Location",
+      "city": "Somewhere",
+      "state": "CA",
+      "zipCode": "62401",
+      "country": "USA"
+    }
+  }
+]}

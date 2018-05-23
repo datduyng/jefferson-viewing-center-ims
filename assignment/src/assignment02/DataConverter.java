@@ -53,7 +53,9 @@ public class DataConverter {
 		
 		for(int i = 0; i < NUM_OF_PERSON; i++) {
 			String nextLine = scan.nextLine();
-			Person p = new Person(nextLine);
+			Person p = new Person();
+			p.setAttribute(nextLine);
+			
 			int flag = 0;
 			//check to make sure there is no duplicate
 			for(Person person : persons){
@@ -74,10 +76,19 @@ public class DataConverter {
 		
 		for(int i = 0; i < NUM_OF_CUSTOMER; i++) {
 			String nextLine = scan.nextLine();
-			Customer c = new Customer(nextLine);
-
+			String[] token = nextLine.split(";");
+			String customerCode = token[1];
+			Customer c = null;
+			if(customerCode.equalsIgnoreCase("S")) {
+				c = new Student();
+				c.setAttribute(nextLine);
+			}else if(customerCode.equalsIgnoreCase("G")){
+				c = new General();
+				c.setAttribute(nextLine);
+			}
+		
 			
-			int flag = 0;
+			int flag = 0; 
 			//check to make sure there is no duplicate
 			for(Customer customer : customers){
 				if(customer.getCustomerCode().equals(c.getCustomerCode())){
@@ -92,7 +103,7 @@ public class DataConverter {
 			
 		
 		//parse Product Data File, create appropriate objects
-		scan = DataConverter.openFile("data02/Products.dat");
+		scan = DataConverter.openFile("data/Products.dat");
 		
 		// read the first line.
 		NUM_OF_PRODUCT = Integer.parseInt(scan.nextLine().trim());
@@ -110,7 +121,7 @@ public class DataConverter {
 				p = new ParkingPass(token);
 			} else if (token[1].equalsIgnoreCase("R")) {
 				p = new Refreshment(token);
-			} 
+			}
 			
 			int flag = 0;
 			//check to make sure there is no duplicate
@@ -131,13 +142,13 @@ public class DataConverter {
 		// write to JSON file 
 		toJsonFile("data/Persons.json",DataConverter.persons,"persons");
 		toJsonFile("data/Customers.json",DataConverter.customers,"customers");
-		toJsonFile("data02/Products.json",DataConverter.products,"products");
+		toJsonFile("data/Products.json",DataConverter.products,"products");
 		
 		
 		// write to XML file format
 		toXmlFile("data/Persons.xml", DataConverter.persons,"persons");
 		toXmlFile("data/Customers.xml", DataConverter.customers,"customers");
-		toXmlFile("data02/Products.xml", DataConverter.products,"products");
+		toXmlFile("data/Products.xml", DataConverter.products,"products");
 		
 	}// end main
  
@@ -188,8 +199,6 @@ public class DataConverter {
 	
 	public static void toJsonFile(String fileOutput, Object obj,String objName) { 		
 
-		
-		//TODO: error checking if obj is null or not
 		Gson gson = new Gson();
 				
 		//use to print neat tree model JSON result 
@@ -225,8 +234,13 @@ public class DataConverter {
 			xstream.alias("person", Person.class);
 			xstream.alias("persons", Set.class);
 		}else if(fieldName.equals("customers")) {
+			
 			xstream.alias("customer", Customer.class);
 			xstream.alias("customers", Set.class);
+			xstream.alias("email", String.class);
+			xstream.alias("student", Student.class);
+			xstream.alias("general", General.class);
+
 		}else if(fieldName.equals("products")) {
 			xstream.alias("product", Customer.class);
 			xstream.alias("products", Set.class);
@@ -256,4 +270,5 @@ public class DataConverter {
 			e.printStackTrace();
 		}
 	}
+	
 }// end DataConverter

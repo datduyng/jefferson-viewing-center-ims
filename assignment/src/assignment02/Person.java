@@ -9,28 +9,28 @@ public class Person {
 	private String lastName;
 	private String firstName;
 	private Address address;
-	private Set<String> email;
+	private Set<String> emails;
 
-	// default constructor
+
 	public Person() {
-		
+		// default constructor
 	}
-	
-	public Person(String nextLine) {
+
+	public void setAttribute(String nextLine) {
 		String[] token = nextLine.split(";");
-			this.personCode = token[0];
-			String[] nameToken = token[1].split(",");
-			this.lastName = nameToken[0];
-			this.firstName = nameToken[1].trim();
-			this.address = new Address(token[2]);
-			if(token.length == 4) {
-				this.email = new HashSet<String>();
-				String[] emailToken = token[3].split(",");
-				for(String stringEmail : emailToken) {
-					this.email.add(stringEmail);
-				}
+		this.personCode = token[0];
+		String[] nameToken = token[1].split(",");
+		this.lastName = nameToken[0];
+		this.firstName = nameToken[1].trim();
+		this.address = new Address(token[2]);
+		if(token.length == 4) {
+			this.emails = new HashSet<String>();
+			String[] emailToken = token[3].split(",");
+			for(String stringEmail : emailToken) {
+				this.emails.add(stringEmail);
 			}
-	}
+		}
+	}// end setAttribute
 	
 	public String getPersonCode() {
 		return this.personCode;
@@ -49,14 +49,14 @@ public class Person {
 	}
 
 	public Set<String> getEmail() {
-		return email;
+		return emails;
 	}	
 	
 	/**
 	 * @Override 
 	 */
 	public String toString() {
-		return this.personCode + ";" + this.lastName + ", " + this.firstName + ";" + this.address.toString() + this.email; 
+		return this.personCode + ";" + this.lastName + ", " + this.firstName + ";" + this.address.toString() + this.emails; 
 	}
 	
 }

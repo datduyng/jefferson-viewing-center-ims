@@ -16,7 +16,10 @@ public class SeasonPass extends Product {
 		this.name = nextLineTokens[2];
 		this.startDate = nextLineTokens[3];
 		this.endDate = nextLineTokens[4];
-		this.cost = Double.parseDouble(nextLineTokens[5]);
+		// input validation cost 
+		if(Double.parseDouble(nextLineTokens[5]) > 0.0) {
+			this.cost = Double.parseDouble(nextLineTokens[5]);
+		}
 	}
 
 	public String getName() {

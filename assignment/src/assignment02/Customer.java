@@ -5,7 +5,7 @@ import assignment02.DataConverter;
 public class Customer {
 	
 	private String customerCode;
-	private String customerType;
+	protected String customerType;
 	private Person primaryContact;
 	private String customerName;
 	private Address customerAddress;
@@ -15,15 +15,29 @@ public class Customer {
 		
 	}
 	
-	public Customer(String nextLine) {
-		String[] customerTokens = nextLine.split(";");
+	public Customer(String customerCode, String personCode, String customerType, String customerName, Address customerAddress) {
+		this.customerCode = customerCode;
+		//input validation customer type.
+		if(customerType == "S" || customerType == "G") {
+			this.customerType = customerType;
+		}
+		this.primaryContact = DataConverter.findPerson(personCode, DataConverter.getPersons());
+		this.customerName = customerName;
+		this.customerAddress = customerAddress;
+	}
+	
+	/**
+	 * This function set customer attribute
+	 * @param line
+	 */
+	public void setAttribute(String line) {
+		String[] customerTokens = line.split(";");
 		this.customerCode = customerTokens[0];
-		this.customerType = customerTokens[1];
 		this.primaryContact = DataConverter.findPerson(customerTokens[2], DataConverter.getPersons());
 		this.customerName = customerTokens[3];
 		this.customerAddress = new Address(customerTokens[4]);
 	}
-
+	
 	public String getCustomerCode() {
 		return customerCode;
 	}
@@ -50,4 +64,16 @@ public class Customer {
 	
 	
 
-}
+}// end customer class
+
+class Student extends Customer{
+	public Student() {
+		this.customerType = "S";
+	}
+}// end student class
+
+class General extends Customer{
+	public General() {
+		this.customerType = "G";
+	}
+}// end General class 

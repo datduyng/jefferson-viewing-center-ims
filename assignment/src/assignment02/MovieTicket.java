@@ -18,7 +18,10 @@ public class MovieTicket extends Product {
 		this.movieName = token[3];
 		this.theaterAddress = new Address(token[4]);
 		this.screenNumber = token[5];
-		this.pricePerUnit = Double.parseDouble(token[6]);
+		//input validation priceperUnit
+		if(Double.parseDouble(token[6]) > 0) {
+			this.pricePerUnit = Double.parseDouble(token[6]);
+		}	
 	}
 
 	public String getDateTime() {
