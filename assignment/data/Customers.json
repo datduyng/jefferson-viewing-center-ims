@@ -3,27 +3,9 @@
   {
     "customerCode": "C001",
     "customerType": "G",
-    "primaryContact": {
-      "personCode": "231",
-      "lastName": "Baker",
-      "firstName": "Tom",
-      "address": {
-        "street": "1 Blue Jays Way",
-        "city": " Toronto",
-        "state": " ON",
-        "zipCode": " M5V 1J1",
-        "country": " Canada"
-      },
-      "email": [
-        "mostfamous@whovian.com",
-        "thedoctor@bbc.com",
-        "famousdoc@who.com",
-        "tbaker@cse.unl.edu"
-      ]
-    },
-    "customerName": "Clark Consultants",
+    "customerName": "Bill\u0027s Volume Sales",
     "customerAddress": {
-      "street": "259 Concorde Suites",
+      "street": "123 Bottoms St",
       "city": "Lincoln",
       "state": "NE",
       "zipCode": "68588-0115",
@@ -31,82 +13,30 @@
     }
   },
   {
-    "customerCode": "C005",
-    "customerType": "G",
-    "primaryContact": {
-      "personCode": "bbchar",
-      "lastName": "Ehrmantraut",
-      "firstName": "Kaylee",
-      "address": {
-        "street": "800 West 7th Street",
-        "city": " Albuquerque",
-        "state": " NM",
-        "zipCode": " 87105",
-        "country": "USA"
-      }
-    },
-    "customerName": "Hewlett Industries",
-    "customerAddress": {
-      "street": "1060 West Addison",
-      "city": "Chicago",
-      "state": "IL",
-      "zipCode": "60601",
-      "country": "USA"
-    }
-  },
-  {
-    "customerCode": "C004",
-    "customerType": "G",
-    "primaryContact": {
-      "personCode": "321f",
-      "lastName": "Fox",
-      "firstName": "Bud",
-      "address": {
-        "street": "321 Bronx Street",
-        "city": "New York",
-        "state": "NY",
-        "zipCode": "10004",
-        "country": "USA"
-      },
-      "email": [
-        "bfox@gmail.com",
-        "csheen@crazy.net"
-      ]
-    },
-    "customerName": "Stony Brook",
-    "customerAddress": {
-      "street": "9800 Savage Rd",
-      "city": "Fort Meade",
-      "state": "MD",
-      "zipCode": "20755",
-      "country": "USA"
-    }
-  },
-  {
     "customerCode": "C003",
     "customerType": "S",
     "primaryContact": {
-      "personCode": "306a",
-      "lastName": "Sampson",
-      "firstName": "Brock",
+      "personCode": "zzz3",
+      "lastName": "Lebowski",
+      "firstName": "Big",
       "address": {
-        "street": "123 N 1st Street",
-        "city": "Omaha",
-        "state": "NE",
+        "street": "666 N 99th Street",
+        "city": "Oklahoma City",
+        "state": "OK",
         "zipCode": "68116",
         "country": "USA"
       },
       "email": [
-        "brock_f_sampson@gmail.com",
-        "bsampson@venture.com"
+        "bski@ventura.com",
+        "big_lebo@aol.com"
       ]
     },
-    "customerName": "Valueless Club",
+    "customerName": "Dirty Mike and the Boyz",
     "customerAddress": {
-      "street": "123 Venture Way",
-      "city": "Culver City",
-      "state": "CA",
-      "zipCode": "90230",
+      "street": "The Alley Cove",
+      "city": " New York City",
+      "state": "NY",
+      "zipCode": "90210",
       "country": "USA"
     }
   },
@@ -114,54 +44,26 @@
     "customerCode": "C002",
     "customerType": "S",
     "primaryContact": {
-      "personCode": "944c",
-      "lastName": "Castro",
-      "firstName": "Starlin",
+      "personCode": "wtf72",
+      "lastName": "Miles",
+      "firstName": "Les",
       "address": {
-        "street": "1060 West Addison Street",
-        "city": "Chicago",
-        "state": "IL",
-        "zipCode": "60613",
+        "street": "8754 Turnpike Lane.",
+        "city": "Dallas",
+        "state": "WY",
+        "zipCode": "75031",
         "country": "USA"
       },
       "email": [
-        "scastro@cubs.com",
-        "starlin_castro13@gmail.com"
+        "lester@d.com"
       ]
     },
-    "customerName": "CAS International Fellows",
+    "customerName": "The Knights Templar",
     "customerAddress": {
-      "street": "1223 Oldfather Hall",
-      "city": "Lincoln",
-      "state": "NE",
-      "zipCode": "68503",
-      "country": "USA"
-    }
-  },
-  {
-    "customerCode": "C006",
-    "customerType": "S",
-    "primaryContact": {
-      "personCode": "321dr",
-      "lastName": "Baker",
-      "firstName": "C.",
-      "address": {
-        "street": "Avery Hall",
-        "city": "Lincoln",
-        "state": "NE",
-        "zipCode": "68503",
-        "country": "USA"
-      },
-      "email": [
-        "dr@baker.com"
-      ]
-    },
-    "customerName": "Gregory Smith",
-    "customerAddress": {
-      "street": "456 West 7th St.",
-      "city": "Omaha",
-      "state": "NE",
-      "zipCode": "68500",
+      "street": "1223 Discreet Location",
+      "city": "Somewhere",
+      "state": "CA",
+      "zipCode": "62401",
       "country": "USA"
     }
   }

@@ -1,44 +1,37 @@
 {
  "products": [
   {
-    "parkingFee": 20.0,
-    "productCode": "6gqs",
-    "productType": "P"
-  },
-  {
-    "name": "Labatt Beer-20oz",
-    "cost": 4.99,
-    "productCode": "sdff",
+    "name": "Zipline Beer-1 oz",
+    "cost": 3.01,
+    "productCode": "ff23",
     "productType": "R"
   },
   {
-    "dateTime": "2016-11-10 10:00",
-    "movieName": "Shut In",
-    "theaterAddress": {
-      "street": "6301 University Ave",
-      "city": "Cedar Falls",
-      "state": " IA",
-      "zipCode": " 50613",
-      "country": " USA"
-    },
-    "screenNumber": "32D",
-    "pricePerUnit": 25.0,
-    "productCode": "782g",
-    "productType": "M"
+    "parkingFee": 10.0,
+    "productCode": "90",
+    "productType": "P"
   },
   {
-    "dateTime": "2016-10-21 13:10",
-    "movieName": "A Monster Calls",
+    "name": "Easter Pass",
+    "startDate": "2018-03-13",
+    "endDate": "2018-04-01",
+    "cost": 50.0,
+    "productCode": "z1e4",
+    "productType": "S"
+  },
+  {
+    "dateTime": "2018-5-22 12:10",
+    "movieName": "Space Jam",
     "theaterAddress": {
-      "street": "3555 South 140th Plaza",
-      "city": "Omaha",
+      "street": "2234 Dudley St",
+      "city": "Lincoln",
       "state": " NE",
-      "zipCode": " 68144",
+      "zipCode": " 68503",
       "country": " USA"
     },
     "screenNumber": "2A",
-    "pricePerUnit": 21.5,
-    "productCode": "fsdf",
+    "pricePerUnit": 12.5,
+    "productCode": "fa45",
     "productType": "M"
   },
   {
@@ -46,60 +39,7 @@
     "startDate": "2016-12-13",
     "endDate": "2017-01-07",
     "cost": 120.0,
-    "productCode": "qwes",
+    "productCode": "b29e",
     "productType": "S"
-  },
-  {
-    "name": "FiveWeeks-Unlimited",
-    "startDate": "2016-10-07",
-    "endDate": "2016-11-11",
-    "cost": 185.0,
-    "productCode": "34ds",
-    "productType": "S"
-  },
-  {
-    "dateTime": "2016-09-13 15:30",
-    "movieName": "The Wild Life",
-    "theaterAddress": {
-      "street": "755 Willard Drive",
-      "city": "Ashwaubenon",
-      "state": " WI",
-      "zipCode": " 54304",
-      "country": " USA"
-    },
-    "screenNumber": "12F",
-    "pricePerUnit": 11.0,
-    "productCode": "12xc",
-    "productType": "M"
-  },
-  {
-    "name": "Caramel Popcorn",
-    "cost": 5.5,
-    "productCode": "32f4",
-    "productType": "R"
-  },
-  {
-    "name": "BlackFriday Deal",
-    "startDate": "2016-11-24",
-    "endDate": "2016-11-29",
-    "cost": 58.0,
-    "productCode": "3das",
-    "productType": "S"
-  },
-  {
-    "parkingFee": 25.0,
-    "productCode": "12ok",
-    "productType": "P"
-  },
-  {
-    "parkingFee": 55.0,
-    "productCode": "3289",
-    "productType": "P"
-  },
-  {
-    "name": "Double Cheeseburger",
-    "cost": 9.0,
-    "productCode": "tyr2",
-    "productType": "R"
   }
 ]}
