@@ -32,6 +32,7 @@ public class DataConverter {
 	private static int NUM_OF_CUSTOMER;
 	private static int NUM_OF_PERSON;
 	private static int NUM_OF_PRODUCT;
+	private static int NUM_OF_INVOICE;
 	
 	/* HashSets created to store created Person, Customer, and Product objects 
 	 * respectively.  Sets chosen to prevent duplicate entries.
@@ -39,6 +40,7 @@ public class DataConverter {
 	private static Set<Person> persons = new HashSet<Person>();
 	private static Set<Customer> customers = new HashSet<Customer>();
 	private static Set<Product> products = new HashSet<Product>();
+	private static Set<Invoice> invoices = new HashSet<Invoice>();
 	
 	
 	public static void main(String[] args){
@@ -125,19 +127,44 @@ public class DataConverter {
 			}
 		}
 		
+		//open Invoice data file, and create objects 
+		scan = DataConverter.openFile("data/Invoices.dat");
+		NUM_OF_INVOICE = Integer.parseInt(scan.nextLine().trim());
+		for(int i = 0; i < NUM_OF_INVOICE; i++) {
+			String nextLine = scan.nextLine();
+			Invoice newInvoice = new Invoice(nextLine);
+			int flag = 0;
+			//check to make sure there is no duplicate
+			for(Invoice invoice : invoices){
+				if(invoice.getInvoiceCode().equals(newInvoice.getInvoiceCode())){
+					flag ++;
+				}
+			}// end for
+			
+			if(flag == 0){
+				invoices.add(newInvoice);
+				System.out.println(newInvoice.getInvoiceCode());
+				System.out.println(newInvoice.getCustomer().getCustomerCode());
+				System.out.println(newInvoice.getSalesperson().getPersonCode());
+				System.out.println(newInvoice.getInvoiceDate());
+				System.out.println(newInvoice.getProductList().size());
+			}
+		}
+		
+		
 		scan.close();
 		
 		
 		// write to JSON file 
 		toJsonFile("data/Persons.json",DataConverter.persons,"persons");
 		toJsonFile("data/Customers.json",DataConverter.customers,"customers");
-		toJsonFile("data02/Products.json",DataConverter.products,"products");
+		toJsonFile("data/Products.json",DataConverter.products,"products");
 		
 		
 		// write to XML file format
 		toXmlFile("data/Persons.xml", DataConverter.persons,"persons");
 		toXmlFile("data/Customers.xml", DataConverter.customers,"customers");
-		toXmlFile("data02/Products.xml", DataConverter.products,"products");
+		toXmlFile("data/Products.xml", DataConverter.products,"products");
 		
 	}// end main
  
@@ -161,6 +188,26 @@ public class DataConverter {
 		for(Person person : persons) {
 			if(person.getPersonCode().equals(personCode)) {
 				p = person;
+			}
+		}
+		return p;
+	}
+	
+	public static Customer findCustomer(String customerCode, Set<Customer> customers) {
+		Customer c = null;
+		for(Customer customer : customers) {
+			if(customer.getCustomerCode().equals(customerCode)) {
+				c = customer;
+			}
+		}
+		return c;
+	}
+	
+	public static Product findProduct(String productCode, Set<Product> products) {
+		Product p = null;
+		for(Product product : products) {
+			if(product.getProductCode().equals(productCode)) {
+				p = product;
 			}
 		}
 		return p;
