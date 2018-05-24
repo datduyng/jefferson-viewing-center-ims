@@ -1,46 +1,19 @@
 <?xml version="1.0"?> 
  <persons>
   <person>
-    <personCode>wtf72</personCode>
-    <lastName>Miles</lastName>
-    <firstName>Les</firstName>
+    <personCode>na</personCode>
+    <lastName>na</lastName>
+    <firstName>na</firstName>
     <address>
-      <street>8754 Turnpike Lane.</street>
-      <city>Dallas</city>
-      <state>WY</state>
-      <zipCode>75031</zipCode>
-      <country>USA</country>
-    </address>
-    <email>
-      <string>lester@d.com</string>
-    </email>
-  </person>
-  <person>
-    <personCode>01a01</personCode>
-    <lastName>Madison</lastName>
-    <firstName>Billy</firstName>
-    <address>
-      <street>1065 West Madison Ave</street>
-      <city>Toronto</city>
-      <state>OT</state>
+      <street>1060 West Addison Street</street>
+      <city>Chicago</city>
+      <state>IL</state>
       <zipCode>60613</zipCode>
-      <country>Canada</country>
-    </address>
-  </person>
-  <person>
-    <personCode>zzz3</personCode>
-    <lastName>Lebowski</lastName>
-    <firstName>Big</firstName>
-    <address>
-      <street>666 N 99th Street</street>
-      <city>Oklahoma City</city>
-      <state>OK</state>
-      <zipCode>68116</zipCode>
       <country>USA</country>
     </address>
-    <email>
-      <string>bski@ventura.com</string>
-      <string>big_lebo@aol.com</string>
-    </email>
+    <emails>
+      <string>scastro@cubs.com</string>
+      <string>starlin_castro13@gmail.com</string>
+    </emails>
   </person>
 </persons> 

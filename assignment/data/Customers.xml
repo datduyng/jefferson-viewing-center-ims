@@ -1,70 +1,15 @@
 <?xml version="1.0"?> 
  <customers>
-  <customer>
-    <customerCode>C001</customerCode>
+  <general>
+    <customerCode>N.A</customerCode>
     <customerType>G</customerType>
-    <customerName>Bill&apos;s Volume Sales</customerName>
+    <customerName>Clark Consultants</customerName>
     <customerAddress>
-      <street>123 Bottoms St</street>
+      <street>259 Concorde Suites</street>
       <city>Lincoln</city>
       <state>NE</state>
       <zipCode>68588-0115</zipCode>
       <country>USA</country>
     </customerAddress>
-  </customer>
-  <customer>
-    <customerCode>C003</customerCode>
-    <customerType>S</customerType>
-    <primaryContact>
-      <personCode>zzz3</personCode>
-      <lastName>Lebowski</lastName>
-      <firstName>Big</firstName>
-      <address>
-        <street>666 N 99th Street</street>
-        <city>Oklahoma City</city>
-        <state>OK</state>
-        <zipCode>68116</zipCode>
-        <country>USA</country>
-      </address>
-      <email>
-        <string>bski@ventura.com</string>
-        <string>big_lebo@aol.com</string>
-      </email>
-    </primaryContact>
-    <customerName>Dirty Mike and the Boyz</customerName>
-    <customerAddress>
-      <street>The Alley Cove</street>
-      <city> New York City</city>
-      <state>NY</state>
-      <zipCode>90210</zipCode>
-      <country>USA</country>
-    </customerAddress>
-  </customer>
-  <customer>
-    <customerCode>C002</customerCode>
-    <customerType>S</customerType>
-    <primaryContact>
-      <personCode>wtf72</personCode>
-      <lastName>Miles</lastName>
-      <firstName>Les</firstName>
-      <address>
-        <street>8754 Turnpike Lane.</street>
-        <city>Dallas</city>
-        <state>WY</state>
-        <zipCode>75031</zipCode>
-        <country>USA</country>
-      </address>
-      <email>
-        <string>lester@d.com</string>
-      </email>
-    </primaryContact>
-    <customerName>The Knights Templar</customerName>
-    <customerAddress>
-      <street>1223 Discreet Location</street>
-      <city>Somewhere</city>
-      <state>CA</state>
-      <zipCode>62401</zipCode>
-      <country>USA</country>
-    </customerAddress>
-  </customer>
+  </general>
 </customers> 

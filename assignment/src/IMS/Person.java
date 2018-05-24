@@ -1,4 +1,4 @@
-package assignment02;
+package IMS;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,10 +18,10 @@ public class Person {
 
 	public void setAttribute(String nextLine) {
 		String[] token = nextLine.split(";");
-		this.personCode = token[0];
+		setPersonCode(token[0]);
 		String[] nameToken = token[1].split(",");
-		this.lastName = nameToken[0];
-		this.firstName = nameToken[1].trim();
+		setLastName(nameToken[0]);
+		setFirstName(nameToken[1].trim());
 		this.address = new Address(token[2]);
 		if(token.length == 4) {
 			this.emails = new HashSet<String>();
@@ -51,7 +51,40 @@ public class Person {
 	public Set<String> getEmail() {
 		return emails;
 	}	
-	
+
+
+	public void setEmails(Set<String> emails) {
+		this.emails = emails;
+	}
+
+	public void setPersonCode(String personCode) {
+		if(personCode != null && personCode.length() > 0) {
+			this.personCode = personCode;
+		}else {
+			this.personCode = "na";
+		}
+	}
+
+	public void setLastName(String lastName) {
+		if(lastName != null && lastName.length() > 0) {
+			this.lastName = lastName;
+		}else{
+			this.lastName = "na";
+		}
+	}
+
+	public void setFirstName(String firstName) {
+		if(firstName != null && firstName.length() > 0) {
+			this.firstName = firstName;
+		}else{
+			this.firstName = "na";
+		}
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	/**
 	 * @Override 
 	 */

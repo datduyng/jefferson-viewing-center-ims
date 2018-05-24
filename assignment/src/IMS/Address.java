@@ -1,4 +1,4 @@
-package assignment02;
+package IMS;
 
 public class Address {
 	
