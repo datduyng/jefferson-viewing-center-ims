@@ -1,4 +1,4 @@
-package assignment02;
+package IMS;
 
 public class Address {
 	
@@ -16,11 +16,11 @@ public class Address {
 		
 		String[] addressTokens = address.split(",");
 		for(int i = 0; i < addressTokens.length; i++) {
-			this.street = addressTokens[0];
-			this.city = addressTokens[1];
-			this.state = addressTokens[2];
-			this.zipCode = addressTokens[3];
-			this.country = addressTokens[4];
+				this.street = addressTokens[0];
+				this.city = addressTokens[1];
+				this.state = addressTokens[2]; 
+				this.zipCode = addressTokens[3];
+				this.country = addressTokens[4];
 		}
 	}
 

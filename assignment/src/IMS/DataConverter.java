@@ -1,4 +1,4 @@
-package assignment02;
+package IMS;
 
 import java.util.HashSet;
 import java.util.Scanner;
@@ -21,8 +21,8 @@ import com.thoughtworks.xstream.XStream;
  * libraries. 
  * 
  * @authors Reid Stagemeyer and Dat Nguyen 
- * @version 1.0
- * @since 2018-05-20
+ * @version 2.0
+ * @since 2018-05-24
  * 
  */
 
@@ -53,8 +53,20 @@ public class DataConverter {
 		
 		for(int i = 0; i < NUM_OF_PERSON; i++) {
 			String nextLine = scan.nextLine();
-			Person p = new Person(nextLine);
-			persons.add(p);
+			Person p = new Person();
+			p.setAttribute(nextLine);
+			
+			int flag = 0;
+			//check to make sure there is no duplicate
+			for(Person person : persons){
+				if(person.getPersonCode().equals(p.getPersonCode())){
+					flag ++;
+				}
+			}// end for
+			
+			if(flag == 0){
+				persons.add(p);
+			}
 		}
 		
 		//open Customer.dat file, and create object
@@ -64,12 +76,33 @@ public class DataConverter {
 		
 		for(int i = 0; i < NUM_OF_CUSTOMER; i++) {
 			String nextLine = scan.nextLine();
-			Customer c = new Customer(nextLine);
-			customers.add(c);
-		}// end for
+			String[] token = nextLine.split(";");
+			String customerCode = token[1];
+			Customer c = null;
+			if(customerCode.equalsIgnoreCase("S")) {
+				c = new Student();
+				c.setAttribute(nextLine);
+			}else if(customerCode.equalsIgnoreCase("G")){
+				c = new General();
+				c.setAttribute(nextLine);
+			}
+		
+			
+			int flag = 0; 
+			//check to make sure there is no duplicate
+			for(Customer customer : customers){
+				if(customer.getCustomerCode().equals(c.getCustomerCode())){
+					flag ++;
+				}
+			}// end for
+			
+			if(flag == 0){
+				customers.add(c);
+			}
+		}// end 
 			
 		
-		//parse Product Data File, create appropriate objects
+		//parse Product data File, create appropriate objects
 		scan = DataConverter.openFile("data/Products.dat");
 		
 		// read the first line.
@@ -88,8 +121,19 @@ public class DataConverter {
 				p = new ParkingPass(token);
 			} else if (token[1].equalsIgnoreCase("R")) {
 				p = new Refreshment(token);
-			} 
-			products.add(p);
+			}
+			
+			int flag = 0;
+			//check to make sure there is no duplicate
+			for(Product product : products){
+				if(product.getProductCode().equals(p.getProductCode())){
+					flag ++;
+				}
+			}// end for
+			
+			if(flag == 0){
+				products.add(p);
+			}
 		}
 		
 		scan.close();
@@ -155,8 +199,6 @@ public class DataConverter {
 	
 	public static void toJsonFile(String fileOutput, Object obj,String objName) { 		
 
-		
-		//TODO: error checking if obj is null or not
 		Gson gson = new Gson();
 				
 		//use to print neat tree model JSON result 
@@ -192,8 +234,13 @@ public class DataConverter {
 			xstream.alias("person", Person.class);
 			xstream.alias("persons", Set.class);
 		}else if(fieldName.equals("customers")) {
+			
 			xstream.alias("customer", Customer.class);
 			xstream.alias("customers", Set.class);
+			xstream.alias("email", String.class);
+			xstream.alias("student", Student.class);
+			xstream.alias("general", General.class);
+
 		}else if(fieldName.equals("products")) {
 			xstream.alias("product", Customer.class);
 			xstream.alias("products", Set.class);
@@ -223,4 +270,5 @@ public class DataConverter {
 			e.printStackTrace();
 		}
 	}
+	
 }// end DataConverter

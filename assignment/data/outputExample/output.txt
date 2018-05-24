@@ -1,0 +1,116 @@
+Executive Summary Report
+=========================
+Invoice   Customer                                          Salesperson                      Subtotal        Fees       Taxes    Discount       Total
+INV001    Clark Consultants [General]                       Eccleston, Chris              $     61.96 $      0.00 $      3.34 $    -0.00 $     65.30
+INV002    CAS International Fellows [Student]               Tennant, David                $   3524.96 $      6.75 $    206.22 $  -488.22 $   3249.71
+INV003    Hewlett Industries [General]                      Smith, Matt                   $    453.75 $      0.00 $     26.54 $    -0.00 $    480.29
+INV004    Valueless Club [Student]                          Hurndall, Richard             $     76.50 $      6.75 $      3.06 $    -9.18 $     77.13
+=====================================================================================================================================================
+TOTALS                                                                                    $   4117.17 $     13.50 $    239.16 $  -497.40 $   3872.43
+
+
+
+
+Individual Invoice Detail Reports
+==================================================
+Invoice INV001
+========================
+Salesperson: Eccleston, Chris
+Customer Info: 
+  Clark Consultants (C001) 
+  [General]
+  Baker, Tom
+  259 Concorde Suites
+  Lincoln NE 68588-0115 USA
+-------------------------------------------
+Code      Item                                                                      SubTotal        Tax       Total
+fp12      MovieTicket 'A Monster Calls' @ 3555 South 140th Plaza                $     43.00 $      2.58 $     45.58
+          Oct 21,2016 13:10 (2 units @ $21.50/unit)                                                                   
+3289      ParkingPass fp12 (1 units @ $55.00 with 1 free)                       $      0.00 $      0.00 $      0.00
+ff23      Labatt Beer-20oz (4 units @ $4.99/unit with 5% off)                   $     18.96 $      0.76 $     19.72
+                                                                                ====================================
+SUB-TOTALS                                                                      $     61.96 $      3.34 $     65.30
+TOTAL                                                                                                   $     65.30
+
+
+			Thankyou for your purchase!
+
+
+Invoice INV002
+========================
+Salesperson: Tennant, David
+Customer Info: 
+  CAS International Fellows (C002) 
+  [Student]
+  Castro, Starlin
+  1223 Oldfather Hall
+  Lincoln NE 68503 USA
+-------------------------------------------
+Code      Item                                                                      SubTotal        Tax       Total
+b29e      Season Pass - Winter Special                                          $   2944.00 $    176.64 $   3120.64
+          (23 units @ $120.00/unit + $8 fee/unit)                                                                     
+1239      MovieTicket 'The Wild Life' @ 755 Willard Drive                       $    317.13 $     19.03 $    336.16
+          Sep 13,2016 15:30 (31 units @ $11.00/unit - Tue/Thu 7% off)                                                 
+90fa      ParkingPass b29e (30 units @ $25.00 with 23 free)                     $    175.00 $      7.00 $    182.00
+32f4      Caramel Popcorn (17 units @ $5.50/unit with 5% off)                   $     88.83 $      3.55 $     92.38
+                                                                                ====================================
+SUB-TOTALS                                                                      $   3524.96 $    206.22 $   3731.18
+DISCOUNT ( 8%  STUDENT & NO TAX)                                                                        $   -488.22
+ADDITIONAL FEE (Student)                                                                                $      6.75
+TOTAL                                                                                                   $   3249.71
+
+
+			Thankyou for your purchase!
+
+
+Invoice INV003
+========================
+Salesperson: Smith, Matt
+Customer Info: 
+  Hewlett Industries (C005) 
+  [General]
+  Ehrmantraut, Kaylee
+  1060 West Addison
+  Chicago IL 60601 USA
+-------------------------------------------
+Code      Item                                                                      SubTotal        Tax       Total
+782g      MovieTicket 'Shut In' @ 6301 University Ave                           $    162.75 $      9.76 $    172.52
+          Nov 10,2016 10:00 (7 units @ $25.00/unit - Tue/Thu 7% off)                                                  
+3y92      Season Pass - BlackFriday Deal                                        $    256.80 $     15.41 $    272.21
+          (6 units @ $58.00/unit prorated 3/5 days + $8 fee/unit)                                                     
+3289      ParkingPass 782g (2 units @ $55.00 with 2 free)                       $      0.00 $      0.00 $      0.00
+yp23      Double Cheeseburger (4 units @ $9.00/unit with 5% off)                $     34.20 $      1.37 $     35.57
+                                                                                ====================================
+SUB-TOTALS                                                                      $    453.75 $     26.54 $    480.29
+TOTAL                                                                                                   $    480.29
+
+
+			Thankyou for your purchase!
+
+
+Invoice INV004
+========================
+Salesperson: Hurndall, Richard
+Customer Info: 
+  Valueless Club (C003) 
+  [Student]
+  Sampson, Brock
+  123 Venture Way
+  Culver City CA 90230 USA
+-------------------------------------------
+Code      Item                                                                      SubTotal        Tax       Total
+90fb      ParkingPass (3 units @ $20.00)                                        $     60.00 $      2.40 $     62.40
+32f4      Caramel Popcorn (3 units @ $5.50/unit )                               $     16.50 $      0.66 $     17.16
+                                                                                ====================================
+SUB-TOTALS                                                                      $     76.50 $      3.06 $     79.56
+DISCOUNT ( 8%  STUDENT & NO TAX)                                                                        $     -9.18
+ADDITIONAL FEE (Student)                                                                                $      6.75
+TOTAL                                                                                                   $     77.13
+
+
+			Thankyou for your purchase!
+
+
+
+======================================================================================================================
+

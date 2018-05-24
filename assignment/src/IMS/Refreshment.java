@@ -1,4 +1,4 @@
-package assignment02;
+package IMS;
 
 public class Refreshment extends Product {
 	
@@ -12,7 +12,9 @@ public class Refreshment extends Product {
 	public Refreshment(String[] nextLineTokens) {
 		super(nextLineTokens[0], nextLineTokens[1]);
 		this.name = nextLineTokens[2];
-		this.cost = Double.parseDouble(nextLineTokens[3]);
+		if(Double.parseDouble(nextLineTokens[3]) > 0.0) {
+			this.cost = Double.parseDouble(nextLineTokens[3]);
+		}
 	}
 
 	public String getName() {
@@ -27,7 +29,7 @@ public class Refreshment extends Product {
 	 * @Override
 	 */
 	public String toString() {
-		return this.getProductCode() + ";" + this.getProductType() + ";" + this.getName() + ";" + this.getCost();
+		return this.getProductCode() + ";" + "R" + ";" + this.getName() + ";" + this.getCost();
 	}
 
 }

@@ -1,33 +1,37 @@
-package assignment02;
+package IMS;
 
 
 public class Product {
 
 	private String productCode;
-	private String productType;
-	
 	public Product() {
 		
 	}
 	
 	public Product(String productCode, String productType) {
-		this.productCode = productCode;
-		this.productType = productType;
+		setProductCode(productCode);
 	}
 
 	public String getProductCode() {
 		return productCode;
 	}
 
-	public String getProductType() {
-		return productType;
-	}
 	
+	public void setProductCode(String productCode) {
+		if(productCode != null && productCode.length() > 0) {
+			this.productCode = productCode;
+		}else {
+			this.productCode = "na";
+		}
+		
+	}
+
+
 	/**
 	 * @Override
 	 */
 	public String toString() {
-		return this.productCode + ";" + this.productType;
+		return this.productCode;
 	}
 	
 	

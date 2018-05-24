@@ -1,0 +1,77 @@
+{
+ "persons": [
+  {
+    "personCode": "zz23",
+    "lastName": "as ",
+    "firstName": "Big",
+    "address": {
+      "street": "666 N 99th Street",
+      "city": "Oklahoma City",
+      "state": "OK",
+      "zipCode": "68116",
+      "country": "USA"
+    },
+    "emails": [
+      "bug@gmail.com"
+    ]
+  },
+  {
+    "personCode": "zzz3",
+    "lastName": "Lebowski",
+    "firstName": "Big",
+    "address": {
+      "street": "666 N 99th Street",
+      "city": "Oklahoma City",
+      "state": "OK",
+      "zipCode": "68116",
+      "country": "USA"
+    },
+    "emails": [
+      "bski@ventura.com",
+      "big_lebo@aol.com"
+    ]
+  },
+  {
+    "personCode": "wtf72",
+    "lastName": "Miles",
+    "firstName": "Les",
+    "address": {
+      "street": "8754 Turnpike Lane.",
+      "city": "Dallas",
+      "state": "WY",
+      "zipCode": "75031",
+      "country": "USA"
+    },
+    "emails": [
+      "lester@d.com"
+    ]
+  },
+  {
+    "personCode": "zzz4",
+    "lastName": "Lebowski",
+    "firstName": "Big",
+    "address": {
+      "street": "666 N 99th Street",
+      "city": "Oklahoma City",
+      "state": "OK",
+      "zipCode": "68116",
+      "country": "USA"
+    },
+    "emails": [
+      "bski@ventura.com",
+      "big_lebo@aol.com"
+    ]
+  },
+  {
+    "personCode": "01a01",
+    "lastName": "Madison",
+    "firstName": "Billy",
+    "address": {
+      "street": "1065 West Madison Ave",
+      "city": "Toronto",
+      "state": "OT",
+      "zipCode": "60613",
+      "country": "Canada"
+    }
+  }
+]}
