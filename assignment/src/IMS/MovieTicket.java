@@ -84,7 +84,7 @@ public class MovieTicket extends Product {
 	 * @Override
 	 */
 	public String toString() {
-		return this.getProductCode() + ";" + this.getProductType() + ";" + this.dateTime + ";" + this.movieName + ";" + this.theaterAddress.toString() + this.screenNumber + ";" + this.pricePerUnit;
+		return this.getProductCode() + ";" + "M" + ";" + this.dateTime + ";" + this.movieName + ";" + this.theaterAddress.toString() + this.screenNumber + ";" + this.pricePerUnit;
 	}
 	
 

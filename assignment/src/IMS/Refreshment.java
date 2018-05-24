@@ -29,7 +29,7 @@ public class Refreshment extends Product {
 	 * @Override
 	 */
 	public String toString() {
-		return this.getProductCode() + ";" + this.getProductType() + ";" + this.getName() + ";" + this.getCost();
+		return this.getProductCode() + ";" + "R" + ";" + this.getName() + ";" + this.getCost();
 	}
 
 }

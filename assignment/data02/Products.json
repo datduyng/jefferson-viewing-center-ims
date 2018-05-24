@@ -1,25 +1,6 @@
 {
  "products": [
   {
-    "parkingFee": 10.0,
-    "productCode": "90",
-    "productType": "P"
-  },
-  {
-    "name": "good beer-1 oz",
-    "cost": 0.0,
-    "productCode": "f12",
-    "productType": "R"
-  },
-  {
-    "name": "Winter Special",
-    "startDate": "2016-12-13",
-    "endDate": "2017-01-07",
-    "cost": 120.0,
-    "productCode": "b29e",
-    "productType": "S"
-  },
-  {
     "name": "summmer spcecial",
     "startDate": "2016-12-13",
     "endDate": "2017-01-07",
@@ -36,6 +17,31 @@
     "productType": "S"
   },
   {
+    "name": "Zipline Beer-1 oz",
+    "cost": 3.01,
+    "productCode": "ff23",
+    "productType": "R"
+  },
+  {
+    "name": "Winter Special",
+    "startDate": "2016-12-13",
+    "endDate": "2017-01-07",
+    "cost": 120.0,
+    "productCode": "b29e",
+    "productType": "S"
+  },
+  {
+    "name": "good beer-1 oz",
+    "cost": 0.0,
+    "productCode": "f12",
+    "productType": "R"
+  },
+  {
+    "parkingFee": 10.0,
+    "productCode": "90",
+    "productType": "P"
+  },
+  {
     "dateTime": "2018-5-22 12:10",
     "movieName": "Space Jam",
     "theaterAddress": {
@@ -49,11 +55,5 @@
     "pricePerUnit": 12.5,
     "productCode": "fa45",
     "productType": "M"
-  },
-  {
-    "name": "Zipline Beer-1 oz",
-    "cost": 3.01,
-    "productCode": "ff23",
-    "productType": "R"
   }
 ]}

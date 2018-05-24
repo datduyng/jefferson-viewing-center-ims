@@ -15,7 +15,7 @@ import com.google.gson.GsonBuilder;
 import com.thoughtworks.xstream.XStream;
 
 /**
- * The DataConverter class parses and stores data02 in newly created objects 
+ * The DataConverter class parses and stores data in newly created objects 
  * from the old Invoice System located on flat files.  Then the objects are 
  * serialized into both XML and JSON with the use of appropriate external 
  * libraries. 
@@ -46,8 +46,8 @@ public class DataConverter {
 		// read customer.dat file
 		Scanner scan = null;
 		
-		//open Person data02 file, and create object 
-		scan = DataConverter.openFile("data02/Persons.dat");
+		//open Person data file, and create object 
+		scan = DataConverter.openFile("data/Persons.dat");
 		scan.hasNext();
 		NUM_OF_PERSON = Integer.parseInt(scan.nextLine().trim());
 		
@@ -70,7 +70,7 @@ public class DataConverter {
 		}
 		
 		//open Customer.dat file, and create object
-		scan = DataConverter.openFile("data02/Customers.dat");
+		scan = DataConverter.openFile("data/Customers.dat");
 		scan.hasNext();
 		NUM_OF_CUSTOMER = Integer.parseInt(scan.nextLine().trim());
 		
@@ -102,8 +102,8 @@ public class DataConverter {
 		}// end 
 			
 		
-		//parse Product data02 File, create appropriate objects
-		scan = DataConverter.openFile("data02/Products.dat");
+		//parse Product data File, create appropriate objects
+		scan = DataConverter.openFile("data/Products.dat");
 		
 		// read the first line.
 		NUM_OF_PRODUCT = Integer.parseInt(scan.nextLine().trim());
@@ -140,15 +140,15 @@ public class DataConverter {
 		
 		
 		// write to JSON file 
-		toJsonFile("data02/Persons.json",DataConverter.persons,"persons");
-		toJsonFile("data02/Customers.json",DataConverter.customers,"customers");
-		toJsonFile("data02/Products.json",DataConverter.products,"products");
+		toJsonFile("data/Persons.json",DataConverter.persons,"persons");
+		toJsonFile("data/Customers.json",DataConverter.customers,"customers");
+		toJsonFile("data/Products.json",DataConverter.products,"products");
 		
 		
 		// write to XML file format
-		toXmlFile("data02/Persons.xml", DataConverter.persons,"persons");
-		toXmlFile("data02/Customers.xml", DataConverter.customers,"customers");
-		toXmlFile("data02/Products.xml", DataConverter.products,"products");
+		toXmlFile("data/Persons.xml", DataConverter.persons,"persons");
+		toXmlFile("data/Customers.xml", DataConverter.customers,"customers");
+		toXmlFile("data/Products.xml", DataConverter.products,"products");
 		
 	}// end main
  

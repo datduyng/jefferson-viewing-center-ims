@@ -1,6 +1,37 @@
 {
  "persons": [
   {
+    "personCode": "zz23",
+    "lastName": "as ",
+    "firstName": "Big",
+    "address": {
+      "street": "666 N 99th Street",
+      "city": "Oklahoma City",
+      "state": "OK",
+      "zipCode": "68116",
+      "country": "USA"
+    },
+    "emails": [
+      "bug@gmail.com"
+    ]
+  },
+  {
+    "personCode": "zzz3",
+    "lastName": "Lebowski",
+    "firstName": "Big",
+    "address": {
+      "street": "666 N 99th Street",
+      "city": "Oklahoma City",
+      "state": "OK",
+      "zipCode": "68116",
+      "country": "USA"
+    },
+    "emails": [
+      "bski@ventura.com",
+      "big_lebo@aol.com"
+    ]
+  },
+  {
     "personCode": "wtf72",
     "lastName": "Miles",
     "firstName": "Les",
@@ -32,21 +63,6 @@
     ]
   },
   {
-    "personCode": "zz23",
-    "lastName": "as ",
-    "firstName": "Big",
-    "address": {
-      "street": "666 N 99th Street",
-      "city": "Oklahoma City",
-      "state": "OK",
-      "zipCode": "68116",
-      "country": "USA"
-    },
-    "emails": [
-      "bug@gmail.com"
-    ]
-  },
-  {
     "personCode": "01a01",
     "lastName": "Madison",
     "firstName": "Billy",
@@ -57,21 +73,5 @@
       "zipCode": "60613",
       "country": "Canada"
     }
-  },
-  {
-    "personCode": "zzz3",
-    "lastName": "Lebowski",
-    "firstName": "Big",
-    "address": {
-      "street": "666 N 99th Street",
-      "city": "Oklahoma City",
-      "state": "OK",
-      "zipCode": "68116",
-      "country": "USA"
-    },
-    "emails": [
-      "bski@ventura.com",
-      "big_lebo@aol.com"
-    ]
   }
 ]}

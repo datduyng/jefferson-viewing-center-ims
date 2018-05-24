@@ -42,7 +42,7 @@ public class SeasonPass extends Product {
 	 * @Override
 	 */
 	public String toString() {
-		return this.getProductCode() + ";" + this.getProductType() + ";" + this.name + ";" + this.startDate + ";" + this.endDate + ";" + this.cost;
+		return this.getProductCode() + ";" + "S" + ";" + this.name + ";" + this.startDate + ";" + this.endDate + ";" + this.cost;
 	}
 
 }
