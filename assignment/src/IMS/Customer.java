@@ -5,7 +5,7 @@ import IMS.DataConverter;
 public class Customer {
 	
 	private String customerCode;
-	protected String customerType;
+	private String customerType;
 	private Person primaryContact;
 	private String customerName;
 	private Address customerAddress;
@@ -99,12 +99,12 @@ public class Customer {
 
 class Student extends Customer{
 	public Student() {
-		this.customerType = "S";
+		setCustomerType( "S");
 	}
 }// end student class
 
 class General extends Customer{
 	public General() {
-		this.customerType = "G";
+		setCustomerType("G");
 	}
 }// end General class 
