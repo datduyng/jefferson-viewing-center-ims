@@ -1,4 +1,4 @@
-package IMS;
+package ims;
 
 public class ParkingPass extends Product {
 

@@ -1,27 +1,8 @@
 {
  "products": [
   {
-    "name": "Labatt Beer-20oz",
-    "cost": 4.99,
-    "productCode": "ff23"
-  },
-  {
-    "dateTime": "2016-11-10 10:00",
-    "movieName": "Shut In",
-    "theaterAddress": {
-      "street": "6301 University Ave",
-      "city": "Cedar Falls",
-      "state": " IA",
-      "zipCode": " 50613",
-      "country": " USA"
-    },
-    "screenNumber": "32D",
-    "pricePerUnit": 25.0,
-    "productCode": "782g"
-  },
-  {
-    "parkingFee": 25.0,
-    "productCode": "90fa"
+    "parkingFee": 55.0,
+    "productCode": "3289"
   },
   {
     "dateTime": "2016-09-13 15:30",
@@ -38,32 +19,6 @@
     "productCode": "1239"
   },
   {
-    "name": "BlackFriday Deal",
-    "startDate": "2016-11-24",
-    "endDate": "2016-11-29",
-    "cost": 58.0,
-    "productCode": "3y92"
-  },
-  {
-    "name": "Winter Special",
-    "startDate": "2016-12-13",
-    "endDate": "2017-01-07",
-    "cost": 120.0,
-    "productCode": "b29e"
-  },
-  {
-    "name": "Caramel Popcorn",
-    "cost": 5.5,
-    "productCode": "32f4"
-  },
-  {
-    "name": "FiveWeeks-Unlimited",
-    "startDate": "2016-10-07",
-    "endDate": "2016-11-11",
-    "cost": 185.0,
-    "productCode": "xer4"
-  },
-  {
     "dateTime": "2016-10-21 13:10",
     "movieName": "A Monster Calls",
     "theaterAddress": {
@@ -78,16 +33,61 @@
     "productCode": "fp12"
   },
   {
+    "parkingFee": 25.0,
+    "productCode": "90fa"
+  },
+  {
+    "dateTime": "2016-11-10 10:00",
+    "movieName": "Shut In",
+    "theaterAddress": {
+      "street": "6301 University Ave",
+      "city": "Cedar Falls",
+      "state": " IA",
+      "zipCode": " 50613",
+      "country": " USA"
+    },
+    "screenNumber": "32D",
+    "pricePerUnit": 25.0,
+    "productCode": "782g"
+  },
+  {
     "parkingFee": 20.0,
     "productCode": "90fb"
   },
   {
-    "parkingFee": 55.0,
-    "productCode": "3289"
+    "name": "BlackFriday Deal",
+    "startDate": "2016-11-24",
+    "endDate": "2016-11-29",
+    "cost": 58.0,
+    "productCode": "3y92"
   },
   {
     "name": "Double Cheeseburger",
     "cost": 9.0,
     "productCode": "yp23"
+  },
+  {
+    "name": "Winter Special",
+    "startDate": "2016-12-13",
+    "endDate": "2017-01-07",
+    "cost": 120.0,
+    "productCode": "b29e"
+  },
+  {
+    "name": "Labatt Beer-20oz",
+    "cost": 4.99,
+    "productCode": "ff23"
+  },
+  {
+    "name": "FiveWeeks-Unlimited",
+    "startDate": "2016-10-07",
+    "endDate": "2016-11-11",
+    "cost": 185.0,
+    "productCode": "xer4"
+  },
+  {
+    "name": "Caramel Popcorn",
+    "cost": 5.5,
+    "productCode": "32f4"
   }
 ]}

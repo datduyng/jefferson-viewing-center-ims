@@ -1,4 +1,4 @@
-package IMS;
+package ims;
 
 import java.util.HashSet;
 import java.util.Scanner;
@@ -157,7 +157,7 @@ public class DataConverter {
 	 * @param fileName name of file to be opened
 	 * @return Scanner object set to new file
 	 */
-	private static Scanner openFile(String fileName) {
+	public static Scanner openFile(String fileName) {
 		Scanner s;
 		try {
 			s = new Scanner(new File(fileName));
@@ -172,6 +172,26 @@ public class DataConverter {
 		for(Person person : persons) {
 			if(person.getPersonCode().equals(personCode)) {
 				p = person;
+			}
+		}
+		return p;
+	}
+	
+	public static Customer findCustomer(String customerCode, Set<Customer> customers) {
+		Customer c = null;
+		for(Customer customer : customers) {
+			if(customer.getCustomerCode().equals(customerCode)) {
+				c = customer;
+			}
+		}
+		return c;
+	}
+	
+	public static Product findProduct(String productCode, Set<Product> products) {
+		Product p = null;
+		for(Product product : products) {
+			if(product.getProductCode().equals(productCode)) {
+				p = product;
 			}
 		}
 		return p;

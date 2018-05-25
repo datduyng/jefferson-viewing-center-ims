@@ -1,6 +1,6 @@
-package IMS;
+package ims;
 
-import IMS.DataConverter;
+import ims.DataConverter;
 
 public class Customer {
 	
