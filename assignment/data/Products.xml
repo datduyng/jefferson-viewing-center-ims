@@ -1,41 +1,10 @@
 <?xml version="1.0"?> 
  <products>
-  <parkingpass>
-    <productCode>3289</productCode>
-    <parkingFee>55.0</parkingFee>
-  </parkingpass>
-  <movieticket>
-    <productCode>1239</productCode>
-    <dateTime>2016-09-13 15:30</dateTime>
-    <movieName>The Wild Life</movieName>
-    <theaterAddress>
-      <street>755 Willard Drive</street>
-      <city>Ashwaubenon</city>
-      <state> WI</state>
-      <zipCode> 54304</zipCode>
-      <country> USA</country>
-    </theaterAddress>
-    <screenNumber>12F</screenNumber>
-    <pricePerUnit>11.0</pricePerUnit>
-  </movieticket>
-  <movieticket>
-    <productCode>fp12</productCode>
-    <dateTime>2016-10-21 13:10</dateTime>
-    <movieName>A Monster Calls</movieName>
-    <theaterAddress>
-      <street>3555 South 140th Plaza</street>
-      <city>Omaha</city>
-      <state> NE</state>
-      <zipCode> 68144</zipCode>
-      <country> USA</country>
-    </theaterAddress>
-    <screenNumber>2A</screenNumber>
-    <pricePerUnit>21.5</pricePerUnit>
-  </movieticket>
-  <parkingpass>
-    <productCode>90fa</productCode>
-    <parkingFee>25.0</parkingFee>
-  </parkingpass>
+  <refreshment>
+    <productCode>ff23</productCode>
+    <name>Labatt Beer-20oz</name>
+    <cost>4.99</cost>
+  </refreshment>
   <movieticket>
     <productCode>782g</productCode>
     <dateTime>2016-11-10 10:00</dateTime>
@@ -51,9 +20,23 @@
     <pricePerUnit>25.0</pricePerUnit>
   </movieticket>
   <parkingpass>
-    <productCode>90fb</productCode>
-    <parkingFee>20.0</parkingFee>
+    <productCode>90fa</productCode>
+    <parkingFee>25.0</parkingFee>
   </parkingpass>
+  <movieticket>
+    <productCode>1239</productCode>
+    <dateTime>2016-09-13 15:30</dateTime>
+    <movieName>The Wild Life</movieName>
+    <theaterAddress>
+      <street>755 Willard Drive</street>
+      <city>Ashwaubenon</city>
+      <state> WI</state>
+      <zipCode> 54304</zipCode>
+      <country> USA</country>
+    </theaterAddress>
+    <screenNumber>12F</screenNumber>
+    <pricePerUnit>11.0</pricePerUnit>
+  </movieticket>
   <seasonpass>
     <productCode>3y92</productCode>
     <name>BlackFriday Deal</name>
@@ -61,11 +44,6 @@
     <endDate>2016-11-29</endDate>
     <cost>58.0</cost>
   </seasonpass>
-  <refreshment>
-    <productCode>yp23</productCode>
-    <name>Double Cheeseburger</name>
-    <cost>9.0</cost>
-  </refreshment>
   <seasonpass>
     <productCode>b29e</productCode>
     <name>Winter Special</name>
@@ -74,9 +52,9 @@
     <cost>120.0</cost>
   </seasonpass>
   <refreshment>
-    <productCode>ff23</productCode>
-    <name>Labatt Beer-20oz</name>
-    <cost>4.99</cost>
+    <productCode>32f4</productCode>
+    <name>Caramel Popcorn</name>
+    <cost>5.5</cost>
   </refreshment>
   <seasonpass>
     <productCode>xer4</productCode>
@@ -85,9 +63,31 @@
     <endDate>2016-11-11</endDate>
     <cost>185.0</cost>
   </seasonpass>
+  <movieticket>
+    <productCode>fp12</productCode>
+    <dateTime>2016-10-21 13:10</dateTime>
+    <movieName>A Monster Calls</movieName>
+    <theaterAddress>
+      <street>3555 South 140th Plaza</street>
+      <city>Omaha</city>
+      <state> NE</state>
+      <zipCode> 68144</zipCode>
+      <country> USA</country>
+    </theaterAddress>
+    <screenNumber>2A</screenNumber>
+    <pricePerUnit>21.5</pricePerUnit>
+  </movieticket>
+  <parkingpass>
+    <productCode>90fb</productCode>
+    <parkingFee>20.0</parkingFee>
+  </parkingpass>
+  <parkingpass>
+    <productCode>3289</productCode>
+    <parkingFee>55.0</parkingFee>
+  </parkingpass>
   <refreshment>
-    <productCode>32f4</productCode>
-    <name>Caramel Popcorn</name>
-    <cost>5.5</cost>
+    <productCode>yp23</productCode>
+    <name>Double Cheeseburger</name>
+    <cost>9.0</cost>
   </refreshment>
 </products> 
