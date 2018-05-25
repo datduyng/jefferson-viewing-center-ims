@@ -1,33 +1,33 @@
 <?xml version="1.0"?> 
  <customers>
-  <general>
-    <customerCode>C004</customerCode>
-    <customerType>G</customerType>
+  <student>
+    <customerCode>C003</customerCode>
+    <customerType>S</customerType>
     <primaryContact>
-      <personCode>321f</personCode>
-      <lastName>Fox</lastName>
-      <firstName>Bud</firstName>
+      <personCode>306a</personCode>
+      <lastName>Sampson</lastName>
+      <firstName>Brock</firstName>
       <address>
-        <street>321 Bronx Street</street>
-        <city>New York</city>
-        <state>NY</state>
-        <zipCode>10004</zipCode>
+        <street>123 N 1st Street</street>
+        <city>Omaha</city>
+        <state>NE</state>
+        <zipCode>68116</zipCode>
         <country>USA</country>
       </address>
       <emails>
-        <email>bfox@gmail.com</email>
-        <email>csheen@crazy.net</email>
+        <email>brock_f_sampson@gmail.com</email>
+        <email>bsampson@venture.com</email>
       </emails>
     </primaryContact>
-    <customerName>Stony Brook</customerName>
+    <customerName>Valueless Club</customerName>
     <customerAddress>
-      <street>9800 Savage Rd</street>
-      <city>Fort Meade</city>
-      <state>MD</state>
-      <zipCode>20755</zipCode>
+      <street>123 Venture Way</street>
+      <city>Culver City</city>
+      <state>CA</state>
+      <zipCode>90230</zipCode>
       <country>USA</country>
     </customerAddress>
-  </general>
+  </student>
   <general>
     <customerCode>C001</customerCode>
     <customerType>G</customerType>
@@ -58,27 +58,58 @@
       <country>USA</country>
     </customerAddress>
   </general>
-  <general>
-    <customerCode>C005</customerCode>
-    <customerType>G</customerType>
+  <student>
+    <customerCode>C006</customerCode>
+    <customerType>S</customerType>
     <primaryContact>
-      <personCode>bbchar</personCode>
-      <lastName>Ehrmantraut</lastName>
-      <firstName>Kaylee</firstName>
+      <personCode>321dr</personCode>
+      <lastName>Baker</lastName>
+      <firstName>C.</firstName>
       <address>
-        <street>800 West 7th Street</street>
-        <city> Albuquerque</city>
-        <state> NM</state>
-        <zipCode> 87105</zipCode>
+        <street>Avery Hall</street>
+        <city>Lincoln</city>
+        <state>NE</state>
+        <zipCode>68503</zipCode>
         <country>USA</country>
       </address>
+      <emails>
+        <email>dr@baker.com</email>
+      </emails>
     </primaryContact>
-    <customerName>Hewlett Industries</customerName>
+    <customerName>Gregory Smith</customerName>
     <customerAddress>
-      <street>1060 West Addison</street>
-      <city>Chicago</city>
-      <state>IL</state>
-      <zipCode>60601</zipCode>
+      <street>456 West 7th St.</street>
+      <city>Omaha</city>
+      <state>NE</state>
+      <zipCode>68500</zipCode>
+      <country>USA</country>
+    </customerAddress>
+  </student>
+  <general>
+    <customerCode>C004</customerCode>
+    <customerType>G</customerType>
+    <primaryContact>
+      <personCode>321f</personCode>
+      <lastName>Fox</lastName>
+      <firstName>Bud</firstName>
+      <address>
+        <street>321 Bronx Street</street>
+        <city>New York</city>
+        <state>NY</state>
+        <zipCode>10004</zipCode>
+        <country>USA</country>
+      </address>
+      <emails>
+        <email>bfox@gmail.com</email>
+        <email>csheen@crazy.net</email>
+      </emails>
+    </primaryContact>
+    <customerName>Stony Brook</customerName>
+    <customerAddress>
+      <street>9800 Savage Rd</street>
+      <city>Fort Meade</city>
+      <state>MD</state>
+      <zipCode>20755</zipCode>
       <country>USA</country>
     </customerAddress>
   </general>
@@ -110,59 +141,28 @@
       <country>USA</country>
     </customerAddress>
   </student>
-  <student>
-    <customerCode>C003</customerCode>
-    <customerType>S</customerType>
+  <general>
+    <customerCode>C005</customerCode>
+    <customerType>G</customerType>
     <primaryContact>
-      <personCode>306a</personCode>
-      <lastName>Sampson</lastName>
-      <firstName>Brock</firstName>
+      <personCode>bbchar</personCode>
+      <lastName>Ehrmantraut</lastName>
+      <firstName>Kaylee</firstName>
       <address>
-        <street>123 N 1st Street</street>
-        <city>Omaha</city>
-        <state>NE</state>
-        <zipCode>68116</zipCode>
+        <street>800 West 7th Street</street>
+        <city> Albuquerque</city>
+        <state> NM</state>
+        <zipCode> 87105</zipCode>
         <country>USA</country>
       </address>
-      <emails>
-        <email>brock_f_sampson@gmail.com</email>
-        <email>bsampson@venture.com</email>
-      </emails>
     </primaryContact>
-    <customerName>Valueless Club</customerName>
+    <customerName>Hewlett Industries</customerName>
     <customerAddress>
-      <street>123 Venture Way</street>
-      <city>Culver City</city>
-      <state>CA</state>
-      <zipCode>90230</zipCode>
+      <street>1060 West Addison</street>
+      <city>Chicago</city>
+      <state>IL</state>
+      <zipCode>60601</zipCode>
       <country>USA</country>
     </customerAddress>
-  </student>
-  <student>
-    <customerCode>C006</customerCode>
-    <customerType>S</customerType>
-    <primaryContact>
-      <personCode>321dr</personCode>
-      <lastName>Baker</lastName>
-      <firstName>C.</firstName>
-      <address>
-        <street>Avery Hall</street>
-        <city>Lincoln</city>
-        <state>NE</state>
-        <zipCode>68503</zipCode>
-        <country>USA</country>
-      </address>
-      <emails>
-        <email>dr@baker.com</email>
-      </emails>
-    </primaryContact>
-    <customerName>Gregory Smith</customerName>
-    <customerAddress>
-      <street>456 West 7th St.</street>
-      <city>Omaha</city>
-      <state>NE</state>
-      <zipCode>68500</zipCode>
-      <country>USA</country>
-    </customerAddress>
-  </student>
+  </general>
 </customers> 

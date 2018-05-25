@@ -1,30 +1,30 @@
 {
  "customers": [
   {
-    "customerCode": "C004",
-    "customerType": "G",
+    "customerCode": "C003",
+    "customerType": "S",
     "primaryContact": {
-      "personCode": "321f",
-      "lastName": "Fox",
-      "firstName": "Bud",
+      "personCode": "306a",
+      "lastName": "Sampson",
+      "firstName": "Brock",
       "address": {
-        "street": "321 Bronx Street",
-        "city": "New York",
-        "state": "NY",
-        "zipCode": "10004",
+        "street": "123 N 1st Street",
+        "city": "Omaha",
+        "state": "NE",
+        "zipCode": "68116",
         "country": "USA"
       },
       "emails": [
-        "bfox@gmail.com",
-        "csheen@crazy.net"
+        "brock_f_sampson@gmail.com",
+        "bsampson@venture.com"
       ]
     },
-    "customerName": "Stony Brook",
+    "customerName": "Valueless Club",
     "customerAddress": {
-      "street": "9800 Savage Rd",
-      "city": "Fort Meade",
-      "state": "MD",
-      "zipCode": "20755",
+      "street": "123 Venture Way",
+      "city": "Culver City",
+      "state": "CA",
+      "zipCode": "90230",
       "country": "USA"
     }
   },
@@ -59,26 +59,57 @@
     }
   },
   {
-    "customerCode": "C005",
+    "customerCode": "C006",
+    "customerType": "S",
+    "primaryContact": {
+      "personCode": "321dr",
+      "lastName": "Baker",
+      "firstName": "C.",
+      "address": {
+        "street": "Avery Hall",
+        "city": "Lincoln",
+        "state": "NE",
+        "zipCode": "68503",
+        "country": "USA"
+      },
+      "emails": [
+        "dr@baker.com"
+      ]
+    },
+    "customerName": "Gregory Smith",
+    "customerAddress": {
+      "street": "456 West 7th St.",
+      "city": "Omaha",
+      "state": "NE",
+      "zipCode": "68500",
+      "country": "USA"
+    }
+  },
+  {
+    "customerCode": "C004",
     "customerType": "G",
     "primaryContact": {
-      "personCode": "bbchar",
-      "lastName": "Ehrmantraut",
-      "firstName": "Kaylee",
+      "personCode": "321f",
+      "lastName": "Fox",
+      "firstName": "Bud",
       "address": {
-        "street": "800 West 7th Street",
-        "city": " Albuquerque",
-        "state": " NM",
-        "zipCode": " 87105",
+        "street": "321 Bronx Street",
+        "city": "New York",
+        "state": "NY",
+        "zipCode": "10004",
         "country": "USA"
-      }
+      },
+      "emails": [
+        "bfox@gmail.com",
+        "csheen@crazy.net"
+      ]
     },
-    "customerName": "Hewlett Industries",
+    "customerName": "Stony Brook",
     "customerAddress": {
-      "street": "1060 West Addison",
-      "city": "Chicago",
-      "state": "IL",
-      "zipCode": "60601",
+      "street": "9800 Savage Rd",
+      "city": "Fort Meade",
+      "state": "MD",
+      "zipCode": "20755",
       "country": "USA"
     }
   },
@@ -111,57 +142,26 @@
     }
   },
   {
-    "customerCode": "C003",
-    "customerType": "S",
+    "customerCode": "C005",
+    "customerType": "G",
     "primaryContact": {
-      "personCode": "306a",
-      "lastName": "Sampson",
-      "firstName": "Brock",
+      "personCode": "bbchar",
+      "lastName": "Ehrmantraut",
+      "firstName": "Kaylee",
       "address": {
-        "street": "123 N 1st Street",
-        "city": "Omaha",
-        "state": "NE",
-        "zipCode": "68116",
+        "street": "800 West 7th Street",
+        "city": " Albuquerque",
+        "state": " NM",
+        "zipCode": " 87105",
         "country": "USA"
-      },
-      "emails": [
-        "brock_f_sampson@gmail.com",
-        "bsampson@venture.com"
-      ]
+      }
     },
-    "customerName": "Valueless Club",
+    "customerName": "Hewlett Industries",
     "customerAddress": {
-      "street": "123 Venture Way",
-      "city": "Culver City",
-      "state": "CA",
-      "zipCode": "90230",
-      "country": "USA"
-    }
-  },
-  {
-    "customerCode": "C006",
-    "customerType": "S",
-    "primaryContact": {
-      "personCode": "321dr",
-      "lastName": "Baker",
-      "firstName": "C.",
-      "address": {
-        "street": "Avery Hall",
-        "city": "Lincoln",
-        "state": "NE",
-        "zipCode": "68503",
-        "country": "USA"
-      },
-      "emails": [
-        "dr@baker.com"
-      ]
-    },
-    "customerName": "Gregory Smith",
-    "customerAddress": {
-      "street": "456 West 7th St.",
-      "city": "Omaha",
-      "state": "NE",
-      "zipCode": "68500",
+      "street": "1060 West Addison",
+      "city": "Chicago",
+      "state": "IL",
+      "zipCode": "60601",
       "country": "USA"
     }
   }

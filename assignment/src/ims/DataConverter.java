@@ -32,6 +32,7 @@ public class DataConverter {
 	private static int NUM_OF_CUSTOMER;
 	private static int NUM_OF_PERSON;
 	private static int NUM_OF_PRODUCT;
+	private static int NUM_OF_INVOICE;
 	
 	/* HashSets created to store created Person, Customer, and Product objects 
 	 * respectively.  Sets chosen to prevent duplicate entries.
@@ -39,105 +40,15 @@ public class DataConverter {
 	private static Set<Person> persons = new HashSet<Person>();
 	private static Set<Customer> customers = new HashSet<Customer>();
 	private static Set<Product> products = new HashSet<Product>();
+	private static Set<Invoice> invoices = new HashSet<Invoice>();
 	
 	
 	public static void main(String[] args){
-
-		// read customer.dat file
-		Scanner scan = null;
-		
-		//open Person data file, and create object 
-		scan = DataConverter.openFile("data/Persons.dat");
-		scan.hasNext();
-		NUM_OF_PERSON = Integer.parseInt(scan.nextLine().trim());
-		
-		for(int i = 0; i < NUM_OF_PERSON; i++) {
-			String nextLine = scan.nextLine();
-			Person p = new Person();
-			p.setAttribute(nextLine);
-			
-			int flag = 0;
-			//check to make sure there is no duplicate
-			for(Person person : persons){
-				if(person.getPersonCode().equals(p.getPersonCode())){
-					flag ++;
-				}
-			}// end for
-			
-			if(flag == 0){
-				persons.add(p);
-			}
-		}
-		
-		//open Customer.dat file, and create object
-		scan = DataConverter.openFile("data/Customers.dat");
-		scan.hasNext();
-		NUM_OF_CUSTOMER = Integer.parseInt(scan.nextLine().trim());
-		
-		for(int i = 0; i < NUM_OF_CUSTOMER; i++) {
-			String nextLine = scan.nextLine();
-			String[] token = nextLine.split(";");
-			String customerCode = token[1];
-			Customer c = null;
-			if(customerCode.equalsIgnoreCase("S")) {
-				c = new Student();
-				c.setAttribute(nextLine);
-			}else if(customerCode.equalsIgnoreCase("G")){
-				c = new General();
-				c.setAttribute(nextLine);
-			}
-		
-			
-			int flag = 0; 
-			//check to make sure there is no duplicate
-			for(Customer customer : customers){
-				if(customer.getCustomerCode().equals(c.getCustomerCode())){
-					flag ++;
-				}
-			}// end for
-			
-			if(flag == 0){
-				customers.add(c);
-			}
-		}// end 
-			
-		
-		//parse Product data File, create appropriate objects
-		scan = DataConverter.openFile("data/Products.dat");
-		
-		// read the first line.
-		NUM_OF_PRODUCT = Integer.parseInt(scan.nextLine().trim());
 		
 		
-		for(int i = 0; i < NUM_OF_PRODUCT; i++) {
-			String nextLine = scan.nextLine();
-			String[] token = nextLine.split(";");
-			Product p = null;
-			if(token[1].equalsIgnoreCase("M")) {
-				p = new MovieTicket(token);
-			} else if (token[1].equalsIgnoreCase("S")) {
-				p = new SeasonPass(token);
-			} else if (token[1].equalsIgnoreCase("P")) {
-				p = new ParkingPass(token);
-			} else if (token[1].equalsIgnoreCase("R")) {
-				p = new Refreshment(token);
-			}
-			
-			int flag = 0;
-			//check to make sure there is no duplicate
-			for(Product product : products){
-				if(product.getProductCode().equals(p.getProductCode())){
-					flag ++;
-				}
-			}// end for
-			
-			if(flag == 0){
-				products.add(p);
-			}
-		}
-		
-		scan.close();
-		
+		DataConverter.readPersonFile();
+		DataConverter.readCustomerFile();
+		DataConverter.readProductFile();
 		
 		// write to JSON file 
 		toJsonFile("data/Persons.json",DataConverter.persons,"persons");
@@ -152,21 +63,7 @@ public class DataConverter {
 		
 	}// end main
  
-	/**
-	 * Sets scanner to new file of given file name.
-	 * @param fileName name of file to be opened
-	 * @return Scanner object set to new file
-	 */
-	public static Scanner openFile(String fileName) {
-		Scanner s;
-		try {
-			s = new Scanner(new File(fileName));
-		} catch (FileNotFoundException e2) {
-			throw new RuntimeException("Error: File Not Found!");
-		}
-		return s;
-	}
-	
+
 	public static Person findPerson(String personCode, Set<Person> persons) {
 		Person p = null;
 		for(Person person : persons) {
@@ -288,6 +185,144 @@ public class DataConverter {
 			output.close();
 		} catch(IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Sets scanner to new file of given file name.
+	 * @param fileName name of file to be opened
+	 * @return Scanner object set to new file
+	 */
+	public static Scanner openFile(String fileName) {
+		Scanner s;
+		try {
+			s = new Scanner(new File(fileName));
+		} catch (FileNotFoundException e2) {
+			throw new RuntimeException("Error: File Not Found!");
+		}
+		return s;
+	}
+	
+	
+	public static void readPersonFile() {
+		// read customer.dat file
+				Scanner scan = null;
+				
+				//open Person data file, and create object 
+				scan = DataConverter.openFile("data/Persons.dat");
+				scan.hasNext();
+				NUM_OF_PERSON = Integer.parseInt(scan.nextLine().trim());
+				
+				for(int i = 0; i < NUM_OF_PERSON; i++) {
+					String nextLine = scan.nextLine();
+					Person p = new Person();
+					p.setAttribute(nextLine);
+					
+					int flag = 0;
+					//check to make sure there is no duplicate
+					for(Person person : persons){
+						if(person.getPersonCode().equals(p.getPersonCode())){
+							flag ++;
+						}
+					}// end for
+					
+					if(flag == 0){
+						persons.add(p);
+					}
+				}
+	}// end readPersonFile()
+	
+	public static void readCustomerFile() {
+		
+		Scanner scan = null;
+		//open Customer.dat file, and create object
+		scan = DataConverter.openFile("data/Customers.dat");
+		scan.hasNext();
+		NUM_OF_CUSTOMER = Integer.parseInt(scan.nextLine().trim());
+		
+		for(int i = 0; i < NUM_OF_CUSTOMER; i++) {
+			String nextLine = scan.nextLine();
+			String[] token = nextLine.split(";");
+			String customerCode = token[1];
+			Customer c = null;
+			if(customerCode.equalsIgnoreCase("S")) {
+				c = new Student();
+				c.setAttribute(nextLine);
+			}else if(customerCode.equalsIgnoreCase("G")){
+				c = new General();
+				c.setAttribute(nextLine);
+			}
+		
+			
+			int flag = 0; 
+			//check to make sure there is no duplicate
+			for(Customer customer : customers){
+				if(customer.getCustomerCode().equals(c.getCustomerCode())){
+					flag ++;
+				}
+			}// end for
+			
+			if(flag == 0){
+				customers.add(c);
+			}
+		}// end main for()
+			
+		scan.close();
+	}
+	
+	public static void readProductFile() {
+		
+		Scanner scan = null;
+		//parse Product data File, create appropriate objects
+		scan = DataConverter.openFile("data/Products.dat");
+		
+		// read the first line.
+		NUM_OF_PRODUCT = Integer.parseInt(scan.nextLine().trim());
+		
+		
+		for(int i = 0; i < NUM_OF_PRODUCT; i++) {
+			String nextLine = scan.nextLine();
+			String[] token = nextLine.split(";");
+			Product p = null;
+			if(token[1].equalsIgnoreCase("M")) {
+				p = new MovieTicket(token);
+			} else if (token[1].equalsIgnoreCase("S")) {
+				p = new SeasonPass(token);
+			} else if (token[1].equalsIgnoreCase("P")) {
+				p = new ParkingPass(token);
+			} else if (token[1].equalsIgnoreCase("R")) {
+				p = new Refreshment(token);
+			}
+			
+			int flag = 0;
+			//check to make sure there is no duplicate
+			for(Product product : products){
+				if(product.getProductCode().equals(p.getProductCode())){
+					flag ++;
+				}
+			}// end for
+			
+			if(flag == 0){
+				products.add(p);
+			}
+		}
+		
+		scan.close();
+	}
+	
+	public static void readInvoiceFile() {
+		Scanner scan = DataConverter.openFile("data/Invoices.dat");
+		
+		// read the num of invoices
+		scan.hasNext();
+		NUM_OF_INVOICE = Integer.parseInt(scan.nextLine().trim());
+		
+		for(int i = 0;i < NUM_OF_INVOICE; i++) {
+			
+			String nextLine = scan.nextLine();
+			Invoice invoice = new Invoice();
+			invoice.setAttribute(nextLine);
+			System.out.println(invoice.toString());
 		}
 	}
 	
