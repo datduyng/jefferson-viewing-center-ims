@@ -27,3 +27,14 @@
 ### XML version
    - convert java object to xml
       - http://x-stream.github.io/tutorial.html
+
+
+## Assignment 03
+   - phase 02;
+   - started.
+   - Goal:
+      - output 2 report one the `standard output`
+         - summary report
+	 - invoice report of each invoice.
+
+ 
