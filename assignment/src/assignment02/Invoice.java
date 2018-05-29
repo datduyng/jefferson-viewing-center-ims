@@ -29,11 +29,9 @@ public class Invoice {
 			Product p;
 			p = DataConverter.findProduct(productTokens[0], DataConverter.getProducts());
 			this.productList.put(p, Integer.parseInt(productTokens[1]));
-			// movie-ticket, season pass, or refreshment
-			if(productTokens.length == 2) {
-				
-			// TODO: how to handle associating movie ticket w/ parking pass 
-			} else if(productTokens.length == 3) {
+			// movie-ticket, season pass, or refreshment 
+			//TODO: set movie-ticket associated with parking pass
+			if(productTokens.length == 3 && p instanceof ParkingPass) {
 	
 			}
 		}
