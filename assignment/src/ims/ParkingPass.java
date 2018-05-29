@@ -3,6 +3,9 @@ package ims;
 public class ParkingPass extends Product {
 
 	private double parkingFee;
+	private MovieTicket movieTicket;
+	private SeasonPass seasonPass;
+	//private Object ticket;
 	
 	public ParkingPass() {
 		
@@ -17,10 +20,30 @@ public class ParkingPass extends Product {
 		return parkingFee;
 	}
 	
+	public MovieTicket getMovieTicket() {
+		return movieTicket;
+	}
+
+	public void setMovieTicket(MovieTicket movieTicket) {
+		this.movieTicket = movieTicket;
+	}
+	
+	public SeasonPass getSeasonPass() {
+		return seasonPass;
+	}
+
+	public void setSeasonPass(SeasonPass seasonPass) {
+		this.seasonPass = seasonPass;
+	}
+	
 	/**
 	 * @Override 
 	 */
 	public String toString() {
 		return this.getProductCode() + ";" + "P" + ";" + this.getParkingFee();
 	}
+
+
+
+
 }

@@ -316,6 +316,7 @@ public class DataConverter {
 		// read the num of invoices
 		scan.hasNext();
 		NUM_OF_INVOICE = Integer.parseInt(scan.nextLine().trim());
+		System.out.println(NUM_OF_INVOICE);
 		
 		for(int i = 0;i < NUM_OF_INVOICE; i++) {
 			
