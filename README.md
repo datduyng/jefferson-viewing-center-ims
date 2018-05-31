@@ -20,7 +20,7 @@
 
 	 - using Array list with JSON example
 		 - https://java2blog.com/gson-example-read-and-write-json/
-	 - pretty print JSON file example with gson library/use List example 
+	 - pretty print JSON file example with gson library/use List example
 		 - https://medium.com/@ssaurel/parse-and-write-json-data-in-java-with-gson-dd8d1285b28
 
 
@@ -37,4 +37,5 @@
          - summary report
 	 - invoice report of each invoice.
 
- 
+### TODO
+- Ask if they are prorating the parking pass.
