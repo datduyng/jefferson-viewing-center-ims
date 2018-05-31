@@ -3,7 +3,7 @@ package ims;
 public class ParkingPass extends Ticket {
 
 	private double parkingFee;
-	private Ticket ticket; 
+	private Ticket ticket = null; 
 	
 	public ParkingPass() {
 		

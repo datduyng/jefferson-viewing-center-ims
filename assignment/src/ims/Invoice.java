@@ -1,6 +1,6 @@
 package ims;
 
-import java.sql.Date;
+import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -18,7 +18,7 @@ public class Invoice {
 	//private String customerCode;
 	private Person salesPerson;
 	private String invoiceDate;
-	private HashMap<Product,Integer> productList = new HashMap<Product,Integer>();
+	private  HashMap<Product,Integer> productList = new HashMap<Product,Integer>();
 	
 	public Invoice() {
 		// default constructor 
@@ -48,15 +48,16 @@ public class Invoice {
 				this.productList.put(p,Integer.parseInt(pToken[1]));
 			// TODO: how to handle associating movie ticket w/ parking pass 
 			} else if(pToken.length == 3 && p instanceof ParkingPass) { 
-				
 				// find associated ticket with parkingpass.
 				Product associatedTicket =  DataConverter.findProduct(pToken[2],DataConverter.getProducts());
 				
 				if(associatedTicket instanceof MovieTicket) {
+					System.out.println("DEBUG movie");
 					MovieTicket m = null;
 					m = (MovieTicket) associatedTicket;
 					((ParkingPass)p).setTicket(m);
 				}else if(associatedTicket instanceof SeasonPass) {
+					//System.out.println("DEBUG season");
 					SeasonPass s = null;
 					s = (SeasonPass) associatedTicket;
 					((ParkingPass)p).setTicket(s);
@@ -64,6 +65,7 @@ public class Invoice {
 				
 				int unit = Integer.parseInt(pToken[1]);
 				this.productList.put(p,unit);
+				
 
 			}
 		}
@@ -110,14 +112,18 @@ public class Invoice {
 	}
 	
 	//TODO: add comment
-	public double getTotalCost() {
+	public HashMap<Product,Double> getSubTotalList() {
 		
+		HashMap<Product,Double> result = new HashMap<Product,Double>();
+		
+		double subTotal = 0.0;
 		boolean haveTicket = false;
 		// count number of ticket 
 		for(Entry<Product, Integer> p : this.productList.entrySet()) {
 			Product key =  p.getKey();
 			if (key instanceof Ticket) {
 				haveTicket = true;
+				break;
 			}
 		}
 		
@@ -127,8 +133,9 @@ public class Invoice {
 			Product key =  p.getKey();
 			int value = p.getValue();
 			
+			
 
-			if(key.getProductType() == "M") {
+			if(key.getProductType().equals("M")) {
 				
 				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 				Date date = null;
@@ -144,31 +151,54 @@ public class Invoice {
 				int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
 				
 				if(dayOfWeek == 3 || dayOfWeek == 5) {
-					return ((MovieTicket)key).getPricePerUnit() * (double)value * (100.0-MovieTicket.discountRate);
+					subTotal = ((MovieTicket)key).getPricePerUnit() * (double)value * (1-MovieTicket.discountRate);
+					result.put(key, subTotal);
 				}
 				
-				return ((MovieTicket)key).getPricePerUnit() * (double)value;
-			}else if(key.getProductType() == "S") {
-				return (double)value * ( SeasonPass.seasonCost *  ( ((SeasonPass)key).getSeasonDayLeft(this.invoiceDate)/
+				subTotal = ((MovieTicket)key).getPricePerUnit() * (double)value;
+				result.put(key, subTotal);
+			}else if(key.getProductType().equals("S")) {
+				subTotal = (double)value * ( SeasonPass.seasonCost *  ( ((SeasonPass)key).getSeasonDayLeft(this.invoiceDate)/
 						( (SeasonPass)key).getTotalDays() ) + SeasonPass.convenienceFee) ;
-			}else if(key.getProductType() == "R") {
+				result.put(key, subTotal);
+			}else if(key.getProductType().equals("R")) {
 				if(haveTicket == true) {
-					return (100.0-Refreshment.discountRate) * (double)value * ((Refreshment)key).getCost();
+					subTotal = (1-Refreshment.discountRate) * (double)value * ((Refreshment)key).getCost();
+					result.put(key, subTotal);
+				}else {
+					subTotal = (double)value * ((Refreshment)key).getCost();
+					result.put(key, subTotal);
 				}
-				return (double)value * ((Refreshment)key).getCost();
-			}else if(key.getProductType() == "P") {
 				
-				// if there is a corresponding parking pass.
+			}else if(key.getProductType().equals("P")) {
+				
+				// if there is not a corresponding parking pass.
 				if(((ParkingPass)key).getTicket() == null){
-					return ((ParkingPass)key).getParkingFee() * (double)value;
+					subTotal= ((ParkingPass)key).getParkingFee() * (double)value;
+					result.put(key, subTotal);
+				}else {
+					System.out.println("DEBUG prduct code");
+					System.out.println(((ParkingPass)key).getTicket().getProductCode());
+					int freeUnit = getNumOfTicketAssociated(((ParkingPass)key).getTicket().getProductCode());
+					System.out.println("FREE"+freeUnit);
+					if(freeUnit >= value) {
+						subTotal = 0.0;
+						result.put(key, subTotal);
+					}else {
+						subTotal = ((ParkingPass)key).getParkingFee() * (double)(value - freeUnit);
+						result.put(key, subTotal);
+					}
+					
 				}
-				return 0.0;
 			}
 			
 		}
-		return 0.0;
+
+		return result;
 		
 	}
+	
+	
 	
 	@Override 
 	public String toString() {
@@ -177,5 +207,21 @@ public class Invoice {
 		return result;
 
 	}
+	
+	public int getNumOfTicketAssociated(String productCode) {
+		for(Entry<Product, Integer> p : this.productList.entrySet()) {
+			// get key and valu
+			Product key =  p.getKey();
+			int value = p.getValue();
+			
+			if(key.getProductCode().equals(productCode)) {
+				return value;
+			}
+			
+		}
+		
+		return -1;
+	}
+	
 }// end class Invoice
 

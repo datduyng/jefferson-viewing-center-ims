@@ -4,10 +4,11 @@ package ims;
 public class Product {
 
 	private String productCode;
-	private static String productType; 
+	private String productType; 
 	
-	public Product() {
-		
+	public Product(Product product) {
+		this.productCode = product.getProductCode();
+		this.productType = product.getProductType();
 	}
 	
 	public Product(String productCode, String productType) {
@@ -36,9 +37,9 @@ public class Product {
 	
 	public void setProductType(String productType) {
 		if(productType != null && productType.length() > 0) {
-			Product.productType = productType;
+			this.productType = productType;
 		}else {
-			Product.productType = "na";
+			this.productType = "na";
 		}
 	}
 
@@ -47,7 +48,7 @@ public class Product {
 	 * @Override
 	 */
 	public String toString() {
-		return this.productCode + ";" + Product.productType;
+		return this.productCode + ";" + this.productType;
 	}
 	
 	

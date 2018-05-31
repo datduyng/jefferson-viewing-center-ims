@@ -107,6 +107,16 @@ public class DataConverter {
 	public static Set<Person> getPersons() {
 		return persons;
 	}
+	
+	public static Set<Invoice> getInvoices() {
+		return invoices;
+	}
+
+
+	public static void setInvoices(Set<Invoice> invoices) {
+		DataConverter.invoices = invoices;
+	}
+
 
 	/**
 	 * This function parse Object to JSON format 
@@ -231,8 +241,10 @@ public class DataConverter {
 						persons.add(p);
 					}
 				}
-	}// end readPersonFile()
+	}// end readgetIPersonFile()
 	
+
+
 	public static void readCustomerFile() {
 		
 		Scanner scan = null;
@@ -305,7 +317,6 @@ public class DataConverter {
 			
 			if(flag == 0){
 				products.add(p);
-				System.out.println(p.toString());
 			}
 		}
 		
@@ -325,7 +336,18 @@ public class DataConverter {
 			String nextLine = scan.nextLine();
 			Invoice invoice = new Invoice();
 			invoice.setAttribute(nextLine);
-			System.out.println(invoice.toString());
+			
+			int flag = 0; 
+			//check to make sure there is no duplicate
+			for(Invoice iv : invoices){
+				if(iv.getInvoiceCode().equals(invoice.getInvoiceCode())){
+					flag ++;
+				}
+			}// end for
+			
+			if(flag == 0){
+				invoices.add(invoice);
+			}
 		}
 	}
 	
