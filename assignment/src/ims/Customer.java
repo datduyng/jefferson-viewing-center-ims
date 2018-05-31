@@ -98,13 +98,17 @@ public class Customer {
 }// end customer class
 
 class Student extends Customer{
+	private static double discountRate = .08 ; 
 	public Student() {
+		super();
 		this.customerType = "S";
 	}
 }// end student class
 
 class General extends Customer{
+	
 	public General() {
+		super();
 		this.customerType = "G";
 	}
 }// end General class 

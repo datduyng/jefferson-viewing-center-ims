@@ -2,6 +2,7 @@ package ims;
 
 public class Refreshment extends Product {
 	
+	public static final double discountRate = .05;
 	private String name;
 	private double cost;
 	

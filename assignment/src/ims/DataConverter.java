@@ -61,6 +61,7 @@ public class DataConverter {
 		toXmlFile("data/Customers.xml", DataConverter.customers,"customers");
 		toXmlFile("data/Products.xml", DataConverter.products,"products");
 		
+		
 	}// end main
  
 
@@ -304,6 +305,7 @@ public class DataConverter {
 			
 			if(flag == 0){
 				products.add(p);
+				System.out.println(p.toString());
 			}
 		}
 		

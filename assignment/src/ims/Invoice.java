@@ -1,6 +1,15 @@
 package ims;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Map.Entry;
+
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 public class Invoice {
 
@@ -40,17 +49,21 @@ public class Invoice {
 			// TODO: how to handle associating movie ticket w/ parking pass 
 			} else if(pToken.length == 3 && p instanceof ParkingPass) { 
 				
-				Product ticket =  DataConverter.findProduct(pToken[2],DataConverter.getProducts());
-				if(ticket instanceof MovieTicket) {
+				// find associated ticket with parkingpass.
+				Product associatedTicket =  DataConverter.findProduct(pToken[2],DataConverter.getProducts());
+				
+				if(associatedTicket instanceof MovieTicket) {
 					MovieTicket m = null;
-					m = (MovieTicket) ticket;
-					((ParkingPass)p).setMovieTicket(m);
-				}else if(ticket instanceof SeasonPass) {
+					m = (MovieTicket) associatedTicket;
+					((ParkingPass)p).setTicket(m);
+				}else if(associatedTicket instanceof SeasonPass) {
 					SeasonPass s = null;
-					s = (SeasonPass) ticket;
-					((ParkingPass)p).setSeasonPass(s);
+					s = (SeasonPass) associatedTicket;
+					((ParkingPass)p).setTicket(s);
 				}
-				this.productList.put(p,Integer.parseInt(pToken[1]));
+				
+				int unit = Integer.parseInt(pToken[1]);
+				this.productList.put(p,unit);
 
 			}
 		}
@@ -94,6 +107,67 @@ public class Invoice {
 
 	public void setProductList(HashMap<Product, Integer> productList) {
 		this.productList = productList;
+	}
+	
+	//TODO: add comment
+	public double getTotalCost() {
+		
+		boolean haveTicket = false;
+		// count number of ticket 
+		for(Entry<Product, Integer> p : this.productList.entrySet()) {
+			Product key =  p.getKey();
+			if (key instanceof Ticket) {
+				haveTicket = true;
+			}
+		}
+		
+		for(Entry<Product, Integer> p : this.productList.entrySet()) {
+			
+			// get key and valu
+			Product key =  p.getKey();
+			int value = p.getValue();
+			
+
+			if(key.getProductType() == "M") {
+				
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				Date date = null;
+				try {
+					date = (Date) formatter.parse(this.invoiceDate);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				
+				//get day of week
+				Calendar c = Calendar.getInstance();
+				c.setTime(date);
+				int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+				
+				if(dayOfWeek == 3 || dayOfWeek == 5) {
+					return ((MovieTicket)key).getPricePerUnit() * (double)value * (100.0-MovieTicket.discountRate);
+				}
+				
+				return ((MovieTicket)key).getPricePerUnit() * (double)value;
+			}else if(key.getProductType() == "S") {
+				return (double)value * ( SeasonPass.seasonCost *  ( ((SeasonPass)key).getSeasonDayLeft(this.invoiceDate)/
+						( (SeasonPass)key).getTotalDays() ) + SeasonPass.convenienceFee) ;
+			}else if(key.getProductType() == "R") {
+				if(haveTicket == true) {
+					return (100.0-Refreshment.discountRate) * (double)value * ((Refreshment)key).getCost();
+				}
+				return (double)value * ((Refreshment)key).getCost();
+			}else if(key.getProductType() == "P") {
+				
+				// if there is a corresponding parking pass.
+				if(((ParkingPass)key).getTicket() == null){
+					return ((ParkingPass)key).getParkingFee() * (double)value;
+				}
+				return 0.0;
+			}
+			
+		}
+		return 0.0;
+		
 	}
 	
 	@Override 

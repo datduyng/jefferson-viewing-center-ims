@@ -1,11 +1,9 @@
 package ims;
 
-public class ParkingPass extends Product {
+public class ParkingPass extends Ticket {
 
 	private double parkingFee;
-	private MovieTicket movieTicket;
-	private SeasonPass seasonPass;
-	//private Object ticket;
+	private Ticket ticket; 
 	
 	public ParkingPass() {
 		
@@ -20,22 +18,19 @@ public class ParkingPass extends Product {
 		return parkingFee;
 	}
 	
-	public MovieTicket getMovieTicket() {
-		return movieTicket;
+	
+	public Ticket getTicket() {
+		return ticket;
 	}
 
-	public void setMovieTicket(MovieTicket movieTicket) {
-		this.movieTicket = movieTicket;
-	}
-	
-	public SeasonPass getSeasonPass() {
-		return seasonPass;
+	public void setTicket(Ticket ticket) {
+		this.ticket = ticket;
 	}
 
-	public void setSeasonPass(SeasonPass seasonPass) {
-		this.seasonPass = seasonPass;
+	public void setParkingFee(double parkingFee) {
+		this.parkingFee = parkingFee;
 	}
-	
+
 	/**
 	 * @Override 
 	 */

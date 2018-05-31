@@ -1,6 +1,17 @@
 package ims;
 
-public class SeasonPass extends Product {
+import org.joda.time.DateTime;
+import org.joda.time.Days;
+import org.joda.time.Interval;
+import org.joda.time.Period;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
+
+public class SeasonPass extends Ticket {
+	
+	public static final double seasonCost = 120.0;
+	public static final double convenienceFee = 8.0;
 	
 	private String name;
 	private String startDate;
@@ -38,11 +49,33 @@ public class SeasonPass extends Product {
 		return cost;
 	}
 	
+	public double getTotalDays() {
+		DateTimeFormatter dateFormatter = DateTimeFormat.forPattern("yyyy-MM-dd");
+		
+		DateTime startDateDT = dateFormatter.parseDateTime(this.startDate);
+		DateTime endDateDT = dateFormatter.parseDateTime(this.endDate);
+		
+		return (double) Days.daysBetween(startDateDT , endDateDT).getDays() ;
+	}
+	
+	public double getSeasonDayLeft(String invoiceDate) {
+		DateTimeFormatter dateFormatter = DateTimeFormat.forPattern("yyyy-MM-dd");
+		
+		DateTime invoiceDateDT = dateFormatter.parseDateTime(invoiceDate);
+		DateTime endDateDT = dateFormatter.parseDateTime(this.endDate);
+		
+		return (double) Days.daysBetween(invoiceDateDT , endDateDT).getDays() ;
+	}
+	
+	
+	
+	
 	/**
 	 * @Override
 	 */
 	public String toString() {
-		return this.getProductCode() + ";" + "S" + ";" + this.name + ";" + this.startDate + ";" + this.endDate + ";" + this.cost;
+		return this.getProductCode() + ";" + "S" + ";" + this.name + ";" + this.startDate +
+				";" + this.endDate + ";" + this.cost + ";" + this.getTotalDays();
 	}
 
 }

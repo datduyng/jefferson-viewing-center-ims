@@ -1,6 +1,9 @@
 package ims;
 
-public class MovieTicket extends Product {
+public class MovieTicket extends Ticket {
+	
+	// constant
+	public static final double discountRate = 0.07;
 	
 	private String dateTime;
 	private String movieName;
