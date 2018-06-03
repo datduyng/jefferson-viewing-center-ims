@@ -1,4 +1,4 @@
-package ims;
+package product;
 
 
 public class Product {
@@ -9,6 +9,9 @@ public class Product {
 	public Product(Product product) {
 		this.productCode = product.getProductCode();
 		this.productType = product.getProductType();
+	}
+	public Product(){
+		//default;
 	}
 	
 	public Product(String productCode, String productType) {

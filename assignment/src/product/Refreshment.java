@@ -1,4 +1,4 @@
-package ims;
+package product;
 
 public class Refreshment extends Product {
 	
@@ -7,7 +7,7 @@ public class Refreshment extends Product {
 	private double cost;
 	
 	public Refreshment(){
-		
+		super();// deafult
 	}
 	
 	public Refreshment(String[] nextLineTokens) {

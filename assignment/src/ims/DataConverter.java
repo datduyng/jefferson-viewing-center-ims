@@ -14,6 +14,15 @@ import com.google.gson.GsonBuilder;
 
 import com.thoughtworks.xstream.XStream;
 
+import customer.Customer;
+import customer.General;
+import customer.Student;
+import product.MovieTicket;
+import product.ParkingPass;
+import product.Product;
+import product.Refreshment;
+import product.SeasonPass;
+
 /**
  * The DataConverter class parses and stores data in newly created objects 
  * from the old Invoice System located on flat files.  Then the objects are 

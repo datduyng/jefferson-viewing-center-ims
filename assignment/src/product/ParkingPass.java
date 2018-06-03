@@ -1,11 +1,15 @@
-package ims;
+package product;
 
-public class ParkingPass extends Ticket {
+public class ParkingPass extends Service {
 
 	private double parkingFee;
-	private Ticket ticket = null; 
+	private Ticket ticket; 
 	
-	public ParkingPass() {
+	// deep copy
+	public ParkingPass(ParkingPass p) {
+		super(p.getProductCode(),p.getProductType());
+		this.setParkingFee(p.parkingFee);
+		this.setTicket(p.ticket);
 		
 	}
 	

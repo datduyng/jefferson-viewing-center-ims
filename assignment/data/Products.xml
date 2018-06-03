@@ -1,78 +1,8 @@
 <?xml version="1.0"?> 
  <products>
   <movieticket>
-    <productCode>782g</productCode>
-    <dateTime>2016-11-10 10:00</dateTime>
-    <movieName>Shut In</movieName>
-    <theaterAddress>
-      <street>6301 University Ave</street>
-      <city>Cedar Falls</city>
-      <state> IA</state>
-      <zipCode> 50613</zipCode>
-      <country> USA</country>
-    </theaterAddress>
-    <screenNumber>32D</screenNumber>
-    <pricePerUnit>25.0</pricePerUnit>
-  </movieticket>
-  <seasonpass>
-    <productCode>xer4</productCode>
-    <name>FiveWeeks-Unlimited</name>
-    <startDate>2016-10-07</startDate>
-    <endDate>2016-11-11</endDate>
-    <cost>185.0</cost>
-  </seasonpass>
-  <refreshment>
-    <productCode>yp23</productCode>
-    <name>Double Cheeseburger</name>
-    <cost>9.0</cost>
-  </refreshment>
-  <parkingpass>
-    <productCode>3289</productCode>
-    <parkingFee>55.0</parkingFee>
-  </parkingpass>
-  <movieticket>
-    <productCode>fp12</productCode>
-    <dateTime>2016-10-21 13:10</dateTime>
-    <movieName>A Monster Calls</movieName>
-    <theaterAddress>
-      <street>3555 South 140th Plaza</street>
-      <city>Omaha</city>
-      <state> NE</state>
-      <zipCode> 68144</zipCode>
-      <country> USA</country>
-    </theaterAddress>
-    <screenNumber>2A</screenNumber>
-    <pricePerUnit>21.5</pricePerUnit>
-  </movieticket>
-  <seasonpass>
-    <productCode>3y92</productCode>
-    <name>BlackFriday Deal</name>
-    <startDate>2016-11-24</startDate>
-    <endDate>2016-11-29</endDate>
-    <cost>58.0</cost>
-  </seasonpass>
-  <refreshment>
-    <productCode>ff23</productCode>
-    <name>Labatt Beer-20oz</name>
-    <cost>4.99</cost>
-  </refreshment>
-  <parkingpass>
-    <productCode>90fa</productCode>
-    <parkingFee>25.0</parkingFee>
-  </parkingpass>
-  <seasonpass>
-    <productCode>b29e</productCode>
-    <name>Winter Special</name>
-    <startDate>2016-12-13</startDate>
-    <endDate>2017-01-07</endDate>
-    <cost>120.0</cost>
-  </seasonpass>
-  <parkingpass>
-    <productCode>90fb</productCode>
-    <parkingFee>20.0</parkingFee>
-  </parkingpass>
-  <movieticket>
     <productCode>1239</productCode>
+    <productType>M</productType>
     <dateTime>2016-09-13 15:30</dateTime>
     <movieName>The Wild Life</movieName>
     <theaterAddress>
@@ -85,9 +15,91 @@
     <screenNumber>12F</screenNumber>
     <pricePerUnit>11.0</pricePerUnit>
   </movieticket>
+  <parkingpass>
+    <productCode>90fb</productCode>
+    <productType>P</productType>
+    <parkingFee>20.0</parkingFee>
+  </parkingpass>
+  <seasonpass>
+    <productCode>xer4</productCode>
+    <productType>S</productType>
+    <name>FiveWeeks-Unlimited</name>
+    <startDate>2016-10-07</startDate>
+    <endDate>2016-11-11</endDate>
+    <cost>185.0</cost>
+  </seasonpass>
+  <refreshment>
+    <productCode>yp23</productCode>
+    <productType>R</productType>
+    <name>Double Cheeseburger</name>
+    <cost>9.0</cost>
+  </refreshment>
+  <movieticket>
+    <productCode>782g</productCode>
+    <productType>M</productType>
+    <dateTime>2016-11-10 10:00</dateTime>
+    <movieName>Shut In</movieName>
+    <theaterAddress>
+      <street>6301 University Ave</street>
+      <city>Cedar Falls</city>
+      <state> IA</state>
+      <zipCode> 50613</zipCode>
+      <country> USA</country>
+    </theaterAddress>
+    <screenNumber>32D</screenNumber>
+    <pricePerUnit>25.0</pricePerUnit>
+  </movieticket>
+  <movieticket>
+    <productCode>fp12</productCode>
+    <productType>M</productType>
+    <dateTime>2016-10-21 13:10</dateTime>
+    <movieName>A Monster Calls</movieName>
+    <theaterAddress>
+      <street>3555 South 140th Plaza</street>
+      <city>Omaha</city>
+      <state> NE</state>
+      <zipCode> 68144</zipCode>
+      <country> USA</country>
+    </theaterAddress>
+    <screenNumber>2A</screenNumber>
+    <pricePerUnit>21.5</pricePerUnit>
+  </movieticket>
   <refreshment>
     <productCode>32f4</productCode>
+    <productType>R</productType>
     <name>Caramel Popcorn</name>
     <cost>5.5</cost>
   </refreshment>
+  <refreshment>
+    <productCode>ff23</productCode>
+    <productType>R</productType>
+    <name>Labatt Beer-20oz</name>
+    <cost>4.99</cost>
+  </refreshment>
+  <seasonpass>
+    <productCode>b29e</productCode>
+    <productType>S</productType>
+    <name>Winter Special</name>
+    <startDate>2016-12-13</startDate>
+    <endDate>2017-01-07</endDate>
+    <cost>120.0</cost>
+  </seasonpass>
+  <seasonpass>
+    <productCode>3y92</productCode>
+    <productType>S</productType>
+    <name>BlackFriday Deal</name>
+    <startDate>2016-11-24</startDate>
+    <endDate>2016-11-29</endDate>
+    <cost>58.0</cost>
+  </seasonpass>
+  <parkingpass>
+    <productCode>90fa</productCode>
+    <productType>P</productType>
+    <parkingFee>25.0</parkingFee>
+  </parkingpass>
+  <parkingpass>
+    <productCode>3289</productCode>
+    <productType>P</productType>
+    <parkingFee>55.0</parkingFee>
+  </parkingpass>
 </products> 

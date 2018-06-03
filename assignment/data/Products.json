@@ -1,6 +1,40 @@
 {
  "products": [
   {
+    "dateTime": "2016-09-13 15:30",
+    "movieName": "The Wild Life",
+    "theaterAddress": {
+      "street": "755 Willard Drive",
+      "city": "Ashwaubenon",
+      "state": " WI",
+      "zipCode": " 54304",
+      "country": " USA"
+    },
+    "screenNumber": "12F",
+    "pricePerUnit": 11.0,
+    "productCode": "1239",
+    "productType": "M"
+  },
+  {
+    "parkingFee": 20.0,
+    "productCode": "90fb",
+    "productType": "P"
+  },
+  {
+    "name": "FiveWeeks-Unlimited",
+    "startDate": "2016-10-07",
+    "endDate": "2016-11-11",
+    "cost": 185.0,
+    "productCode": "xer4",
+    "productType": "S"
+  },
+  {
+    "name": "Double Cheeseburger",
+    "cost": 9.0,
+    "productCode": "yp23",
+    "productType": "R"
+  },
+  {
     "dateTime": "2016-11-10 10:00",
     "movieName": "Shut In",
     "theaterAddress": {
@@ -12,23 +46,8 @@
     },
     "screenNumber": "32D",
     "pricePerUnit": 25.0,
-    "productCode": "782g"
-  },
-  {
-    "name": "FiveWeeks-Unlimited",
-    "startDate": "2016-10-07",
-    "endDate": "2016-11-11",
-    "cost": 185.0,
-    "productCode": "xer4"
-  },
-  {
-    "name": "Double Cheeseburger",
-    "cost": 9.0,
-    "productCode": "yp23"
-  },
-  {
-    "parkingFee": 55.0,
-    "productCode": "3289"
+    "productCode": "782g",
+    "productType": "M"
   },
   {
     "dateTime": "2016-10-21 13:10",
@@ -42,52 +61,45 @@
     },
     "screenNumber": "2A",
     "pricePerUnit": 21.5,
-    "productCode": "fp12"
+    "productCode": "fp12",
+    "productType": "M"
   },
   {
-    "name": "BlackFriday Deal",
-    "startDate": "2016-11-24",
-    "endDate": "2016-11-29",
-    "cost": 58.0,
-    "productCode": "3y92"
+    "name": "Caramel Popcorn",
+    "cost": 5.5,
+    "productCode": "32f4",
+    "productType": "R"
   },
   {
     "name": "Labatt Beer-20oz",
     "cost": 4.99,
-    "productCode": "ff23"
-  },
-  {
-    "parkingFee": 25.0,
-    "productCode": "90fa"
+    "productCode": "ff23",
+    "productType": "R"
   },
   {
     "name": "Winter Special",
     "startDate": "2016-12-13",
     "endDate": "2017-01-07",
     "cost": 120.0,
-    "productCode": "b29e"
+    "productCode": "b29e",
+    "productType": "S"
   },
   {
-    "parkingFee": 20.0,
-    "productCode": "90fb"
+    "name": "BlackFriday Deal",
+    "startDate": "2016-11-24",
+    "endDate": "2016-11-29",
+    "cost": 58.0,
+    "productCode": "3y92",
+    "productType": "S"
   },
   {
-    "dateTime": "2016-09-13 15:30",
-    "movieName": "The Wild Life",
-    "theaterAddress": {
-      "street": "755 Willard Drive",
-      "city": "Ashwaubenon",
-      "state": " WI",
-      "zipCode": " 54304",
-      "country": " USA"
-    },
-    "screenNumber": "12F",
-    "pricePerUnit": 11.0,
-    "productCode": "1239"
+    "parkingFee": 25.0,
+    "productCode": "90fa",
+    "productType": "P"
   },
   {
-    "name": "Caramel Popcorn",
-    "cost": 5.5,
-    "productCode": "32f4"
+    "parkingFee": 55.0,
+    "productCode": "3289",
+    "productType": "P"
   }
 ]}

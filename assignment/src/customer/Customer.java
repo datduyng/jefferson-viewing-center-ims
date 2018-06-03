@@ -1,6 +1,8 @@
-package ims;
+package customer;
 
+import ims.Address;
 import ims.DataConverter;
+import ims.Person;
 
 public class Customer {
 	
@@ -89,26 +91,29 @@ public class Customer {
 		}
 	}
 	
+	
+
 	public String toString() {
 		return this.customerCode + ";" + this.customerType + ";" + this.primaryContact.getPersonCode() + ";" + this.customerName + ";" + this.customerAddress.toString();
 	}
+	
+	public String toInfo() {
+		String type = "";
+		if(this.customerType.equals("S")) {
+			type = "Student";
+		}else if(this.customerType.equals("G")){
+			type = "General";
+		}else {
+			type = "N.A";
+		}
+		String result = String.format("%s(%s)\n-%s\n%s-\n%s\n",
+				this.getCustomerName(),this.getCustomerCode(),type,this.getPrimaryContact().getName(),this.getCustomerAddress());
+		return result;
+	}
+
 	
 	
 
 }// end customer class
 
-class Student extends Customer{
-	private static double discountRate = .08 ; 
-	public Student() {
-		super();
-		this.customerType = "S";
-	}
-}// end student class
 
-class General extends Customer{
-	
-	public General() {
-		super();
-		this.customerType = "G";
-	}
-}// end General class 

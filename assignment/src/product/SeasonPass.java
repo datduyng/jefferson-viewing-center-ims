@@ -1,4 +1,4 @@
-package ims;
+package product;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
@@ -10,7 +10,6 @@ import org.joda.time.format.DateTimeFormatter;
 
 public class SeasonPass extends Ticket {
 	
-	public static final double seasonCost = 120.0;
 	public static final double convenienceFee = 8.0;
 	
 	private String name;

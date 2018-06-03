@@ -1,4 +1,6 @@
-package ims;
+package product;
+
+import ims.Address;
 
 public class MovieTicket extends Ticket {
 	

@@ -84,6 +84,10 @@ public class Person {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+	
+	public String getName() {
+		return this.lastName +", "+ this.firstName;
+	}
 
 	/**
 	 * @Override 
