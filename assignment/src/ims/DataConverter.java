@@ -1,5 +1,6 @@
 package ims;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
@@ -46,10 +47,10 @@ public class DataConverter {
 	/* HashSets created to store created Person, Customer, and Product objects 
 	 * respectively.  Sets chosen to prevent duplicate entries.
 	 */
-	private static Set<Person> persons = new HashSet<Person>();
-	private static Set<Customer> customers = new HashSet<Customer>();
-	private static Set<Product> products = new HashSet<Product>();
-	private static Set<Invoice> invoices = new HashSet<Invoice>();
+	private static ArrayList<Person> persons = new ArrayList<Person>();
+	private static ArrayList<Customer> customers = new ArrayList<Customer>();
+	private static ArrayList<Product> products = new ArrayList<Product>();
+	private static ArrayList<Invoice> invoices = new ArrayList<Invoice>();
 	
 	
 	public static void main(String[] args){
@@ -74,7 +75,7 @@ public class DataConverter {
 	}// end main
  
 
-	public static Person findPerson(String personCode, Set<Person> persons) {
+	public static Person findPerson(String personCode, ArrayList<Person> persons) {
 		Person p = null;
 		for(Person person : persons) {
 			if(person.getPersonCode().equals(personCode)) {
@@ -84,7 +85,7 @@ public class DataConverter {
 		return p;
 	}
 	
-	public static Customer findCustomer(String customerCode, Set<Customer> customers) {
+	public static Customer findCustomer(String customerCode, ArrayList<Customer> customers) {
 		Customer c = null;
 		for(Customer customer : customers) {
 			if(customer.getCustomerCode().equals(customerCode)) {
@@ -94,7 +95,7 @@ public class DataConverter {
 		return c;
 	}
 	
-	public static Product findProduct(String productCode, Set<Product> products) {
+	public static Product findProduct(String productCode, ArrayList<Product> products) {
 		Product p = null;
 		for(Product product : products) {
 			if(product.getProductCode().equals(productCode)) {
@@ -105,24 +106,24 @@ public class DataConverter {
 	}
 
 
-	public static Set<Customer> getCustomers() {
+	public static ArrayList<Customer> getCustomers() {
 		return customers;
 	}
 
-	public static Set<Product> getProducts() {
+	public static ArrayList<Product> getProducts() {
 		return products;
 	}
 
-	public static Set<Person> getPersons() {
+	public static ArrayList<Person> getPersons() {
 		return persons;
 	}
 	
-	public static Set<Invoice> getInvoices() {
+	public static ArrayList<Invoice> getInvoices() {
 		return invoices;
 	}
 
 
-	public static void setInvoices(Set<Invoice> invoices) {
+	public static void setInvoices(ArrayList<Invoice> invoices) {
 		DataConverter.invoices = invoices;
 	}
 

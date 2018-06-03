@@ -1,7 +1,8 @@
 package product;
 
+import java.util.HashMap;
 
-public class Product {
+public abstract class Product {
 
 	private String productCode;
 	private String productType; 
@@ -45,7 +46,8 @@ public class Product {
 			this.productType = "na";
 		}
 	}
-
+	
+	public abstract double calculateSubTotal(int quantity, String invoiceDate, HashMap<Product,Integer> productList);
 
 	/**
 	 * @Override
