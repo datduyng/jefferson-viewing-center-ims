@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import customer.Student;
 import product.MovieTicket;
 import product.ParkingPass;
 import product.Product;
@@ -36,16 +37,15 @@ public class InvoiceReport {
 			sb.append(String.format("-----------------------------\n"));
 			sb.append(String.format("Code\tItem\t\t\t\t\t\tSubTotal\tTax\tTotal\n"));
 			
-			
-			Map<Product,Double> subTotalList = new LinkedHashMap<Product,Double>();
-			subTotalList = invoice.getSubTotalList();
+			double totalSubTotal = 0.0, totalTax = 0.0, totalTotal = 0.0, finalTotal = 0.0;
 			for(Entry<Product, Integer> p : invoice.getProductList().entrySet()) {
+				
 				// get key and valu
 				Product key =  p.getKey();
 				int value = p.getValue();	
 				
 
-				double subTotal = (double)subTotalList.get(key);
+				double subTotal = key.calculateSubTotal(value, invoice.getInvoiceDate(), invoice.getProductList());
 				double tax = 0.0;
 				if(key instanceof Ticket) {
 					tax = subTotal * Ticket.saleTaxRate;
@@ -54,6 +54,9 @@ public class InvoiceReport {
 				}
 				double total = subTotal + tax;
 				
+				totalSubTotal += subTotal;
+				totalTax += tax;
+				totalTotal += total;
 				
 				String itemInString = "";
 				if(key.getProductType().equals("M")) {
@@ -73,6 +76,18 @@ public class InvoiceReport {
 				sb.append(String.format("%s\t%s\t\t\t\t\t\t%.2f\t%.2f\t%.2f\n",
 					key.getProductCode(),itemInString,subTotal,tax,total));
 			}	// end p forloop
+			sb.append(String.format("SUB-TOTALS:\t\t\t\t\t\t\t%.2f\t%.2f\t%.2f\n", totalSubTotal, totalTax,totalTotal));
+			
+			if(invoice.getCustomer() instanceof Student) {
+				
+				double studentDiscount = (totalSubTotal * Student.discountRate) + totalTax;
+				finalTotal = totalTotal - studentDiscount + Student.additionalFee;
+				sb.append(String.format("DISCOUNT ( 8%% STUDENT & NO TAX)\t\t\t\t\t\t\t%.2f\n", (studentDiscount)*-1.0));
+				sb.append(String.format("ADDITIONAL FEE (Student)\t\t\t\t\t\t\t%.2f\n", Student.additionalFee));
+			}else {
+				finalTotal = totalTotal ;
+			}		
+			sb.append(String.format("TOTAL:\t\t\t\t\t\t\t\t\t\t%.2f\n",finalTotal));
 			System.out.println(sb);
 		}// end invoice for loop
 		System.out.println("==========Main()===============================\n");

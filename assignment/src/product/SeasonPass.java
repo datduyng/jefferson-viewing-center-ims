@@ -8,6 +8,14 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 
+import java.util.HashMap;
+
+import org.joda.time.DateTime;
+import org.joda.time.Days;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
+
 public class SeasonPass extends Ticket {
 	
 	public static final double convenienceFee = 8.0;
@@ -17,9 +25,6 @@ public class SeasonPass extends Ticket {
 	private String endDate;
 	private double cost;
 	
-	public SeasonPass(){
-		
-	}
 	
 	public SeasonPass(String[] nextLineTokens) {
 		super(nextLineTokens[0], nextLineTokens[1]);
@@ -66,8 +71,19 @@ public class SeasonPass extends Ticket {
 		return (double) Days.daysBetween(invoiceDateDT , endDateDT).getDays() ;
 	}
 	
-	
-	
+	public double calculateSubTotal(int quantity, String invoiceDate, HashMap<Product,Integer> productList) {
+		double subTotal = 0.0;
+		double totalDays = this.getTotalDays();
+		double seasonDaysLeft = this.getSeasonDayLeft(invoiceDate);
+		// Invoice is before start of season, charge full amount
+		if(seasonDaysLeft >= totalDays) {
+			subTotal = (double)quantity * (this.cost + SeasonPass.convenienceFee);
+		} else {
+		subTotal = (double)quantity * ((this.cost * (this.getSeasonDayLeft(invoiceDate)/
+				this.getTotalDays())) + SeasonPass.convenienceFee);
+		}
+		return subTotal;
+	}
 	
 	/**
 	 * @Override

@@ -1,7 +1,8 @@
 package customer;
 
 public class Student extends Customer{
-	private static double discountRate = .08 ; 
+	public static final double discountRate = .08 ;
+	public static final double additionalFee = 6.75;
 	public Student() {
 		super();
 		this.customerType = "S";
