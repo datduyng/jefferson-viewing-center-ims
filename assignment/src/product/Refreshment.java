@@ -9,10 +9,13 @@ public class Refreshment extends Service {
 	private String name;
 	private double cost;
 	
+<<<<<<< HEAD
 	//static variable
 	private static int quantity;
 	private static boolean haveTicket;
 	
+=======
+>>>>>>> 7b2885f749c23d5bbe3799578cd5d3fea2889bdd
 	public Refreshment(String[] nextLineTokens) {
 		super(nextLineTokens[0], nextLineTokens[1]);
 		this.name = nextLineTokens[2];
@@ -49,6 +52,7 @@ public class Refreshment extends Service {
 	
 	public double calculateSubTotal(int quantity, String invoiceDate, HashMap<Product,Integer> productList) {
 		double subTotal = 0.0;
+<<<<<<< HEAD
 		Refreshment.haveTicket = false;
 		// SET QUANTITY 
 		Refreshment.setQuantity(quantity);
@@ -56,6 +60,13 @@ public class Refreshment extends Service {
 			Product key =  p.getKey();
 			if (key instanceof Ticket) {
 				Refreshment.haveTicket = true;
+=======
+		boolean haveTicket = false;
+		for(Entry<Product, Integer> p : productList.entrySet()) {
+			Product key =  p.getKey();
+			if (key instanceof Ticket) {
+				haveTicket = true;
+>>>>>>> 7b2885f749c23d5bbe3799578cd5d3fea2889bdd
 				break;
 			}
 		}
@@ -68,6 +79,7 @@ public class Refreshment extends Service {
 		return subTotal;
 	}
 	
+<<<<<<< HEAD
 	public String toInvoiceFormat() {
 		String ifHaveDiscount = ")";
 		
@@ -77,6 +89,8 @@ public class Refreshment extends Service {
 		return String.format("Refreshment (%d units @ $%.2f/unit%s",Refreshment.getQuantity(),this.getCost(),ifHaveDiscount);
 	}
 	
+=======
+>>>>>>> 7b2885f749c23d5bbe3799578cd5d3fea2889bdd
 	/**
 	 * @Override
 	 */
