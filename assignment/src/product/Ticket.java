@@ -13,4 +13,9 @@ public abstract class Ticket extends Product{
 		super(productCode, productType);
 	}
 	
+	@Override 
+	public String toString() {
+		return this.getProductCode();
+	}
+	
 }

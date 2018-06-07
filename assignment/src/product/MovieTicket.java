@@ -133,30 +133,11 @@ public class MovieTicket extends Ticket {
 	public double calculateSubTotal(int quantity, String invoiceDate, HashMap<Product,Integer> productList) {
 		
 		double subTotal = 0.0;
-<<<<<<< HEAD
 
 		// set quantity of this product.
 		MovieTicket.setQuantity(quantity);
 		
 		if(this.isDiscountDay == true) {
-=======
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = null;
-		
-		try {
-			date = (Date) formatter.parse(this.dateTime);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
-		//get day of week
-		Calendar c = Calendar.getInstance();
-		c.setTime(date);
-		int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-		System.out.println("Day of Week" + dayOfWeek);
-		
-		if(dayOfWeek == 3 || dayOfWeek == 5) {
->>>>>>> 7b2885f749c23d5bbe3799578cd5d3fea2889bdd
 			subTotal = this.getPricePerUnit() * (double)quantity * (1-MovieTicket.discountRate);
 		} else {
 			subTotal = this.getPricePerUnit() * (double)quantity;
@@ -165,7 +146,6 @@ public class MovieTicket extends Ticket {
 	}
 	
 	
-<<<<<<< HEAD
 	/*
 	 * this method take 3 argument b/c the way it get formatted. 
 	 * since the return string is long 3 input argument help 
@@ -185,8 +165,6 @@ public class MovieTicket extends Ticket {
 	}
 	
 	
-=======
->>>>>>> 7b2885f749c23d5bbe3799578cd5d3fea2889bdd
 	/**
 	 * @Override
 	 */

@@ -25,13 +25,10 @@ public class SeasonPass extends Ticket {
 	private String endDate;
 	private double cost;
 	
-<<<<<<< HEAD
 	//static
 	private static int quantity;
 	private static double proratedPercent;
 	
-=======
->>>>>>> 7b2885f749c23d5bbe3799578cd5d3fea2889bdd
 	
 	public static double getProratedPercent() {
 		return proratedPercent;
@@ -98,7 +95,6 @@ public class SeasonPass extends Ticket {
 		double subTotal = 0.0;
 		double totalDays = this.getTotalDays();
 		double seasonDaysLeft = this.getSeasonDayLeft(invoiceDate);
-<<<<<<< HEAD
 		
 		// SET QUANTITY 
 		SeasonPass.setQuantity(quantity);
@@ -122,17 +118,6 @@ public class SeasonPass extends Ticket {
 		}
 		return String.format("SeasonPass %s (%d units @$ %s %s+ $8.00 fee)",this.getName(),SeasonPass.getQuantity(),this.getCost(),ifProrated);
 	}
-=======
-		// Invoice is before start of season, charge full amount
-		if(seasonDaysLeft >= totalDays) {
-			subTotal = (double)quantity * (this.cost + SeasonPass.convenienceFee);
-		} else {
-		subTotal = (double)quantity * ((this.cost * (this.getSeasonDayLeft(invoiceDate)/
-				this.getTotalDays())) + SeasonPass.convenienceFee);
-		}
-		return subTotal;
-	}
->>>>>>> 7b2885f749c23d5bbe3799578cd5d3fea2889bdd
 	
 	/**
 	 * @Override

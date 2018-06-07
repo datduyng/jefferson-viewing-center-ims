@@ -7,16 +7,12 @@ public class ParkingPass extends Service {
 
 	private double parkingFee;
 	private Ticket ticket = null; 
-<<<<<<< HEAD
 	
 	//static
 	private static int quantity;
 	private static int numOfAssociatedTicket;
 	
 	//copy constructor.
-=======
-	
->>>>>>> 7b2885f749c23d5bbe3799578cd5d3fea2889bdd
 	public ParkingPass(ParkingPass p) {
 		super(p.getProductCode(), p.getProductType());
 		this.parkingFee = p.getParkingFee();
@@ -65,34 +61,19 @@ public class ParkingPass extends Service {
 	
 	public double calculateSubTotal(int quantity, String invoiceDate, HashMap<Product, Integer> productList) {
 		double subTotal = 0.0;
-<<<<<<< HEAD
 		
 		// set quantity of this product.
 		ParkingPass.setQuantity(quantity);
 		
-=======
->>>>>>> 7b2885f749c23d5bbe3799578cd5d3fea2889bdd
 		// if there is not a corresponding parking pass.
 		if(this.getTicket() == null){
 			subTotal= this.getParkingFee() * (double)quantity;
 		}else {
-<<<<<<< HEAD
 			ParkingPass.numOfAssociatedTicket = getNumOfTicketAssociated(productList);
 			if(ParkingPass.numOfAssociatedTicket  >= quantity) {
 				subTotal = 0.0;
 			}else {
 				subTotal = this.getParkingFee() * (double)(quantity - ParkingPass.numOfAssociatedTicket );
-=======
-			int freeUnit = getNumOfTicketAssociated(productList);
-			if (freeUnit == -1) {
-				System.out.println("Error: Associated Ticket Not Found!");
-				subTotal = this.getParkingFee() * (double)quantity;
-			}
-			else if(freeUnit >= quantity) {
-				subTotal = 0.0;
-			}else {
-				subTotal = this.getParkingFee() * (double)(quantity - freeUnit);
->>>>>>> 7b2885f749c23d5bbe3799578cd5d3fea2889bdd
 			}
 		}
 		return subTotal;

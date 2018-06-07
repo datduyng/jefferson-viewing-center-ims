@@ -5,7 +5,7 @@ public class General extends Customer{
 	
 	public General() {
 		super();
-		this.customerType = "G";
+		this.customerType = "General";
 	}
 	
 	@Override

@@ -5,7 +5,10 @@ public class Student extends Customer{
 	public static final double additionalFee = 6.75;
 	public Student() {
 		super();
-		this.customerType = "S";
+		this.customerType = "Student";
+	}
+	public static String additionalFeeToString() {
+		return String.format("%3.2f", Student.additionalFee);
 	}
 	
 	@Override 

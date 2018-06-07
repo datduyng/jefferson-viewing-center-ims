@@ -45,11 +45,7 @@ public class InvoiceReport {
 			sb.append(String.format("SalePerson: %s\n",invoice.getSalesPerson().getName() ));
 			sb.append(String.format("Customer Info: \n%s\n",invoice.getCustomer().toInfo()));
 			sb.append(String.format("-----------------------------\n"));
-<<<<<<< HEAD
 			sb.append(String.format("Code\tItem\t\t\t\t\t\t\t\t\t\t\t\t   SubTotal\t     Tax\tTotal\n"));
-=======
-			sb.append(String.format("Code\tItem\t\t\t\t\t\tSubTotal\tTax\tTotal\n"));
->>>>>>> 7b2885f749c23d5bbe3799578cd5d3fea2889bdd
 			
 			double totalSubTotal = 0.0, totalTax = 0.0, totalTotal = 0.0, finalTotal = 0.0;
 			for(Entry<Product, Integer> p : invoice.getProductList().entrySet()) {
@@ -98,7 +94,6 @@ public class InvoiceReport {
 				}
 				
 			}	// end p forloop
-<<<<<<< HEAD
 			sb.append(String.format("\t\t\t\t\t\t\t\t\t\t\t\t\t==============================\n"));
 			String totalSubTotalInStr = String.format("%3.2f", totalSubTotal);
 			String totalTaxInStr = String.format("%3.2f", totalTax);
@@ -137,21 +132,6 @@ public class InvoiceReport {
 			overallTax += totalTax;
 			overallDiscount += studentDiscount;
 			overallTotal += finalTotal;
-=======
-			sb.append(String.format("SUB-TOTALS:\t\t\t\t\t\t\t%.2f\t%.2f\t%.2f\n", totalSubTotal, totalTax,totalTotal));
-			
-			if(invoice.getCustomer() instanceof Student) {
-				
-				double studentDiscount = (totalSubTotal * Student.discountRate) + totalTax;
-				finalTotal = totalTotal - studentDiscount + Student.additionalFee;
-				sb.append(String.format("DISCOUNT ( 8%% STUDENT & NO TAX)\t\t\t\t\t\t\t%.2f\n", (studentDiscount)*-1.0));
-				sb.append(String.format("ADDITIONAL FEE (Student)\t\t\t\t\t\t\t%.2f\n", Student.additionalFee));
-			}else {
-				finalTotal = totalTotal ;
-			}		
-			sb.append(String.format("TOTAL:\t\t\t\t\t\t\t\t\t\t%.2f\n",finalTotal));
-			System.out.println(sb);
->>>>>>> 7b2885f749c23d5bbe3799578cd5d3fea2889bdd
 		}// end invoice for loop
 		sb2.append("===========================================================================================================================================================\n");
 		sb2.append(String.format("%-90s  $%13s $%13s $%13s $%13s $%13s\n","TOTALS", floatFormatedToString(overallSubTotal),
