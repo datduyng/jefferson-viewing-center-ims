@@ -49,7 +49,8 @@ public class Address {
 	 * 
 	 */
 	public String toString(){
-		return this.street + "," + this.city + "," + this.state + "," + this.zipCode + "," + this.country + ";";
+		return this.street + ",";
+		//return this.street + "," + this.city + "," + this.state + "," + this.zipCode + "," + this.country + ";";
 		
 	}
 	

@@ -25,7 +25,27 @@ public class SeasonPass extends Ticket {
 	private String endDate;
 	private double cost;
 	
+	//static
+	private static int quantity;
+	private static double proratedPercent;
 	
+	
+	public static double getProratedPercent() {
+		return proratedPercent;
+	}
+
+	public static void setProratedPercent(double proratedPercent) {
+		SeasonPass.proratedPercent = proratedPercent;
+	}
+
+	public static int getQuantity() {
+		return quantity;
+	}
+
+	public static void setQuantity(int quantity) {
+		SeasonPass.quantity = quantity;
+	}
+
 	public SeasonPass(String[] nextLineTokens) {
 		super(nextLineTokens[0], nextLineTokens[1]);
 		this.name = nextLineTokens[2];
@@ -75,14 +95,28 @@ public class SeasonPass extends Ticket {
 		double subTotal = 0.0;
 		double totalDays = this.getTotalDays();
 		double seasonDaysLeft = this.getSeasonDayLeft(invoiceDate);
+		
+		// SET QUANTITY 
+		SeasonPass.setQuantity(quantity);
+		
 		// Invoice is before start of season, charge full amount
 		if(seasonDaysLeft >= totalDays) {
+			SeasonPass.setProratedPercent(0.0);
 			subTotal = (double)quantity * (this.cost + SeasonPass.convenienceFee);
 		} else {
-		subTotal = (double)quantity * ((this.cost * (this.getSeasonDayLeft(invoiceDate)/
-				this.getTotalDays())) + SeasonPass.convenienceFee);
+			SeasonPass.setProratedPercent((this.getSeasonDayLeft(invoiceDate)/this.getTotalDays()));
+			subTotal = (double)quantity * ((this.cost * SeasonPass.getProratedPercent()) + SeasonPass.convenienceFee);
 		}
 		return subTotal;
+	}
+	
+	public String toInvoiceFormat() {
+		String ifProrated = "";
+		
+		if(SeasonPass.getProratedPercent() > 0.1) {
+			ifProrated = "("+SeasonPass.getProratedPercent() + " prorated)";
+		}
+		return String.format("SeasonPass %s (%d units @$ %s %s+ $8.00 fee)",this.getName(),SeasonPass.getQuantity(),this.getCost(),ifProrated);
 	}
 	
 	/**

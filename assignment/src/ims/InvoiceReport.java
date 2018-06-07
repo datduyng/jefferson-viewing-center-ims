@@ -24,18 +24,28 @@ public class InvoiceReport {
 		DataConverter.readProductFile();
 		DataConverter.readInvoiceFile();
 		
+		// variable 
+		double overallSubTotal = 0.0;
+		double overallFee = 0.0;
+		double overallTax = 0.0;
+		double overallDiscount = 0.0;
+		double overallTotal = 0.0;
+		
 		// TODO: print 2 report. 
-		System.out.println(DataConverter.getInvoices());
-		StringBuilder sb = null;
+		StringBuilder sb = new StringBuilder();
+		StringBuilder sb2 = new StringBuilder();
+		sb2.append("=========================\n");
+		sb2.append("Excutive Report\n");
+		sb2.append("=========================\n");
+		sb2.append(String.format("%-10s%-60s%-20s%15s%15s%15s%15s%15s\n", "Invoice","Customer","SalePerson","Subtotal","Fees","Taxes","discounts","Total"));
 		for( Invoice invoice: DataConverter.getInvoices()) {
 			
-			sb = new StringBuilder();
-			System.out.printf("Invoice %s\n",invoice.getInvoiceCode());
-			System.out.println("==================================\n");
+			sb.append(String.format("Invoice %s\n", invoice.getInvoiceCode()));
+			sb.append("==================================\n");
 			sb.append(String.format("SalePerson: %s\n",invoice.getSalesPerson().getName() ));
 			sb.append(String.format("Customer Info: \n%s\n",invoice.getCustomer().toInfo()));
 			sb.append(String.format("-----------------------------\n"));
-			sb.append(String.format("Code\tItem\t\t\t\t\t\tSubTotal\tTax\tTotal\n"));
+			sb.append(String.format("Code\tItem\t\t\t\t\t\t\t\t\t\t\t\t   SubTotal\t     Tax\tTotal\n"));
 			
 			double totalSubTotal = 0.0, totalTax = 0.0, totalTotal = 0.0, finalTotal = 0.0;
 			for(Entry<Product, Integer> p : invoice.getProductList().entrySet()) {
@@ -59,39 +69,82 @@ public class InvoiceReport {
 				totalTotal += total;
 				
 				String itemInString = "";
-				if(key.getProductType().equals("M")) {
+				if(key instanceof MovieTicket) {
 					MovieTicket m = ((MovieTicket)key);
-					itemInString = String.format("MovieTicket '%s' \n@%s \n%s\n", m.getMovieName()
-							,m.getTheaterAddress().toString(),m.getDateTime());
-				}else if(key.getProductType().equals("S")) {
+					itemInString = m.toInvoiceFormat(subTotal, tax, total);
+				}else if(key instanceof SeasonPass) {
 					SeasonPass s = ((SeasonPass)key);
-					itemInString = String.format("SeasonPass");
-				}else if(key.getProductType().equals("P")) {
+					itemInString = s.toInvoiceFormat();
+				}else if(key instanceof ParkingPass) {
 					ParkingPass pPass = ((ParkingPass)key);
-					itemInString = String.format("ParkingPass");
-				}else if(key.getProductType().equals("R")) {
+					itemInString = pPass.toInvoiceFormat();
+				}else if(key instanceof Refreshment) {
 					Refreshment r = ((Refreshment)key);
-					itemInString = String.format("Refreshment");
+					itemInString = r.toInvoiceFormat();
 				}
-				sb.append(String.format("%s\t%s\t\t\t\t\t\t%.2f\t%.2f\t%.2f\n",
-					key.getProductCode(),itemInString,subTotal,tax,total));
+				
+				String subTotalInStr = String.format("%3.2f", subTotal);
+				String taxInStr = String.format("%3.2f", tax);
+				String totalInStr = String.format("%3.2f", total);
+				
+				if((key instanceof MovieTicket)){// movie tiecket have a special formated string
+					sb.append(String.format("%s\t%s\n",key.getProductCode(),itemInString));
+				}else {
+					sb.append(String.format("%s\t%-96s$%10s  $%10s  $%10s\n",key.getProductCode(),itemInString, subTotalInStr,taxInStr,totalInStr));
+				}
+				
 			}	// end p forloop
-			sb.append(String.format("SUB-TOTALS:\t\t\t\t\t\t\t%.2f\t%.2f\t%.2f\n", totalSubTotal, totalTax,totalTotal));
+			sb.append(String.format("\t\t\t\t\t\t\t\t\t\t\t\t\t==============================\n"));
+			String totalSubTotalInStr = String.format("%3.2f", totalSubTotal);
+			String totalTaxInStr = String.format("%3.2f", totalTax);
+			String totalTotalInStr = String.format("%3.2f", totalTotal);
+			sb.append(String.format("%-104s$%10s  $%10s  $%10s\n","SUBTOTAL",totalSubTotalInStr, totalTaxInStr,totalTotalInStr));
 			
+			String studentDiscountInStr = "0.0";
+			String totalFeeInStr = "0.0";
+			String finalTotalInStr = "";
+			double studentDiscount = 0.0;
 			if(invoice.getCustomer() instanceof Student) {
 				
-				double studentDiscount = (totalSubTotal * Student.discountRate) + totalTax;
+				studentDiscount = (totalSubTotal * Student.discountRate) + totalTax;
 				finalTotal = totalTotal - studentDiscount + Student.additionalFee;
-				sb.append(String.format("DISCOUNT ( 8%% STUDENT & NO TAX)\t\t\t\t\t\t\t%.2f\n", (studentDiscount)*-1.0));
-				sb.append(String.format("ADDITIONAL FEE (Student)\t\t\t\t\t\t\t%.2f\n", Student.additionalFee));
+				studentDiscountInStr = String.format("%3.2f", (studentDiscount)*-1.0);
+				totalFeeInStr = String.format("%s", Student.additionalFeeToString());
+				sb.append(String.format("%-127s   $%10s  \n","DISCOUNT ( 8%% STUDENT & NO TAX)", studentDiscountInStr));
+				sb.append(String.format("%-127s   $%10s  \n","ADDITIONAL FEE (Student)", Student.additionalFeeToString()));
+				
+				//calcualte overall fee
+				overallFee += Student.additionalFee;
 			}else {
 				finalTotal = totalTotal ;
-			}		
-			sb.append(String.format("TOTAL:\t\t\t\t\t\t\t\t\t\t%.2f\n",finalTotal));
-			System.out.println(sb);
+			}
+			finalTotalInStr = String.format("%3.2f", finalTotal);
+			sb.append(String.format("%-127s   $%10s  \n","TOTAL: ", Student.additionalFeeToString()));
+			
+			sb.append(String.format("\n\t\t\t\t\tThank you\n\n"));
+			sb2.append(String.format("%-10s%-30s-%-30s%-20s $%13s $%13s $%13s $%13s $%13s\n", invoice.getInvoiceCode(),
+					invoice.getCustomer().getCustomerName(),invoice.getCustomer().getCustomerType(),invoice.getSalesPerson().getName()
+					,totalSubTotalInStr,totalFeeInStr,totalTaxInStr,studentDiscountInStr,finalTotalInStr));
+			
+			
+			//calculate overall total
+			overallSubTotal += totalSubTotal;
+			overallTax += totalTax;
+			overallDiscount += studentDiscount;
+			overallTotal += finalTotal;
 		}// end invoice for loop
-		System.out.println("==========Main()===============================\n");
-
+		sb2.append("===========================================================================================================================================================\n");
+		sb2.append(String.format("%-90s  $%13s $%13s $%13s $%13s $%13s\n","TOTALS", floatFormatedToString(overallSubTotal),
+				floatFormatedToString(overallFee),floatFormatedToString(overallTax),
+				floatFormatedToString(overallDiscount*-1.0),floatFormatedToString(overallTotal)));
+		System.out.println(sb2);
+		System.out.println(sb);
 	}// end main()
+	
+	public static String floatFormatedToString(double value) {
+		return String.format("%3.2f", value);
+	}
 }// end InvoiceReport class
+
+
 

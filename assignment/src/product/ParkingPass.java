@@ -8,6 +8,11 @@ public class ParkingPass extends Service {
 	private double parkingFee;
 	private Ticket ticket = null; 
 	
+	//static
+	private static int quantity;
+	private static int numOfAssociatedTicket;
+	
+	//copy constructor.
 	public ParkingPass(ParkingPass p) {
 		super(p.getProductCode(), p.getProductType());
 		this.parkingFee = p.getParkingFee();
@@ -17,6 +22,24 @@ public class ParkingPass extends Service {
 	public ParkingPass(String[] nextLineTokens) {
 		super(nextLineTokens[0], nextLineTokens[1]);
 		this.parkingFee = Double.parseDouble(nextLineTokens[2]);
+		ParkingPass.numOfAssociatedTicket = 0;
+		ParkingPass.quantity = 0;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public static void setQuantity(int quantity) {
+		ParkingPass.quantity = quantity;
+	}
+
+	public static int getNumOfAssociatedTicket() {
+		return numOfAssociatedTicket;
+	}
+
+	public void setNumOfAssociatedTicket(int numOfAssociatedTicket) {
+		ParkingPass.numOfAssociatedTicket = numOfAssociatedTicket;
 	}
 
 	public double getParkingFee() {
@@ -38,19 +61,19 @@ public class ParkingPass extends Service {
 	
 	public double calculateSubTotal(int quantity, String invoiceDate, HashMap<Product, Integer> productList) {
 		double subTotal = 0.0;
+		
+		// set quantity of this product.
+		ParkingPass.setQuantity(quantity);
+		
 		// if there is not a corresponding parking pass.
 		if(this.getTicket() == null){
 			subTotal= this.getParkingFee() * (double)quantity;
 		}else {
-			int freeUnit = getNumOfTicketAssociated(productList);
-			if (freeUnit == -1) {
-				System.out.println("Error: Associated Ticket Not Found!");
-				subTotal = this.getParkingFee() * (double)quantity;
-			}
-			else if(freeUnit >= quantity) {
+			ParkingPass.numOfAssociatedTicket = getNumOfTicketAssociated(productList);
+			if(ParkingPass.numOfAssociatedTicket  >= quantity) {
 				subTotal = 0.0;
 			}else {
-				subTotal = this.getParkingFee() * (double)(quantity - freeUnit);
+				subTotal = this.getParkingFee() * (double)(quantity - ParkingPass.numOfAssociatedTicket );
 			}
 		}
 		return subTotal;
@@ -71,6 +94,18 @@ public class ParkingPass extends Service {
 		return -1;
 	}
 
+	public String toInvoiceFormat() {
+		String ifHaveTicket = "";
+		String ifHaveDiscount = ")";
+		
+		if(ticket != null) {
+			ifHaveTicket = this.getTicket().getProductCode();
+			ifHaveDiscount = String.format("/w %d free)", ParkingPass.numOfAssociatedTicket);
+		}
+		return String.format("ParkingPass %s (%d units @$%.2f/unit %s",ifHaveTicket,this.getQuantity(),this.getParkingFee()
+				,ifHaveDiscount);
+	}
+	
 	/**
 	 * @Override 
 	 */

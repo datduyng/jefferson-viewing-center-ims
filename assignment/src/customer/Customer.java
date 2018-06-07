@@ -19,10 +19,10 @@ public class Customer {
 	
 	public Customer(String customerCode, String personCode, String customerType, String customerName, Address customerAddress) {
 
-		setCustomerType(customerType);
-		setPrimaryContact(personCode);
-		setCustomerName(customerName);
-		setCustomerAddress(customerAddress);
+		this.setCustomerType(customerType);
+		this.setPrimaryContact(personCode);
+		this.setCustomerName(customerName);
+		this.setCustomerAddress(customerAddress);
 	}
 	
 	/**
@@ -84,10 +84,12 @@ public class Customer {
 
 	public void setCustomerType(String customerType) {
 		//input validation customer type.
-		if(customerType == "S" || customerType == "G") {
-			this.customerType = customerType;
-		}else{
-			this.customerType = "NA";
+		if(customerType.equals("S")) {
+			this.customerType = "Student";
+		}else if(customerType.equals("G")){
+			this.customerType = "General";
+		}else {
+			this.customerType = "N.A";
 		}
 	}
 	
@@ -99,15 +101,8 @@ public class Customer {
 	
 	public String toInfo() {
 		String type = "";
-		if(this.customerType.equals("S")) {
-			type = "Student";
-		}else if(this.customerType.equals("G")){
-			type = "General";
-		}else {
-			type = "N.A";
-		}
 		String result = String.format("%s(%s)\n-%s\n%s-\n%s\n",
-				this.getCustomerName(),this.getCustomerCode(),type,this.getPrimaryContact().getName(),this.getCustomerAddress());
+				this.getCustomerName(),this.getCustomerCode(),this.getCustomerType(),this.getPrimaryContact().getName(),this.getCustomerAddress());
 		return result;
 	}
 

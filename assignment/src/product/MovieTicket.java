@@ -18,15 +18,57 @@ public class MovieTicket extends Ticket {
 	private Address theaterAddress;
 	private String screenNumber;
 	private double pricePerUnit;
+	private boolean isDiscountDay;
+	
+	//static
+	private static int quantity;
 	
 	
 	public MovieTicket(String[] token) {
 		super(token[0], token[1]);
-		setDateTime(token[2]);
-		setMovieName(token[3]);
-		setTheaterAddress(new Address(token[4]));
-		setScreenNumber(token[5]);
-		setPricePerUnit(Double.parseDouble(token[6]));
+		this.setDateTime(token[2]);
+		this.setMovieName(token[3]);
+		this.setTheaterAddress(new Address(token[4]));
+		this.setScreenNumber(token[5]);
+		this.setPricePerUnit(Double.parseDouble(token[6]));
+		
+		MovieTicket.setQuantity(0);// init with 0 when create an instant of this product.
+		
+		// set isDiscountDay if tuesday or thursday 
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		
+		try {
+			date = (Date) formatter.parse(this.dateTime);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		//get day of week
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+		if(dayOfWeek == 3 || dayOfWeek == 5) {
+			this.isDiscountDay = true;
+		} else {
+			this.isDiscountDay = false;
+		}
+	}
+
+	public boolean isDiscountDay() {
+		return isDiscountDay;
+	}
+
+	public void setDiscountDay(boolean isDiscountDay) {
+		this.isDiscountDay = isDiscountDay;
+	}
+
+	public static int getQuantity() {
+		return MovieTicket.quantity;
+	}
+
+	public static void setQuantity(int quantity) {
+		MovieTicket.quantity = quantity;
 	}
 
 	public String getDateTime() {
@@ -91,27 +133,35 @@ public class MovieTicket extends Ticket {
 	public double calculateSubTotal(int quantity, String invoiceDate, HashMap<Product,Integer> productList) {
 		
 		double subTotal = 0.0;
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = null;
+
+		// set quantity of this product.
+		MovieTicket.setQuantity(quantity);
 		
-		try {
-			date = (Date) formatter.parse(this.dateTime);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
-		//get day of week
-		Calendar c = Calendar.getInstance();
-		c.setTime(date);
-		int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-		System.out.println("Day of Week" + dayOfWeek);
-		
-		if(dayOfWeek == 3 || dayOfWeek == 5) {
+		if(this.isDiscountDay == true) {
 			subTotal = this.getPricePerUnit() * (double)quantity * (1-MovieTicket.discountRate);
 		} else {
 			subTotal = this.getPricePerUnit() * (double)quantity;
 		}
 		return subTotal;
+	}
+	
+	
+	/*
+	 * this method take 3 argument b/c the way it get formatted. 
+	 * since the return string is long 3 input argument help 
+	 * this is a special case.
+	 */
+	public String toInvoiceFormat(double subTotal, double tax, double total) {
+		String ifDiscountDay = "";
+		if(this.isDiscountDay == true) {
+			ifDiscountDay = "- Tue/Thu 7% off";
+		}
+		String firstLine = String.format("MovieTicket '%2.30s' @$%20.70s", this.getMovieName(),this.getTheaterAddress().toString());
+		String subTotalInStr = String.format("%3.2f", subTotal);
+		String taxInStr = String.format("%3.2f", tax);
+		String totalInStr = String.format("%3.2f", total);
+		return String.format("%-96s$%10s  $%10s  $%10s\n\t%s (%d units @%.2f/unit %s\n",firstLine, subTotalInStr,taxInStr,totalInStr,
+				this.getDateTime(),MovieTicket.getQuantity(),this.getPricePerUnit(),ifDiscountDay);
 	}
 	
 	
