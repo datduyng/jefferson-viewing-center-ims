@@ -44,8 +44,8 @@ public class DataConverter {
 	private static int NUM_OF_PRODUCT;
 	private static int NUM_OF_INVOICE;
 	
-	/* HashSets created to store created Person, Customer, and Product objects 
-	 * respectively.  Sets chosen to prevent duplicate entries.
+	/* Lists created to store created Person, Customer, and Product objects 
+	 * respectively.
 	 */
 	private static ArrayList<Person> persons = new ArrayList<Person>();
 	private static ArrayList<Customer> customers = new ArrayList<Customer>();
@@ -55,7 +55,7 @@ public class DataConverter {
 	
 	public static void main(String[] args){
 		
-		
+		//read and parse files, create appropriate objects
 		DataConverter.readPersonFile();
 		DataConverter.readCustomerFile();
 		DataConverter.readProductFile();
@@ -74,7 +74,12 @@ public class DataConverter {
 		
 	}// end main
  
-
+	/**
+	 * Searches for and returns a stored person object based on a person code.
+	 * @param personCode the person code of the person being searched for
+	 * @param persons the List of stored person objects
+	 * @return the matching person object 
+	 */
 	public static Person findPerson(String personCode, ArrayList<Person> persons) {
 		Person p = null;
 		for(Person person : persons) {
@@ -85,6 +90,12 @@ public class DataConverter {
 		return p;
 	}
 	
+	/**
+	 * Searches for and returns a stored customer object based on a customer code.
+	 * @param customerCode the customer code of the customer being searched for
+	 * @param customers the List of stored customer objects
+	 * @return the matching customer object 
+	 */
 	public static Customer findCustomer(String customerCode, ArrayList<Customer> customers) {
 		Customer c = null;
 		for(Customer customer : customers) {
@@ -95,6 +106,12 @@ public class DataConverter {
 		return c;
 	}
 	
+	/**
+	 * Searches for and returns a stored product object based on a product code.
+	 * @param productCode the product code of the product being searched for
+	 * @param products the List of stored product objects
+	 * @return the matching product object 
+	 */
 	public static Product findProduct(String productCode, ArrayList<Product> products) {
 		Product p = null;
 		for(Product product : products) {
@@ -129,12 +146,12 @@ public class DataConverter {
 
 
 	/**
-	 * This function parse Object to JSON format 
-	 * @param String fileOutputName
-	 * @param givenobject
+	 * This function parses the given Object to JSON format 
+	 * @param fileOutput name/path of resulting json file
+	 * @param obj object to be converted
+	 * @param objName Alias of object for display
 	 * return output a file with JSON format
 	 */
-	
 	public static void toJsonFile(String fileOutput, Object obj,String objName) { 		
 
 		Gson gson = new Gson();
@@ -162,6 +179,12 @@ public class DataConverter {
 		
 	}
 	
+	/**
+	 * This function parses the given Object to XML format 
+	 * @param fileOutput name/path of resulting xml file
+	 * @param obj object to be converted
+	 * @param fieldName Alias of object for display
+	 */
 	public static void toXmlFile(String fileOutput, Object obj, String fieldName) {
 		
 		XStream xstream = new XStream();
@@ -224,7 +247,10 @@ public class DataConverter {
 		return s;
 	}
 	
-	
+	/**
+	 * Scans in data from a flat file and creates the person objects
+	 * and adds them to an array list after checking for duplicates.
+	 */
 	public static void readPersonFile() {
 		// read customer.dat file
 				Scanner scan = null;
@@ -254,7 +280,10 @@ public class DataConverter {
 	}// end readgetIPersonFile()
 	
 
-
+	/**
+	 * Scans in data from a flat file and creates the customer objects
+	 * and adds them to an array list after checking for duplicates.
+	 */
 	public static void readCustomerFile() {
 		
 		Scanner scan = null;
@@ -293,6 +322,10 @@ public class DataConverter {
 		scan.close();
 	}
 	
+	/**
+	 * Scans in data from a flat file and creates the product objects
+	 * and adds them to an array list after checking for duplicates.
+	 */
 	public static void readProductFile() {
 		
 		Scanner scan = null;
@@ -333,6 +366,10 @@ public class DataConverter {
 		scan.close();
 	}
 	
+	/**
+	 * Scans in data from a flat file and creates the invoice objects
+	 * and adds them to an array list after checking for duplicates.
+	 */
 	public static void readInvoiceFile() {
 		Scanner scan = DataConverter.openFile("data/Invoices.dat");
 		
