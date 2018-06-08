@@ -59,6 +59,14 @@ public class ParkingPass extends Service {
 		this.parkingFee = parkingFee;
 	}
 	
+	/**
+	 * Defined abstract method from parent class.  
+	 * Calculates the subtotal for this specific product.
+	 * @param quantity the amount of the product bought 
+	 * @param invoiceDate the date of the invoice
+	 * @param productList list of products associated with the invoice
+	 * @return subtotal
+	 */
 	public double calculateSubTotal(int quantity, String invoiceDate, HashMap<Product, Integer> productList) {
 		double subTotal = 0.0;
 		
@@ -79,6 +87,11 @@ public class ParkingPass extends Service {
 		return subTotal;
 	}
 	
+	/**
+	 * Finds the number of tickets associated with the parking pass.
+	 * @param productList list of products from an invoice
+	 * @return number of tickets associated
+	 */
 	public int getNumOfTicketAssociated(HashMap<Product, Integer> productList) {
 		for(Entry<Product, Integer> p : productList.entrySet()) {
 			// get key and value
@@ -90,10 +103,17 @@ public class ParkingPass extends Service {
 			}
 			
 		}
-		
+		// return error code of -1 if associated ticket isn't found
 		return -1;
 	}
-
+	
+	/**
+	 * Converts product details to a formatted string for the invoice report.
+	 * @param subTotal product subtotal
+	 * @param tax product tax
+	 * @param total product total w/ tax
+	 * @return formatted string
+	 */
 	public String toInvoiceFormat() {
 		String ifHaveTicket = "";
 		String ifHaveDiscount = ")";
