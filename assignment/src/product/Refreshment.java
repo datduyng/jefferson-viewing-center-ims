@@ -22,7 +22,8 @@ public class Refreshment extends Service {
 		Refreshment.setQuantity(0);
 		Refreshment.setHaveTicket(false);
 	}
-
+	
+	// returns boolean describing if the refreshment has an associated ticket
 	public boolean isHaveTicket() {
 		return haveTicket;
 	}
@@ -47,6 +48,14 @@ public class Refreshment extends Service {
 		return cost;
 	}
 	
+	/**
+	 * Defined abstract method from parent class.  
+	 * Calculates the subtotal for this specific product.
+	 * @param quantity the amount of the product bought 
+	 * @param invoiceDate the date of the invoice
+	 * @param productList list of products associated with the invoice
+	 * @return subtotal
+	 */
 	public double calculateSubTotal(int quantity, String invoiceDate, HashMap<Product,Integer> productList) {
 		double subTotal = 0.0;
 		Refreshment.haveTicket = false;
@@ -67,7 +76,10 @@ public class Refreshment extends Service {
 		}
 		return subTotal;
 	}
-	
+	/**
+	 * Converts product details to a formatted string for the invoice report.
+	 * @return formatted string
+	 */
 	public String toInvoiceFormat() {
 		String ifHaveDiscount = ")";
 		
