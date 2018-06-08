@@ -109,9 +109,6 @@ public class ParkingPass extends Service {
 	
 	/**
 	 * Converts product details to a formatted string for the invoice report.
-	 * @param subTotal product subtotal
-	 * @param tax product tax
-	 * @param total product total w/ tax
 	 * @return formatted string
 	 */
 	public String toInvoiceFormat() {
