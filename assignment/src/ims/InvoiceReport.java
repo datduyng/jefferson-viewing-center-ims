@@ -1,3 +1,12 @@
+/**
+ * @Authors Dat Nguyen and Reid Stagemeyer 
+ * @Version 1.0 
+ * 
+ * Reads data from flat files and creates appropriate products, 
+ * people, customers, and invoices.  Generates a formatted invoice
+ * report for all the invoices in the system.
+ * 
+ */
 package ims;
 
 import java.util.HashMap;
@@ -24,20 +33,21 @@ public class InvoiceReport {
 		DataConverter.readProductFile();
 		DataConverter.readInvoiceFile();
 		
-		// variable 
+		// invoice variables for invoice report
 		double overallSubTotal = 0.0;
 		double overallFee = 0.0;
 		double overallTax = 0.0;
 		double overallDiscount = 0.0;
 		double overallTotal = 0.0;
-		
-		// TODO: print 2 report. 
+		 
+		//heading for invoice report
 		StringBuilder sb = new StringBuilder();
 		StringBuilder sb2 = new StringBuilder();
 		sb2.append("=========================\n");
-		sb2.append("Excutive Report\n");
+		sb2.append("Executive Report\n");
 		sb2.append("=========================\n");
-		sb2.append(String.format("%-10s%-60s%-20s%15s%15s%15s%15s%15s\n", "Invoice","Customer","SalePerson","Subtotal","Fees","Taxes","discounts","Total"));
+		sb2.append(String.format("%-10s%-60s%-20s%15s%15s%15s%15s%15s\n", "Invoice","Customer","SalesPerson","Subtotal","Fees","Taxes","Discounts","Total"));
+		//print summaries for each individual invoice and grand totals for all invoices 
 		for( Invoice invoice: DataConverter.getInvoices()) {
 			
 			sb.append(String.format("Invoice %s\n", invoice.getInvoiceCode()));
@@ -50,11 +60,11 @@ public class InvoiceReport {
 			double totalSubTotal = 0.0, totalTax = 0.0, totalTotal = 0.0, finalTotal = 0.0;
 			for(Entry<Product, Integer> p : invoice.getProductList().entrySet()) {
 				
-				// get key and valu
+				// get key and value
 				Product key =  p.getKey();
 				int value = p.getValue();	
 				
-
+				//get subtotal for product based on the invoice date and quantity of said product bought 
 				double subTotal = key.calculateSubTotal(value, invoice.getInvoiceDate(), invoice.getProductList());
 				double tax = 0.0;
 				if(key instanceof Ticket) {
@@ -68,6 +78,7 @@ public class InvoiceReport {
 				totalTax += tax;
 				totalTotal += total;
 				
+				//downcast and print out specific formatted details for each specific product
 				String itemInString = "";
 				if(key instanceof MovieTicket) {
 					MovieTicket m = ((MovieTicket)key);
@@ -87,19 +98,22 @@ public class InvoiceReport {
 				String taxInStr = String.format("%3.2f", tax);
 				String totalInStr = String.format("%3.2f", total);
 				
-				if((key instanceof MovieTicket)){// movie tiecket have a special formated string
+				//movie ticket has a special formatted string
+				if((key instanceof MovieTicket)){
 					sb.append(String.format("%s\t%s\n",key.getProductCode(),itemInString));
 				}else {
 					sb.append(String.format("%s\t%-96s$%10s  $%10s  $%10s\n",key.getProductCode(),itemInString, subTotalInStr,taxInStr,totalInStr));
 				}
 				
 			}	// end p forloop
+			//print formatted strings for the totals of the invoice
 			sb.append(String.format("\t\t\t\t\t\t\t\t\t\t\t\t\t==============================\n"));
 			String totalSubTotalInStr = String.format("%3.2f", totalSubTotal);
 			String totalTaxInStr = String.format("%3.2f", totalTax);
 			String totalTotalInStr = String.format("%3.2f", totalTotal);
 			sb.append(String.format("%-104s$%10s  $%10s  $%10s\n","SUBTOTAL",totalSubTotalInStr, totalTaxInStr,totalTotalInStr));
 			
+			//apply applicable discounts and fees and calculate final totals
 			String studentDiscountInStr = "0.0";
 			String totalFeeInStr = "0.0";
 			String finalTotalInStr = "";
@@ -141,6 +155,11 @@ public class InvoiceReport {
 		System.out.println(sb);
 	}// end main()
 	
+	/**
+	 * 
+	 * @param value double to be formatted
+	 * @return formatted String
+	 */
 	public static String floatFormatedToString(double value) {
 		return String.format("%3.2f", value);
 	}
