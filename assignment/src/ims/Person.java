@@ -15,7 +15,12 @@ public class Person {
 	public Person() {
 		// default constructor
 	}
-
+	
+	/**
+	 * Parses the next line and sets the appropriate values of
+	 * the Person object.
+	 * @param line scanned line from flat file to be parsed
+	 */
 	public void setAttribute(String nextLine) {
 		String[] token = nextLine.split(";");
 		setPersonCode(token[0]);
