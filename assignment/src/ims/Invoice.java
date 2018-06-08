@@ -36,7 +36,11 @@ public class Invoice {
 	public Invoice(String invoiceCode) {
 		
 	}
-	
+	/**
+	 * Parses the next line and sets the appropriate values of
+	 * the Invoice object.
+	 * @param line scanned line from flat file to be parsed
+	 */
 	public void setAttribute(String line) {
 		String[] token = line.split(";");
 		
