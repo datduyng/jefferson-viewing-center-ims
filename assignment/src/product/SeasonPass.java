@@ -73,6 +73,9 @@ public class SeasonPass extends Ticket {
 		return cost;
 	}
 	
+	/**
+	* @return the total days in the season pass based on the start and end date.
+	*/
 	public double getTotalDays() {
 		DateTimeFormatter dateFormatter = DateTimeFormat.forPattern("yyyy-MM-dd");
 		
@@ -82,6 +85,9 @@ public class SeasonPass extends Ticket {
 		return (double) Days.daysBetween(startDateDT , endDateDT).getDays() ;
 	}
 	
+	/**
+	* @return the total days left in the season pass based on the invoice date
+	*/
 	public double getSeasonDayLeft(String invoiceDate) {
 		DateTimeFormatter dateFormatter = DateTimeFormat.forPattern("yyyy-MM-dd");
 		
@@ -91,6 +97,14 @@ public class SeasonPass extends Ticket {
 		return (double) Days.daysBetween(invoiceDateDT , endDateDT).getDays() ;
 	}
 	
+	/**
+	 * Defined abstract method from parent class.  
+	 * Calculates the subtotal for this specific product.
+	 * @param quantity the amount of the product bought 
+	 * @param invoiceDate the date of the invoice
+	 * @param productList list of products associated with the invoice
+	 * @return subtotal
+	 */
 	public double calculateSubTotal(int quantity, String invoiceDate, HashMap<Product,Integer> productList) {
 		double subTotal = 0.0;
 		double totalDays = this.getTotalDays();
@@ -110,6 +124,10 @@ public class SeasonPass extends Ticket {
 		return subTotal;
 	}
 	
+	/**
+	 * Converts product details to a formatted string for the invoice report.
+	 * @return formatted string
+	 */
 	public String toInvoiceFormat() {
 		String ifProrated = "";
 		
