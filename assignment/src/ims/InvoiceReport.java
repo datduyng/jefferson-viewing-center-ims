@@ -110,7 +110,7 @@ public class InvoiceReport {
 				finalTotal = totalTotal - studentDiscount + Student.additionalFee;
 				studentDiscountInStr = String.format("%3.2f", (studentDiscount)*-1.0);
 				totalFeeInStr = String.format("%s", Student.additionalFeeToString());
-				sb.append(String.format("%-127s   $%10s  \n","DISCOUNT ( 8%% STUDENT & NO TAX)", studentDiscountInStr));
+				sb.append(String.format("%-127s   $%10s  \n","DISCOUNT ( 8% STUDENT & NO TAX)", studentDiscountInStr));
 				sb.append(String.format("%-127s   $%10s  \n","ADDITIONAL FEE (Student)", Student.additionalFeeToString()));
 				
 				//calcualte overall fee
@@ -119,7 +119,7 @@ public class InvoiceReport {
 				finalTotal = totalTotal ;
 			}
 			finalTotalInStr = String.format("%3.2f", finalTotal);
-			sb.append(String.format("%-127s   $%10s  \n","TOTAL: ", Student.additionalFeeToString()));
+			sb.append(String.format("%-127s   $%10s  \n","TOTAL: ", finalTotalInStr));
 			
 			sb.append(String.format("\n\t\t\t\t\tThank you\n\n"));
 			sb2.append(String.format("%-10s%-30s-%-30s%-20s $%13s $%13s $%13s $%13s $%13s\n", invoice.getInvoiceCode(),
