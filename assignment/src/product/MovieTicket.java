@@ -23,7 +23,11 @@ public class MovieTicket extends Ticket {
 	//static
 	private static int quantity;
 	
-	
+	/**
+	 * Parses the next line and sets the appropriate values of
+	 * the MovieTicket object.
+	 * @param token tokens from parsed line from flat file
+	 */
 	public MovieTicket(String[] token) {
 		super(token[0], token[1]);
 		this.setDateTime(token[2]);
@@ -32,7 +36,7 @@ public class MovieTicket extends Ticket {
 		this.setScreenNumber(token[5]);
 		this.setPricePerUnit(Double.parseDouble(token[6]));
 		
-		MovieTicket.setQuantity(0);// init with 0 when create an instant of this product.
+		MovieTicket.setQuantity(0);// init with 0 when creating an instance of this product.
 		
 		// set isDiscountDay if tuesday or thursday 
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -54,7 +58,11 @@ public class MovieTicket extends Ticket {
 			this.isDiscountDay = false;
 		}
 	}
-
+	
+	/**
+	 * Boolean set to true if it's a Tuesday/Thursday
+	 * @return a boolean value 
+	 */
 	public boolean isDiscountDay() {
 		return isDiscountDay;
 	}
@@ -130,6 +138,14 @@ public class MovieTicket extends Ticket {
 		}
 	}
 
+	/**
+	 * Defined abstract method from parent class.  
+	 * Calculates the subtotal for this specific product.
+	 * @param quantity the amount of the product bought 
+	 * @param invoiceDate the date of the invoice
+	 * @param productList list of products associated with the invoice
+	 * @return subtotal
+	 */
 	public double calculateSubTotal(int quantity, String invoiceDate, HashMap<Product,Integer> productList) {
 		
 		double subTotal = 0.0;
@@ -146,10 +162,12 @@ public class MovieTicket extends Ticket {
 	}
 	
 	
-	/*
-	 * this method take 3 argument b/c the way it get formatted. 
-	 * since the return string is long 3 input argument help 
-	 * this is a special case.
+	/**
+	 * Converts product details to a formatted string for the invoice report.
+	 * @param subTotal product subtotal
+	 * @param tax product tax
+	 * @param total product total w/ tax
+	 * @return formatted string
 	 */
 	public String toInvoiceFormat(double subTotal, double tax, double total) {
 		String ifDiscountDay = "";
