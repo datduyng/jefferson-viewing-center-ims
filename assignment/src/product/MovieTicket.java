@@ -156,11 +156,11 @@ public class MovieTicket extends Ticket {
 		if(this.isDiscountDay == true) {
 			ifDiscountDay = "- Tue/Thu 7% off";
 		}
-		String firstLine = String.format("MovieTicket '%2.30s' @$%20.70s", this.getMovieName(),this.getTheaterAddress().toString());
+		String firstLine = String.format("MovieTicket '%2.30s' @%20.70s", this.getMovieName(),this.getTheaterAddress().toString());
 		String subTotalInStr = String.format("%3.2f", subTotal);
 		String taxInStr = String.format("%3.2f", tax);
 		String totalInStr = String.format("%3.2f", total);
-		return String.format("%-96s$%10s  $%10s  $%10s\n\t%s (%d units @%.2f/unit %s\n",firstLine, subTotalInStr,taxInStr,totalInStr,
+		return String.format("%-96s$%10s  $%10s  $%10s\n\t%s (%d units @$%.2f/unit %s\n",firstLine, subTotalInStr,taxInStr,totalInStr,
 				this.getDateTime(),MovieTicket.getQuantity(),this.getPricePerUnit(),ifDiscountDay);
 	}
 	
