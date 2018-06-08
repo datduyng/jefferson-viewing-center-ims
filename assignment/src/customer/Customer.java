@@ -26,8 +26,8 @@ public class Customer {
 	}
 	
 	/**
-	 * This function set customer attribute
-	 * @param line
+	 * This function sets the customer attributes from the scanned line from the flat file
+	 * @param line from flat file
 	 */
 	public void setAttribute(String line) {
 		String[] customerTokens = line.split(";");
@@ -94,11 +94,16 @@ public class Customer {
 	}
 	
 	
-
+	/**
+	* @Override 
+	*/
 	public String toString() {
 		return this.customerCode + ";" + this.customerType + ";" + this.primaryContact.getPersonCode() + ";" + this.customerName + ";" + this.customerAddress.toString();
 	}
 	
+	/**
+	* @return formatted and detailed string of customer object for invoice report
+	*/
 	public String toInfo() {
 		String type = "";
 		String result = String.format("%s(%s)\n-%s\n%s-\n%s\n",
