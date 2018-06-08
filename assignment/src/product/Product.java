@@ -47,6 +47,14 @@ public abstract class Product {
 		}
 	}
 	
+	/**
+	 * Defined abstract method from parent class.  
+	 * Calculates the subtotal for this specific product.
+	 * @param quantity the amount of the product bought 
+	 * @param invoiceDate the date of the invoice
+	 * @param productList list of products associated with the invoice
+	 * @return subtotal
+	 */
 	public abstract double calculateSubTotal(int quantity, String invoiceDate, HashMap<Product,Integer> productList);
 
 	/**
