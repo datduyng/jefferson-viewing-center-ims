@@ -7,6 +7,9 @@ public class Student extends Customer{
 		super();
 		this.customerType = "Student";
 	}
+	/**
+	* returns a formatted string to represent the constant, additionalFee
+	*/
 	public static String additionalFeeToString() {
 		return String.format("%3.2f", Student.additionalFee);
 	}
