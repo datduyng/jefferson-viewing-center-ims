@@ -36,6 +36,11 @@
       - output 2 report one the `standard output`
          - summary report
 	 - invoice report of each invoice.
+	 
+## Assignment 04
+- IMS model project overview:
+
+![imsobjmodel](https://user-images.githubusercontent.com/35666615/41205687-8c29951e-6cbd-11e8-9ca8-b58d7b25827b.png)
 
 ### TODO
 - Ask if they are prorating the parking pass.
