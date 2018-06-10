@@ -1,20 +1,33 @@
 {
  "products": [
   {
-    "name": "summmer spcecial",
-    "startDate": "2016-12-13",
-    "endDate": "2017-01-07",
-    "cost": 0.0,
-    "productCode": "122e",
-    "productType": "S"
-  },
-  {
     "name": "Easter Pass",
     "startDate": "2018-03-13",
     "endDate": "2018-04-01",
     "cost": 50.0,
     "productCode": "z1e4",
     "productType": "S"
+  },
+  {
+    "dateTime": "2018-5-22 12:10",
+    "movieName": "Space Jam",
+    "theaterAddress": {
+      "street": "2234 Dudley St",
+      "city": "Lincoln",
+      "state": " NE",
+      "zipCode": " 68503",
+      "country": " USA"
+    },
+    "screenNumber": "2A",
+    "pricePerUnit": 12.5,
+    "isDiscountDay": true,
+    "productCode": "fa45",
+    "productType": "M"
+  },
+  {
+    "parkingFee": 10.0,
+    "productCode": "90",
+    "productType": "P"
   },
   {
     "name": "Zipline Beer-1 oz",
@@ -31,29 +44,17 @@
     "productType": "S"
   },
   {
+    "name": "summmer spcecial",
+    "startDate": "2016-12-13",
+    "endDate": "2017-01-07",
+    "cost": 0.0,
+    "productCode": "122e",
+    "productType": "S"
+  },
+  {
     "name": "good beer-1 oz",
     "cost": 0.0,
     "productCode": "f12",
     "productType": "R"
-  },
-  {
-    "parkingFee": 10.0,
-    "productCode": "90",
-    "productType": "P"
-  },
-  {
-    "dateTime": "2018-5-22 12:10",
-    "movieName": "Space Jam",
-    "theaterAddress": {
-      "street": "2234 Dudley St",
-      "city": "Lincoln",
-      "state": " NE",
-      "zipCode": " 68503",
-      "country": " USA"
-    },
-    "screenNumber": "2A",
-    "pricePerUnit": 12.5,
-    "productCode": "fa45",
-    "productType": "M"
   }
 ]}

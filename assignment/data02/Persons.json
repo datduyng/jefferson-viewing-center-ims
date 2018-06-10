@@ -1,19 +1,16 @@
 {
  "persons": [
   {
-    "personCode": "zz23",
-    "lastName": "as ",
-    "firstName": "Big",
+    "personCode": "01a01",
+    "lastName": "Madison",
+    "firstName": "Billy",
     "address": {
-      "street": "666 N 99th Street",
-      "city": "Oklahoma City",
-      "state": "OK",
-      "zipCode": "68116",
-      "country": "USA"
-    },
-    "emails": [
-      "bug@gmail.com"
-    ]
+      "street": "1065 West Madison Ave",
+      "city": "Toronto",
+      "state": "OT",
+      "zipCode": "60613",
+      "country": "Canada"
+    }
   },
   {
     "personCode": "zzz3",
@@ -63,15 +60,18 @@
     ]
   },
   {
-    "personCode": "01a01",
-    "lastName": "Madison",
-    "firstName": "Billy",
+    "personCode": "zz23",
+    "lastName": "as ",
+    "firstName": "Big",
     "address": {
-      "street": "1065 West Madison Ave",
-      "city": "Toronto",
-      "state": "OT",
-      "zipCode": "60613",
-      "country": "Canada"
-    }
+      "street": "666 N 99th Street",
+      "city": "Oklahoma City",
+      "state": "OK",
+      "zipCode": "68116",
+      "country": "USA"
+    },
+    "emails": [
+      "bug@gmail.com"
+    ]
   }
 ]}

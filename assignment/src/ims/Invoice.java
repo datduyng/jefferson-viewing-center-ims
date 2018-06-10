@@ -89,7 +89,12 @@ public class Invoice {
 	}
 
 	public void setInvoiceCode(String invoiceCode) {
-		this.invoiceCode = invoiceCode;
+		if(invoiceCode == null) {
+			this.invoiceCode = "N.A";
+		}else {
+			this.invoiceCode = invoiceCode;
+		}
+		
 	}
 
 	public Customer getCustomer() {
@@ -97,7 +102,11 @@ public class Invoice {
 	}
 
 	public void setCustomer(Customer customer) {
-		this.customer = customer;
+		if(customer == null) {
+			System.out.println("couldnot find customer");
+		}else {
+			this.customer = customer;
+		}
 	}
 
 	public Person getSalesPerson() {
@@ -105,7 +114,11 @@ public class Invoice {
 	}
 
 	public void setSalesPerson(Person salesPerson) {
-		this.salesPerson = salesPerson;
+		if(salesPerson == null) {
+			System.out.println("couldnot find salesPerson");
+		}else {
+			this.salesPerson = salesPerson;
+		}
 	}
 
 	public String getInvoiceDate() {
@@ -113,7 +126,11 @@ public class Invoice {
 	}
 
 	public void setInvoiceDate(String invoiceDate) {
-		this.invoiceDate = invoiceDate;
+		if(invoiceDate == null) {
+			this.invoiceDate = "0000-00-00";
+		}else {
+			this.invoiceDate = invoiceDate;
+		}
 	}
 
 	public LinkedHashMap<Product, Integer> getProductList() {
@@ -121,7 +138,11 @@ public class Invoice {
 	}
 
 	public void setProductList(HashMap<Product, Integer> productList) {
-		this.productList = productList;
+		if(productList == null) {
+			System.out.println("NULL prductList");
+		}else {
+			this.productList = productList;
+		}
 	}
 	
 	

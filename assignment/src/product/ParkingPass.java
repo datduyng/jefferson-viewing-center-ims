@@ -6,7 +6,7 @@ import java.util.Map.Entry;
 public class ParkingPass extends Service {
 
 	private double parkingFee;
-	private Ticket ticket = null; 
+	private Ticket ticket; 
 	
 	//static
 	private static int quantity;

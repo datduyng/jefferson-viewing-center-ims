@@ -1,36 +1,8 @@
 <?xml version="1.0"?> 
- <customers>
-  <general>
-    <customerCode>C004</customerCode>
-    <customerType>G</customerType>
-    <primaryContact>
-      <personCode>321f</personCode>
-      <lastName>Fox</lastName>
-      <firstName>Bud</firstName>
-      <address>
-        <street>321 Bronx Street</street>
-        <city>New York</city>
-        <state>NY</state>
-        <zipCode>10004</zipCode>
-        <country>USA</country>
-      </address>
-      <emails>
-        <email>bfox@gmail.com</email>
-        <email>csheen@crazy.net</email>
-      </emails>
-    </primaryContact>
-    <customerName>Stony Brook</customerName>
-    <customerAddress>
-      <street>9800 Savage Rd</street>
-      <city>Fort Meade</city>
-      <state>MD</state>
-      <zipCode>20755</zipCode>
-      <country>USA</country>
-    </customerAddress>
-  </general>
+ <list>
   <general>
     <customerCode>C001</customerCode>
-    <customerType>G</customerType>
+    <customerType>General</customerType>
     <primaryContact>
       <personCode>231</personCode>
       <lastName>Baker</lastName>
@@ -58,33 +30,9 @@
       <country>USA</country>
     </customerAddress>
   </general>
-  <general>
-    <customerCode>C005</customerCode>
-    <customerType>G</customerType>
-    <primaryContact>
-      <personCode>bbchar</personCode>
-      <lastName>Ehrmantraut</lastName>
-      <firstName>Kaylee</firstName>
-      <address>
-        <street>800 West 7th Street</street>
-        <city> Albuquerque</city>
-        <state> NM</state>
-        <zipCode> 87105</zipCode>
-        <country>USA</country>
-      </address>
-    </primaryContact>
-    <customerName>Hewlett Industries</customerName>
-    <customerAddress>
-      <street>1060 West Addison</street>
-      <city>Chicago</city>
-      <state>IL</state>
-      <zipCode>60601</zipCode>
-      <country>USA</country>
-    </customerAddress>
-  </general>
   <student>
     <customerCode>C002</customerCode>
-    <customerType>S</customerType>
+    <customerType>Student</customerType>
     <primaryContact>
       <personCode>944c</personCode>
       <lastName>Castro</lastName>
@@ -112,7 +60,7 @@
   </student>
   <student>
     <customerCode>C003</customerCode>
-    <customerType>S</customerType>
+    <customerType>Student</customerType>
     <primaryContact>
       <personCode>306a</personCode>
       <lastName>Sampson</lastName>
@@ -138,9 +86,61 @@
       <country>USA</country>
     </customerAddress>
   </student>
+  <general>
+    <customerCode>C004</customerCode>
+    <customerType>General</customerType>
+    <primaryContact>
+      <personCode>321f</personCode>
+      <lastName>Fox</lastName>
+      <firstName>Bud</firstName>
+      <address>
+        <street>321 Bronx Street</street>
+        <city>New York</city>
+        <state>NY</state>
+        <zipCode>10004</zipCode>
+        <country>USA</country>
+      </address>
+      <emails>
+        <email>bfox@gmail.com</email>
+        <email>csheen@crazy.net</email>
+      </emails>
+    </primaryContact>
+    <customerName>Stony Brook</customerName>
+    <customerAddress>
+      <street>9800 Savage Rd</street>
+      <city>Fort Meade</city>
+      <state>MD</state>
+      <zipCode>20755</zipCode>
+      <country>USA</country>
+    </customerAddress>
+  </general>
+  <general>
+    <customerCode>C005</customerCode>
+    <customerType>General</customerType>
+    <primaryContact>
+      <personCode>bbchar</personCode>
+      <lastName>Ehrmantraut</lastName>
+      <firstName>Kaylee</firstName>
+      <address>
+        <street>800 West 7th Street</street>
+        <city> Albuquerque</city>
+        <state> NM</state>
+        <zipCode> 87105</zipCode>
+        <country>USA</country>
+      </address>
+    </primaryContact>
+    <customerName>Hewlett Industries</customerName>
+    <customerAddress>
+      <street>1060 West Addison</street>
+      <city>Chicago</city>
+      <state>IL</state>
+      <zipCode>60601</zipCode>
+      <country>USA</country>
+    </customerAddress>
+  </general>
   <student>
     <customerCode>C006</customerCode>
-    <customerType>S</customerType>
+    <customerType>Student</customerType>
     <primaryContact>
       <personCode>321dr</personCode>
       <lastName>Baker</lastName>
@@ -165,4 +165,4 @@
       <country>USA</country>
     </customerAddress>
   </student>
-</customers> 
+</list> 

@@ -39,3 +39,15 @@
 
 ### TODO
 - Ask if they are prorating the parking pass.
+
+
+## Assignment 04
+- IMS Model overview :
+
+
+![Alt text](/../datNguyen/assignment/model/imsObjModel.png?raw=true "test")
+
+
+<div align="center">
+    <img src="/../datNguyen/assignment/model/imsObjModel.png" width="400px"</img> 
+</div>

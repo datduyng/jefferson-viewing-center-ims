@@ -67,7 +67,12 @@ public class Customer {
 	}
 
 	public void setPrimaryContact(String personCode) {
-		this.primaryContact = DataConverter.findPerson(personCode, DataConverter.getPersons());
+		Person result = DataConverter.findPerson(personCode, DataConverter.getPersons());
+		if(result == null) {
+			System.out.println("Couldnot find primary contact of this person");
+		}else {
+			this.primaryContact = result;
+		}
 	}
 
 	public void setCustomerName(String customerName) {

@@ -1,36 +1,8 @@
 {
  "customers": [
   {
-    "customerCode": "C004",
-    "customerType": "G",
-    "primaryContact": {
-      "personCode": "321f",
-      "lastName": "Fox",
-      "firstName": "Bud",
-      "address": {
-        "street": "321 Bronx Street",
-        "city": "New York",
-        "state": "NY",
-        "zipCode": "10004",
-        "country": "USA"
-      },
-      "emails": [
-        "bfox@gmail.com",
-        "csheen@crazy.net"
-      ]
-    },
-    "customerName": "Stony Brook",
-    "customerAddress": {
-      "street": "9800 Savage Rd",
-      "city": "Fort Meade",
-      "state": "MD",
-      "zipCode": "20755",
-      "country": "USA"
-    }
-  },
-  {
     "customerCode": "C001",
-    "customerType": "G",
+    "customerType": "General",
     "primaryContact": {
       "personCode": "231",
       "lastName": "Baker",
@@ -59,32 +31,8 @@
     }
   },
   {
-    "customerCode": "C005",
-    "customerType": "G",
-    "primaryContact": {
-      "personCode": "bbchar",
-      "lastName": "Ehrmantraut",
-      "firstName": "Kaylee",
-      "address": {
-        "street": "800 West 7th Street",
-        "city": " Albuquerque",
-        "state": " NM",
-        "zipCode": " 87105",
-        "country": "USA"
-      }
-    },
-    "customerName": "Hewlett Industries",
-    "customerAddress": {
-      "street": "1060 West Addison",
-      "city": "Chicago",
-      "state": "IL",
-      "zipCode": "60601",
-      "country": "USA"
-    }
-  },
-  {
     "customerCode": "C002",
-    "customerType": "S",
+    "customerType": "Student",
     "primaryContact": {
       "personCode": "944c",
       "lastName": "Castro",
@@ -112,7 +60,7 @@
   },
   {
     "customerCode": "C003",
-    "customerType": "S",
+    "customerType": "Student",
     "primaryContact": {
       "personCode": "306a",
       "lastName": "Sampson",
@@ -139,8 +87,60 @@
     }
   },
   {
+    "customerCode": "C004",
+    "customerType": "General",
+    "primaryContact": {
+      "personCode": "321f",
+      "lastName": "Fox",
+      "firstName": "Bud",
+      "address": {
+        "street": "321 Bronx Street",
+        "city": "New York",
+        "state": "NY",
+        "zipCode": "10004",
+        "country": "USA"
+      },
+      "emails": [
+        "bfox@gmail.com",
+        "csheen@crazy.net"
+      ]
+    },
+    "customerName": "Stony Brook",
+    "customerAddress": {
+      "street": "9800 Savage Rd",
+      "city": "Fort Meade",
+      "state": "MD",
+      "zipCode": "20755",
+      "country": "USA"
+    }
+  },
+  {
+    "customerCode": "C005",
+    "customerType": "General",
+    "primaryContact": {
+      "personCode": "bbchar",
+      "lastName": "Ehrmantraut",
+      "firstName": "Kaylee",
+      "address": {
+        "street": "800 West 7th Street",
+        "city": " Albuquerque",
+        "state": " NM",
+        "zipCode": " 87105",
+        "country": "USA"
+      }
+    },
+    "customerName": "Hewlett Industries",
+    "customerAddress": {
+      "street": "1060 West Addison",
+      "city": "Chicago",
+      "state": "IL",
+      "zipCode": "60601",
+      "country": "USA"
+    }
+  },
+  {
     "customerCode": "C006",
-    "customerType": "S",
+    "customerType": "Student",
     "primaryContact": {
       "personCode": "321dr",
       "lastName": "Baker",

@@ -2,7 +2,7 @@
  "customers": [
   {
     "customerCode": "C001",
-    "customerType": "G",
+    "customerType": "General",
     "customerName": "Bill\u0027s Volume Sales",
     "customerAddress": {
       "street": "123 Bottoms St",
@@ -13,20 +13,35 @@
     }
   },
   {
-    "customerCode": "C004",
-    "customerType": "G",
-    "customerName": "Mc Donald",
+    "customerCode": "C002",
+    "customerType": "Student",
+    "primaryContact": {
+      "personCode": "wtf72",
+      "lastName": "Miles",
+      "firstName": "Les",
+      "address": {
+        "street": "8754 Turnpike Lane.",
+        "city": "Dallas",
+        "state": "WY",
+        "zipCode": "75031",
+        "country": "USA"
+      },
+      "emails": [
+        "lester@d.com"
+      ]
+    },
+    "customerName": "The Knights Templar",
     "customerAddress": {
-      "street": " asdasd",
-      "city": " New York City",
-      "state": "NY",
-      "zipCode": "90210",
+      "street": "1223 Discreet Location",
+      "city": "Somewhere",
+      "state": "CA",
+      "zipCode": "62401",
       "country": "USA"
     }
   },
   {
     "customerCode": "C003",
-    "customerType": "S",
+    "customerType": "Student",
     "primaryContact": {
       "personCode": "zzz3",
       "lastName": "Lebowski",
@@ -53,29 +68,14 @@
     }
   },
   {
-    "customerCode": "C002",
-    "customerType": "S",
-    "primaryContact": {
-      "personCode": "wtf72",
-      "lastName": "Miles",
-      "firstName": "Les",
-      "address": {
-        "street": "8754 Turnpike Lane.",
-        "city": "Dallas",
-        "state": "WY",
-        "zipCode": "75031",
-        "country": "USA"
-      },
-      "emails": [
-        "lester@d.com"
-      ]
-    },
-    "customerName": "The Knights Templar",
+    "customerCode": "C004",
+    "customerType": "General",
+    "customerName": "Mc Donald",
     "customerAddress": {
-      "street": "1223 Discreet Location",
-      "city": "Somewhere",
-      "state": "CA",
-      "zipCode": "62401",
+      "street": " asdasd",
+      "city": " New York City",
+      "state": "NY",
+      "zipCode": "90210",
       "country": "USA"
     }
   }
