@@ -36,7 +36,7 @@
       - output 2 report one the `standard output`
          - summary report
 	 - invoice report of each invoice.
-	 
+
 ## Assignment 04
 - IMS model project overview:
 
@@ -52,7 +52,15 @@
 
 ![Alt text](/../datNguyen/assignment/model/imsObjModel.png?raw=true "test")
 
+- Goal:
+	- Design database tables for storing the data of the system. Define appropriate column names,
+column sizes, primary and foreign keys to model various types of relationships.
+	-	Design a SQL script for creation of the database tables and inserting sample data into the tables.
+(revisit Lab 8 if required)
+	- Design a SQL script containing queries based
 
-<div align="center">
-    <img src="/../datNguyen/assignment/model/imsObjModel.png" width="400px"</img> 
-</div>
+- Turn in:
+	- You will hand in an SQL script (name it `invoiceDB.sql`) that contains all of the necessary SQL queries
+to create your database
+	- in a separate file (name it `invoiceQueries.sql`), queries to perform the following
+operations.
