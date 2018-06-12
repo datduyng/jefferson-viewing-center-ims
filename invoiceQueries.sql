@@ -19,11 +19,11 @@ DELETE FROM Product WHERE id = 3;
 #8. A query to find the total of all per-unit costs of all movie-tickets.
 
 #9. A query to find the total number of movie-tickets sold on a particular date.
-SELECT invoiceDate, sum(unit) TotalNumTickets from InvoiceProducts join Invoices on InvoiceProducts.invoiceID = Invoices.id 
-join Products on InvoiceProducts.productId = Products.id where Invoices.invoiceDate = '2016-09-03' and Products.productType = 'M';
+SELECT invoiceDate, sum(unit) TotalNumTickets FROM InvoiceProducts ip JOIN Invoices i ON ip.invoiceID = i.id 
+JOIN Products p ON ip.productId = p.id WHERE i.invoiceDate = '2016-09-03' AND p.productType = 'M';
 #10. A query to find the total number of invoices for every salesperson.
-select Persons.id, Persons.personCode, Persons.firstName, Persons.lastName, count(Invoices.id) 
-from Persons join Invoices on Persons.id = Invoices.salesPersonID group by Persons.id;
+SELECT p.id, p.personCode, p.firstName, p.lastName, COUNT(i.id) 
+FROM Persons p JOIN Invoices i ON p.id = i.salesPersonID GROUP BY p.id;
 #11. A query to find the total number of invoices for a particular movie ticket.
 SELECT p.id, productCode, productType, count(invoiceID) NumInvoices FROM InvoiceProducts ip 
 JOIN Products p ON ip.productID = p.id WHERE productCode = 'fp12'; 
