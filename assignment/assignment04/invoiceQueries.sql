@@ -50,7 +50,7 @@ SELECT customerCode, customerName, invoiceCode FROM Customers c
 JOIN Invoices i ON i.customerID=c.id WHERE c.id=3;
 
 -- 7.A query that “adds” a particular product to a particular invoice.
-INSERT INTO InvoiceProducts(invoiceID, productID, unit) VALUES(4,12,110);
+INSERT INTO InvoiceProducts(invoiceID, productID, unit) VALUES(2,12,110);
 
 -- 8.A query to find the total of all per-unit costs of all movie-tickets.
 SELECT SUM(pricePerUnit) total FROM MovieTickets;

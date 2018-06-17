@@ -36,7 +36,7 @@ DROP TABLE IF EXISTS `Countries`;
 
 CREATE TABLE Products(
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-productCode VARCHAR(255) NOT NULL,
+productCode VARCHAR(255) UNIQUE NOT NULL,
 productType VARCHAR(2) NOT NULL
 );
 -- Dumping data For table `Product`
@@ -61,7 +61,7 @@ id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 name varchar(255) NOT NULL,
 cost float NOT NULL default '0.0',
 haveTicket boolean NOT NULL default 0,# TODO:
-productID INT,
+productID INT NOT NULL,
 FOREIGN KEY(productID) REFERENCES Products(id)
 );
 -- Dumping data For table `Refreshment`
@@ -198,7 +198,7 @@ INSERT INTO MovieTickets(dateTime, movieName, addressID, screenNumber, pricePerU
 -- create PersonDB
 CREATE TABLE Persons(
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-personCode varchar(255) NOT NULL,
+personCode varchar(255) UNIQUE NOT NULL,
 lastName varchar(255) NOT NULL,
 firstName varchar(255) NOT NULL,
 addressID INT NOT NULL,
@@ -272,7 +272,7 @@ INSERT INTO Emails(personID,email) VALUES
 --
 CREATE TABLE Customers(
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-customerCode VARCHAR(255) NOT NULL,
+customerCode VARCHAR(255) UNIQUE NOT NULL,
 customerName VARCHAR(255) NOT NULL,
 customerType VARCHAR(255) NOT NULL DEFAULT 'na',
 primaryContactID INT NOT NULL,
@@ -296,9 +296,9 @@ INSERT INTO Customers(customerCode,customerName,customerType,primaryContactID,ad
 -- create table to store Invoice attribute
 CREATE TABLE Invoices(
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-invoiceCode VARCHAR(255) NOT NULL,
-customerID INT NOT NULL,
-salesPersonID INT NOT NULL,
+invoiceCode VARCHAR(255) UNIQUE NOT NULL,
+customerID INT NOT NULL DEFAULT 0,
+salesPersonID INT NOT NULL DEFAULT 0,
 invoiceDate DATE NOT NULL,
 FOREIGN KEY(CustomerID) REFERENCES Customers(id),
 FOREIGN KEY(salesPersonID) REFERENCES Persons(id)
@@ -311,12 +311,18 @@ INSERT INTO Invoices(invoiceCode,customerID,salesPersonID,invoiceDate) VALUES
 ('INV004',3,12,'2016-10-16');
 
 
-#create table to store product associate to an invoice.
+
+-- create table to store product associate to an invoice.
+-- note field were created so user can add any additional note
+-- for ex. ticket asociated with the Parkingpass
+-- or if he want to add special discount for any specfic product
+--
 CREATE TABLE InvoiceProducts(
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 invoiceID INT NOT NULL ,
 productID INT NOT NULL,
 unit INT NOT NULL,
+note VARCHAR(255) NOT NULL,
 FOREIGN KEY(invoiceID) REFERENCES Invoices(id),
 FOREIGN KEY(productID) REFERENCES Products(id),
 CONSTRAINT uniqueIP UNIQUE(invoiceID, productID)
