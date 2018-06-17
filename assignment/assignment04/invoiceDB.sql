@@ -8,13 +8,14 @@
 
 
 
-# drop the old version before creating new DB
+
 
 -- Uncomment these piece to test them locally
-#use rstagemeyer;
-#use datduyn;
-#use ims;
+-- use rstagemeyer;
+-- use datduyn;
+-- use ims;
 
+--  drop the old version before creating new DB
 DROP TABLE IF EXISTS `InvoiceProducts`;
 DROP TABLE IF EXISTS `Invoices`;
 DROP TABLE IF EXISTS `Refreshments`;
