@@ -64,3 +64,6 @@ column sizes, primary and foreign keys to model various types of relationships.
 to create your database
 	- in a separate file (name it `invoiceQueries.sql`), queries to perform the following
 operations.
+
+- PreparedStatement with Date Obj:
+	- https://stackoverflow.com/questions/18614836/using-setdate-in-preparedstatement
