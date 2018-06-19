@@ -1,9 +1,18 @@
 package database;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
+import java.util.Scanner;
+
+import com.mysql.jdbc.StringUtils;
+
+import ims.DataConverter;
+import jdk.nashorn.api.scripting.ScriptUtils;
 
 /*
  * This is a collection of utility methods that define a general API for
@@ -18,7 +27,32 @@ public class InvoiceData {
 	/**
 	 * 1. Method that removes every person record from the database
 	 */
-	public static void removeAllPersons() {}
+	public static void removeAllPersons() {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		conn = ConnectionFactory.getOne();
+		//delete personID fk from Invoices, Emails, and Customers
+		String query1 = "DELETE FROM Emails";
+		String query2 = "DELETE FROM Invoices";
+		String query3 = "DELETE FROM Customers";
+		String query4 = "DELETE FROM Persons";
+		try {
+			ps = conn.prepareStatement(query1);
+			ps.executeUpdate();
+			ps = conn.prepareStatement(query2);
+			ps.executeUpdate();
+			ps = conn.prepareStatement(query3);
+			ps.executeUpdate();
+			ps = conn.prepareStatement(query4);
+			ps.executeUpdate();
+			
+			ps.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 
 	/**
 	 * 2. Method to add a person record to the database with the provided data.
@@ -32,7 +66,32 @@ public class InvoiceData {
 	 * @param zip
 	 * @param country
 	 */
-	public static void addPerson(String personCode, String firstName, String lastName, String street, String city, String state, String zip, String country) {}
+	public static void addPerson(String personCode, String firstName, String lastName, String street, String city, String state, String zip, String country) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		conn = ConnectionFactory.getOne();
+		//assume state country has been added already just get the stateCountryID
+		int stateCountryID = InvoiceData.getStateCountryID(state);
+		InvoiceData.addAddress(street, city, stateCountryID, zip);
+		int addressID = InvoiceData.getAddressID(street, city, stateCountryID, zip);
+		String query = "INSERT INTO Persons (personCode, lastName, firstName, addressID)"
+				+ "VALUES (?, ?, ?, ?)";
+		try {
+			ps = conn.prepareStatement(query);
+			ps.setString(1, personCode);
+			ps.setString(2, lastName);
+			ps.setString(3, firstName);
+			ps.setInt(4, addressID);
+			ps.executeUpdate();
+			
+			ps.close();
+			conn.close();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 
 	/**
 	 * 3. Adds an email record corresponding person record corresponding to the
@@ -41,29 +100,183 @@ public class InvoiceData {
 	 * @param personCode
 	 * @param email
 	 */
-	public static void addEmail(String personCode, String email) {}
+	public static void addEmail(String personCode, String email) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		conn = ConnectionFactory.getOne();
+		String getPersonID = "(SELECT id FROM Persons WHERE personCode = ?)"; 
+		String addEmail = "INSERT INTO Emails (personID, email) VALUES (" + getPersonID + ", ?)";
+		try {
+			ps = conn.prepareStatement(addEmail);
+			ps.setString(1, personCode);
+			ps.setString(2, email);
+			ps.executeUpdate();
+			
+			ps.close();
+			conn.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * 4. Method that removes every customer record from the database
 	 */
-	public static void removeAllCustomers() {}
-
-	public static void addCustomer(String customerCode, String customerType, String primaryContactPersonCode,String name, String street, String city, String state, String zip, String country) {}
+	public static void removeAllCustomers() {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		conn = ConnectionFactory.getOne();
+		String deleteInvoices = "DELETE FROM Invoices";
+		String deleteCustomers = "DELETE FROM Customers";
+		try {
+			ps = conn.prepareStatement(deleteInvoices);
+			ps.executeUpdate();
+			ps = conn.prepareStatement(deleteCustomers);
+			ps.executeUpdate();
+			
+			ps.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	/**
+	 * adds customer and corresponding primary contact and address
+	 */
+	public static void addCustomer(String customerCode, String customerType, String primaryContactPersonCode,String name, String street, String city, String state, String zip, String country) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		conn = ConnectionFactory.getOne();
+		String getPrimaryContactID = "(SELECT id FROM Persons WHERE personCode = ?)";
+		//assume state country has been added already just get the stateCountryID
+		int stateCountryID = InvoiceData.getStateCountryID(state);
+		InvoiceData.addAddress(street, city, stateCountryID, zip);
+		String getAddressID = "(SELECT id FROM Addresses WHERE street = ? AND city = ? AND stateCountryID = ? AND zipcode = ?)";
+		String insertCustomer = "INSERT INTO Customers (customerCode, customerName, customerType, primaryContactID, addressID) VALUES (?, ?, ?, " + getPrimaryContactID + ", " + getAddressID + ")";
+		
+		try {
+			ps = conn.prepareStatement(insertCustomer);
+			ps.setString(1, customerCode);
+			ps.setString(2, name);
+			ps.setString(3, customerType);
+			ps.setString(4, primaryContactPersonCode);
+			ps.setString(5, street);
+			ps.setString(6, city);
+			ps.setInt(7, stateCountryID);
+			ps.setString(8, zip);
+			ps.executeUpdate();
+			
+			ps.close();
+			conn.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	/**
 	 * 5. Removes all product records from the database
 	 */
-	public static void removeAllProducts() {}
+	public static void removeAllProducts() {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		conn = ConnectionFactory.getOne();
+		String query1 = "DELETE FROM MovieTickets";
+		String query2 = "DELETE FROM SeasonPasses";
+		String query3 = "DELETE FROM Refreshments";
+		String query4 = "DELETE FROM ParkingPasses";
+		String query5 = "DELETE FROM InvoiceProducts";
+		String query6 = "DELETE FROM Products";
+		
+		try{
+			ps = conn.prepareStatement(query1);
+			rs = ps.executeQuery();
+			ps = conn.prepareStatement(query2);
+			rs = ps.executeQuery();
+			ps = conn.prepareStatement(query3);
+			rs = ps.executeQuery();
+			ps = conn.prepareStatement(query4);
+			rs = ps.executeQuery();
+			ps = conn.prepareStatement(query5);
+			rs = ps.executeQuery();
+			ps = conn.prepareStatement(query6);
+			rs = ps.executeQuery();
+			
+			rs.close();
+			ps.close();
+			conn.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 
 	/**
 	 * 6. Adds an movieTicket record to the database with the provided data.
 	 */
-	public static void addMovieTicket(String productCode, String dateTime, String movieName, String street, String city,String state, String zip, String country, String screenNo, double pricePerUnit) {}
+	public static void addMovieTicket(String productCode, String dateTime, String movieName, String street, String city,String state, String zip, String country, String screenNo, double pricePerUnit) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		InvoiceData.addProduct(productCode, "M");
+		int productID = InvoiceData.getProductID(productCode);
+		conn = ConnectionFactory.getOne();	
+		int stateCountryID = InvoiceData.getStateCountryID(state);
+		InvoiceData.addAddress(street, city, stateCountryID, zip);
+		int addressID = InvoiceData.getAddressID(street, city, stateCountryID, zip);
+		String insertMovieTicket = "INSERT INTO MovieTickets (dateTime, movieName, addressID, screenNumber, pricePerUnit, productID) "
+				+ "VALUES (?, ?, ?, ?, ?, ?)";
+		try {
+			ps = conn.prepareStatement(insertMovieTicket);
+			ps.setTimestamp(1, Timestamp.valueOf(dateTime));
+			ps.setString(2, movieName);
+			ps.setInt(3, addressID);
+			ps.setString(4, screenNo);
+			ps.setFloat(5, (float) pricePerUnit);
+			ps.setInt(6, productID);
+			ps.executeUpdate();
+			
+			ps.close();
+			conn.close();
+			
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * 7. Adds a seasonPass record to the database with the provided data.
 	 */
-	public static void addSeasonPass(String productCode, String name, String seasonStartDate, String seasonEndDate,	double cost) {}
+	public static void addSeasonPass(String productCode, String name, String seasonStartDate, String seasonEndDate,	double cost) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		InvoiceData.addProduct(productCode, "S");
+		int productID = InvoiceData.getProductID(productCode);
+		conn = ConnectionFactory.getOne();
+		
+		String insertSeasonPass = "INSERT INTO SeasonPasses (name, startDate, endDate, cost, productID)"
+				+ "VALUES (?, ?, ?, ?, ?)";
+		try {
+			ps = conn.prepareStatement(insertSeasonPass);
+			ps.setString(1, name);
+			ps.setDate(2, Date.valueOf(seasonStartDate)); 
+			ps.setDate(3, Date.valueOf(seasonEndDate));
+			ps.setFloat(4, (float) cost);
+			ps.setInt(5, productID);
+			ps.executeUpdate();
+			
+			ps.close();
+			conn.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+}
 
 	/**
 	 * 8. Adds a ParkingPass record to the database with the provided data.
@@ -328,5 +541,323 @@ public class InvoiceData {
 			e.printStackTrace();
 		}
     }
+    
+    /***********************************************************************************************************/
+    /***********************************************Additional Function*****************************************/
+    /***********************************************************************************************************/
+    
+    
+    /**
+     * adds an invoice product
+     * @param invoiceCode
+     * @param productCode
+     * @param units
+     */
+    public static void addInvoiceProduct(String invoiceCode, String productCode, int units) {
+    	Connection conn = null;
+    	PreparedStatement ps = null;
+    	conn = ConnectionFactory.getOne();
+    	String selectInvoiceID = "(SELECT id from Invoices WHERE invoiceCode = ?)";
+    	String selectProductID = "(SELECT id from Products WHERE productCode = ?)";
+    	String insertIP = "INSERT INTO InvoiceProducts (invoiceID, productID, unit) "
+    			+ "VALUES (" + selectInvoiceID + ", " + selectProductID + ", ?)";
+    	try {
+    		ps = conn.prepareStatement(insertIP);
+    		ps.setString(1, invoiceCode);
+    		ps.setString(2, productCode);
+    		ps.setInt(3, units);
+    		ps.executeUpdate();
+    		
+    		conn.close();
+    		ps.close();
+    	} catch (SQLException e) {
+    		e.printStackTrace();
+    	}
+    }
+    
+    public static void addInvoiceProduct(String invoiceCode, String productCode, int units, String note) {
+      	Connection conn = null;
+    	PreparedStatement ps = null;
+    	conn = ConnectionFactory.getOne();
+    	String selectInvoiceID = "(SELECT id from Invoices WHERE invoiceCode = ?)";
+    	String selectProductID = "(SELECT id from Products WHERE productCode = ?)";
+    	String insertIP = "INSERT INTO InvoiceProducts (invoiceID, productID, unit, note) "
+    			+ "VALUES (" + selectInvoiceID + ", " + selectProductID + ", ?, ?)";
+    	try {
+    		ps = conn.prepareStatement(insertIP);
+    		ps.setString(1, invoiceCode);
+    		ps.setString(2, productCode);
+    		ps.setInt(3, units);
+    		ps.setString(4, note);
+    		ps.executeUpdate();
+    		
+    		conn.close();
+    		ps.close();
+    	} catch (SQLException e) {
+    		e.printStackTrace();
+    	}
+    }
+    
+    public static void addAddress(String street, String city, int stateCountryID, String zipcode) {
+    	Connection conn = null;
+		  PreparedStatement ps = null;
+		  conn = ConnectionFactory.getOne();
+		  String query = "INSERT INTO Addresses (street, city, stateCountryID, zipcode) VALUES (?, ?, ?, ?)";
+		  try {
+			  ps = conn.prepareStatement(query);
+			  ps.setString(1, street);
+			  ps.setString(2, city);
+			  ps.setInt(3, stateCountryID);
+			  ps.setString(4, zipcode);
+			  ps.executeUpdate();
+			
+			  ps.close();
+			  conn.close();
+		  } catch (SQLException e) {
+			  e.printStackTrace();
+		}
+    }
+    
+    public static void addProduct(String productCode, String productType) {
+    	Connection conn = null;
+		  PreparedStatement ps = null;
+		  conn = ConnectionFactory.getOne();
+		  String insertProduct = "INSERT INTO Products (productCode, productType) "
+				+ "VALUES (?, ?)";
+		  try{
+			  ps = conn.prepareStatement(insertProduct);
+			  ps.setString(1, productCode);
+			  ps.setString(2, productType);
+			  ps.executeUpdate();
+			
+			  ps.close();
+			  conn.close();
+		  } catch (SQLException e) {
+			  e.printStackTrace();
+		  }
+				
+    }
+    
+    public static int getCountryID(String country) {
+    	Connection conn = null;
+		  PreparedStatement ps = null;
+		  ResultSet rs = null;
+		  conn = ConnectionFactory.getOne();
+		  int countryID = 0;
+		  String query = "SELECT id FROM Countries WHERE name = ?";
+		  try{
+			  ps = conn.prepareStatement(query);
+			  ps.setString(1, country);
+			  rs = ps.executeQuery();
+			  if(rs.next()) {
+				  countryID = rs.getInt("id");
+			  }
+			  rs.close();
+			  ps.close();
+			  conn.close();
+		  } catch (SQLException e) {
+			  e.printStackTrace();
+		  }
+		  return countryID;
+    }
+    
+    public static int getStateCountryID(String stateCountry) {
+    	Connection conn = null;
+		  PreparedStatement ps = null;
+		  ResultSet rs = null;
+		  conn = ConnectionFactory.getOne();
+		  int stateCountryID = 0;
+		  String query = "SELECT id FROM StateCountries WHERE name = ?";
+		  try{
+			  ps = conn.prepareStatement(query);
+			  ps.setString(1, stateCountry);
+			  rs = ps.executeQuery();
+			  if(rs.next()) {
+				  stateCountryID = rs.getInt("id");
+			  }
+			  rs.close();
+			  ps.close();
+			  conn.close();
+		  } catch (SQLException e) {
+			  e.printStackTrace();
+		  }
+		  return stateCountryID;
+    }
+    
+    public static int getAddressID(String street, String city, int stateCountryID, String zipcode) {
+    	Connection conn = null;
+		  PreparedStatement ps = null;
+		  ResultSet rs = null;
+		  conn = ConnectionFactory.getOne();
+		  int addressID = 0;
+		  String query = "SELECT id FROM Addresses WHERE street = ? AND city = ? AND stateCountryID = ? AND zipcode = ?";
+		  try{
+			  ps = conn.prepareStatement(query);
+			  ps.setString(1, street);
+			  ps.setString(2, city);
+			  ps.setInt(3, stateCountryID);
+			  ps.setString(4, zipcode);
+			  rs = ps.executeQuery();
+			  if(rs.next()) {
+				  addressID = rs.getInt("id");
+			  }
+			  rs.close();
+			  ps.close();
+			  conn.close();
+		  } catch (SQLException e) {
+			    e.printStackTrace();
+		  }
+		  return addressID;
+    }
+    
+    public static int getProductID(String productCode) {
+    	Connection conn = null;
+		  PreparedStatement ps = null;
+		  ResultSet rs = null;
+		  conn = ConnectionFactory.getOne();
+		  int productID = 0;
+		  String query = "SELECT id FROM Products WHERE productCode = ?";
+		  try{
+			  ps = conn.prepareStatement(query);
+			  ps.setString(1, productCode);
+			  rs = ps.executeQuery();
+			  if(rs.next()) {
+				  productID = rs.getInt("id");
+			  }
+			  rs.close();
+			  ps.close();
+			  conn.close();
+		  } catch (SQLException e) {
+			  e.printStackTrace();
+		  }
+		  return productID;
+    }
+   
+    
+    /**
+     * This Method delete all data currently exist in database table
+     */
+    public static void deleteDatabaseTable() {
+    	String deleteT1 = "DELETE FROM `InvoiceProducts`;";
+		String deleteT2 = "DELETE FROM `Invoices`;";
+    	String deleteT3 = "DELETE FROM `Refreshments`;";
+		String deleteT4 = "DELETE FROM `ParkingPasses`;";
+    	String deleteT5 = "DELETE FROM `MovieTickets`;";
+		String deleteT6 = "DELETE FROM `SeasonPasses`;";
+    	String deleteT7 = "DELETE FROM `Products`;";
+		String deleteT8 = "DELETE FROM `Customers`;";
+    	String deleteT9 = "DELETE FROM `Emails`;";
+		String deleteT10 = "DELETE FROM `Persons`;";
+    	String deleteT11 = "DELETE FROM `Addresses`;";
+		String deleteT12 = "DELETE FROM `StateCountries`;";
+		String deleteT13 = "DELETE FROM `Countries`;";
+		
+		
+		Connection conn = ConnectionFactory.getOne();
+		PreparedStatement ps = null;
+		
+		try {
+			// delete table- execute query
+			ps = conn.prepareStatement(deleteT1);
+			ps.executeUpdate();
+
+			ps = conn.prepareStatement(deleteT2);
+			ps.executeUpdate();
+			
+			ps = conn.prepareStatement(deleteT3);
+			ps.executeUpdate();
+
+			ps = conn.prepareStatement(deleteT4);
+			ps.executeUpdate();
+			
+			ps = conn.prepareStatement(deleteT5);
+			ps.executeUpdate();
+
+			ps = conn.prepareStatement(deleteT6);
+			ps.executeUpdate();
+			
+			ps = conn.prepareStatement(deleteT7);
+			ps.executeUpdate();
+
+			ps = conn.prepareStatement(deleteT8);
+			ps.executeUpdate();
+			
+			ps = conn.prepareStatement(deleteT9);
+			ps.executeUpdate();
+
+			ps = conn.prepareStatement(deleteT10);
+			ps.executeUpdate();
+			
+			ps = conn.prepareStatement(deleteT11);
+			ps.executeUpdate();
+
+			ps = conn.prepareStatement(deleteT12);
+			ps.executeUpdate();
+			
+			ps = conn.prepareStatement(deleteT13);
+			ps.executeUpdate();
+			
+			ConnectionFactory.release(conn);
+			ps.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    /**
+     * This method execute a query script using ScriptUtil class
+     * https://stackoverflow.com/questions/30732314/execute-sql-file-from-spring-jdbc-template
+     * @param filePath
+     */
+    public static void executeSqlScript(String filePath) {
+    	Scanner scan = null;
+        String delimiter = ";";
+    
+    	// open and read file
+    	scan = DataConverter.openFile(filePath);
+    	
+		PreparedStatement ps = null; 
+		Connection conn = null;
+		Statement statement = null;
+    	StringBuilder sqlScript = new StringBuilder();
+    	
+    	int counter = 0;
+		try {
+		
+			String line = null;
+			
+			while(scan.hasNext()) {
+				line = scan.nextLine();
+				// skip comment or blank line
+				if(line.length() == 0 || line.equals("") || line.charAt(0)=='-' || 
+						line.charAt(1) == '-' || line == null || line.equals("\n")
+						|| line.isEmpty()) {
+					continue;
+				}
+				sqlScript.append(line);	
+			}
+			String queries[] = sqlScript.toString().split(delimiter);
+			conn = ConnectionFactory.getOne();
+			String s = null;
+			for(int i = 0;i < queries.length;i++) {
+				s = queries[i]+delimiter;
+				System.out.println(s);
+				ps = conn.prepareStatement(s);
+				ps.executeUpdate();
+			}
+		
+			// create new row of invoice
+			
+			
+			ps.close();
+			
+			ConnectionFactory.release(conn);
+			
+    		} catch (SQLException e) {
+    			e.printStackTrace();
+    		}// end cathc 
+    	
+    }// end exectuteSQlScript()
+    
 
 }
