@@ -53,7 +53,7 @@ public class DataConverter {
 	private static ArrayList<Invoice> invoices = new ArrayList<Invoice>();
 	
 	
-	public static void main(String[] args){
+	public static void flatDataToObject(){
 		
 		//read and parse files, create appropriate objects
 		DataConverter.readPersonFile();
@@ -73,6 +73,27 @@ public class DataConverter {
 		
 		
 	}// end main
+	
+//	public static void main(String[] args){
+//		
+//		//read and parse files, create appropriate objects
+//		DataConverter.readPersonFile();
+//		DataConverter.readCustomerFile();
+//		DataConverter.readProductFile();
+//		
+//		// write to JSON file 
+//		toJsonFile("data/Persons.json",DataConverter.persons,"persons");
+//		toJsonFile("data/Customers.json",DataConverter.customers,"customers");
+//		toJsonFile("data/Products.json",DataConverter.products,"products");
+//		
+//		
+//		// write to XML file format
+//		toXmlFile("data/Persons.xml", DataConverter.persons,"persons");
+//		toXmlFile("data/Customers.xml", DataConverter.customers,"customers");
+//		toXmlFile("data/Products.xml", DataConverter.products,"products");
+//		
+//		
+//	}// end main
  
 	/**
 	 * Searches for and returns a stored person object based on a person code.

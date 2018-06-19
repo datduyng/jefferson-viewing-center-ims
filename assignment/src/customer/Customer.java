@@ -17,8 +17,9 @@ public class Customer {
 		
 	}
 	
-	public Customer(String customerCode, String personCode, String customerType, String customerName, Address customerAddress) {
+	public Customer(String customerCode, String customerName, String customerType, String personCode, Address customerAddress) {
 
+		this.setCustomerCode(customerCode);
 		this.setCustomerType(customerType);
 		this.setPrimaryContact(personCode);
 		this.setCustomerName(customerName);

@@ -65,6 +65,7 @@ to create your database
 	- in a separate file (name it `invoiceQueries.sql`), queries to perform the following
 operations.
 
+<<<<<<< HEAD
 
 ##  Assignment05
 - Goal:
@@ -77,3 +78,7 @@ your database.
 
 - Created extra method to read a script.
 - 
+=======
+- PreparedStatement with Date Obj:
+	- https://stackoverflow.com/questions/18614836/using-setdate-in-preparedstatement
+>>>>>>> branch 'datNguyen' of https://github.com/datduyng/csce156-assignment.git
