@@ -1,5 +1,6 @@
 package ims;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,12 +10,20 @@ public class Person {
 	private String lastName;
 	private String firstName;
 	private Address address;
-	private Set<String> emails;
+	private ArrayList<String> emails;
 
 
 	
 	public Person() {
 		// default constructor
+	}
+	
+	public Person(String personCode, String lastName, String firstName, Address address, ArrayList<String> emails) {
+		this.setPersonCode(personCode);
+		this.setLastName(lastName);
+		this.setFirstName(firstName);
+		this.setAddress(address);
+		this.setEmails(emails);
 	}
 	
 	/**
@@ -30,7 +39,7 @@ public class Person {
 		setFirstName(nameToken[1].trim());
 		this.address = new Address(token[2]);
 		if(token.length == 4) {
-			this.emails = new HashSet<String>();
+			this.emails = new ArrayList<String>();
 			String[] emailToken = token[3].split(",");
 			for(String stringEmail : emailToken) {
 				this.emails.add(stringEmail);
@@ -54,12 +63,12 @@ public class Person {
 		return address;
 	}
 
-	public Set<String> getEmail() {
+	public ArrayList<String> getEmail() {
 		return emails;
 	}	
 
 
-	public void setEmails(Set<String> emails) {
+	public void setEmails(ArrayList<String> emails) {
 		this.emails = emails;
 	}
 

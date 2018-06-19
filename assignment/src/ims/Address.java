@@ -8,8 +8,12 @@ public class Address {
 	private String zipCode;
 	private String country;
 	
-	public Address() {
-		// default constructor
+	public Address(String street, String city, String state, String country,String zipcode) {
+		this.setCity(city);
+		this.setStreet(street);
+		this.setState(state);
+		this.setCountry(country);
+		this.setZipCode(zipcode);
 	}
 	
 	public Address(String address) {
@@ -32,6 +36,26 @@ public class Address {
 		return city;
 	}
 
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
 	public String getState() {
 		return state;
 	}
@@ -49,8 +73,8 @@ public class Address {
 	 * 
 	 */
 	public String toString(){
-		return this.street + ",";
-		//return this.street + "," + this.city + "," + this.state + "," + this.zipCode + "," + this.country + ";";
+		//return this.street + ",";
+		return this.street + "," + this.city + "," + this.state + "," + this.zipCode + "," + this.country + ";";
 		
 	}
 	

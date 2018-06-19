@@ -1,4 +1,4 @@
--- ---------------------------------------------
+-----------------------------------------------
 -- MySQL
 -- @ Author Dat Nguyen and Reid Stagemeyer
 -- Host: localhost    Database: datduyn
@@ -232,7 +232,8 @@ create table Emails(
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 personID INT NOT NULL,
 email 	VARCHAR(255) NOT NULL,
-FOREIGN KEY(personID) REFERENCES Persons(id)
+FOREIGN KEY(personID) REFERENCES Persons(id),
+CONSTRAINT uniqueEmail UNIQUE(personID,email)
 );
 
 INSERT INTO Emails(personID,email) VALUES
@@ -322,7 +323,7 @@ id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 invoiceID INT NOT NULL ,
 productID INT NOT NULL,
 unit INT NOT NULL,
-note VARCHAR(255) NOT NULL,
+note VARCHAR(255),
 FOREIGN KEY(invoiceID) REFERENCES Invoices(id),
 FOREIGN KEY(productID) REFERENCES Products(id),
 CONSTRAINT uniqueIP UNIQUE(invoiceID, productID)

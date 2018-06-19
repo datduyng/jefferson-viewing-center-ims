@@ -64,3 +64,13 @@ column sizes, primary and foreign keys to model various types of relationships.
 to create your database
 	- in a separate file (name it `invoiceQueries.sql`), queries to perform the following
 operations.
+
+
+##  Assignment05
+- Goal:
+	- . Specifically, you will implement an Application
+Programming Interface (API) to interact with your database using the Java Database Connectivity API
+(JDBC). Your API will provide methods to load and persist data to your database.
+	- Use JDBC to design an API containing static methods with provided signatures to interact with
+your database.
+	- Modify the invoice system to read from the database rather than from the flat files.
