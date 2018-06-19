@@ -74,3 +74,6 @@ Programming Interface (API) to interact with your database using the Java Databa
 	- Use JDBC to design an API containing static methods with provided signatures to interact with
 your database.
 	- Modify the invoice system to read from the database rather than from the flat files.
+
+- Created extra method to read a script.
+- 
