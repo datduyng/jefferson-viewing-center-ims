@@ -1,32 +1,32 @@
-package database;
+package com.jvc.ext;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Set;
 
 import customer.Customer;
+import customer.General;
+import customer.Student;
 import ims.Address;
 import ims.DataConverter;
 import ims.Invoice;
 import ims.Person;
+import product.MovieTicket;
+import product.ParkingPass;
 import product.Product;
-
-/**
-* This class defines methods for fetching data
-* from existing databases and creating appropriate objects.
-* @authors Dat Nguyen and Reid Stagemeyer
-* @version 1.0 
-* @since 6-17-18
-*/
+import product.Refreshment;
+import product.SeasonPass;
 
 public class ProcessDatabase {
 	
 	/** 
-	 * This method retrieves Person data from Database then 
-	 * creates a Person Object according to the pulled data.
+	 * This method retrieve Person data from Database then 
+	 * create Object according to attribute
 	 */
 	public static void toPersonObject() {
 		
@@ -58,15 +58,14 @@ public class ProcessDatabase {
 			ps = conn.prepareStatement(getPersonQuery);
 			personRs = ps.executeQuery();
 			while(personRs.next()) {
-				//grab the columns
 				personCode = personRs.getString("personCode");
 				lastName = personRs.getString("lastName");
 				firstName = personRs.getString("firstName");
 				int addressID = personRs.getInt("addressID");
 				int personID = personRs.getInt("id");
-				//create the Address object
+				
 				a = ProcessDatabase.toAddressObjectFromDB(addressID);
-				// create a list to store emails and use when creating Person object 
+				// create a set to store email and deposite to create an object 
 				ArrayList<String> emails = new ArrayList<String>();
 				String email = null;
 				//seperate query to get email Address 
@@ -79,31 +78,20 @@ public class ProcessDatabase {
 				}
 				
 				//create a person Object 
+				//Person(String personCode, String lastName, String firstName, Address address, Set<String> emails)
 				p = new Person(personCode,lastName,firstName,a,emails);
 				
 				//add to Person list 
 				DataConverter.getPersons().add(p);
 			}
-			countryRs.close();
-			stateRs.close();
-			addressRs.close();
-			emailRs.close(); 
-			personRs.close();
-			ps.close();
-			conn.close();
-			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
 	}
-	
-	/**
-	* This method retrieves Customer data from Database then 
-	* creates a Customer Object according to the pulled data.
-	*/
 	public static void toCustomerObjectFromDB() {
 		
+		//	public Customer(String customerCode, String customerName, String customerType, String personCode, Address customerAddress) {
 		final String getPersonCodeQ = "SELECT personCode FROM Persons p "
 							+ "JOIN Customers c ON p.id=c.primaryContactID WHERE c.id=?";
 		final String getCustomerInfoQ = "SELECT * FROM Customers";
@@ -138,30 +126,29 @@ public class ProcessDatabase {
 				if(personRs.next()) {
 					personCode = personRs.getString("personCode");
 				}
-				
 				//get Address 
 				a = ProcessDatabase.toAddressObjectFromDB(addressID);
 				
-				c = new Customer(customerCode,customerName,customerType,personCode,a);
-				
-				// add customer to List 
+				if(customerType.equalsIgnoreCase("S")||customerType.equals("Student")) {
+					c = new Student(customerCode,customerName,personCode,a);
+				}else if(customerType.equalsIgnoreCase("G")||customerType.equals("General")){
+					c = new General(customerCode,customerName,personCode,a);
+				}
+
+				// add customer to LIst 
 				DataConverter.getCustomers().add(c);
 				
+				//retrieve data from persons Table DB 
 			}// end while
-			
-			personRs.close();
-			customerRs.close();
-			ps.close();
-			conn.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
+		
+		
+		
+		
 	}
 	
-	/*
-	 * This method retrieves Address data from Database then 
-	 * creates an Address Object according to the pulled data.
-	 */
 	public static Address toAddressObjectFromDB(int addressID) {
 		final String getAddressQuery = "SELECT * FROM Addresses WHERE id=?;";
 		final String getStateQuery = "SELECT name,countryID FROM StateCountries WHERE id=?;";
@@ -197,8 +184,9 @@ public class ProcessDatabase {
 				stateRs = ps.executeQuery();
 				while(stateRs.next()) {
 					state = stateRs.getString("name");
-					int countryID = stateRs.getInt("countryID"); 
-					// inner query to get country 
+					int countryID = stateRs.getInt("countryID");
+					
+					//innner oiceData.executeSqlScript("assignment04/createDatabaseTable.sql");query to get country attribute 
 					// restate the preparedStatement 
 					ps = conn.prepareStatement(getCountryQuery);
 					ps.setInt(1, countryID);
@@ -207,21 +195,231 @@ public class ProcessDatabase {
 						country = countryRs.getString("name");
 					}// end stateRs.next() loop 
 					
-				}// end stateRs.next() loop 
+				}// end stateRs.next( lop 
 				a = new Address(street,city,state,country,zipcode);
 			
 			}// end addressRs.next() while loop
-			countryRs.close();
-			stateRs.close();
-			addressRs.close();
 			ps.close();
 			conn.close();
-			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return a;
 	}
 	
+	public static void toInvoiceObjectFromDB() {
+		//	public Invoice(String invoiceCode,String customerCode,String salePersonCode,String invoiceDate,HashMap<Product,Integer> productList) {
+		/*
+		+----+-------------+------------+---------------+-------------+
+		| id | invoiceCode | customerID | salesPersonID | invoiceDate |
+		+----+-------------+------------+---------------+-------------+
+		|  1 | INV001      |          1 |            16 | 2016-09-03  |
+		|  2 | INV002      |          2 |            17 | 2016-11-10  |
+		|  3 | INV003      |          5 |            18 | 2016-11-26  |
+		|  4 | INV004      |          3 |            12 | 2016-10-16  |
+		+----+-------------+------------+---------------+-------------+
+ 		*/
+		final String getInvoiceQ = "SELECT * FROM Invoices i;";
+		final String getCustomerCodeQ = "SELECT customerCode FROM Customers c JOIN Invoices i ON c.id=i.customerID WHERE i.id=?;";
+		final String getSalePersonCodeQ = "SELECT personCode FROM Persons p JOIN Invoices i ON p.id=i.salesPersonID WHERE i.id=?;";
+		final String getInvoiceProductQ = "SELECT * FROM InvoiceProducts ip WHERE ip.invoiceID=?;";
+		final String getProductCode = "SELECT productCode FROM Products p WHERE p.id=?;";
+		
+		//create conn and sql Prepared statement 
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet customerRs = null;
+		ResultSet personRs = null;
+		ResultSet invoiceProductRs = null;
+		ResultSet productRs = null;
+		ResultSet invoiceRs = null;
+		
+		String invoiceCode=null,customerCode=null,salesPersonCode=null,invoiceDate=null;
+		String productCode=null,note = null;
+		int unit=0;
+		int customerID = 0,salesPersonID= 0,invoiceID = 0,productID=0;
+		LinkedHashMap<Product,Integer> productList = null;
+		Product p =null;
+		Invoice i = null;
+		//retrieve data from DB table
+		try {
+			conn = ConnectionFactory.getOne();
+			
+			//get data from Invoice DB table 
+			ps = conn.prepareStatement(getInvoiceQ);
+			invoiceRs = ps.executeQuery();
+			while(invoiceRs.next()) {
+				invoiceID = invoiceRs.getInt("id");
+				invoiceCode = invoiceRs.getString("invoiceCode");
+				invoiceDate = invoiceRs.getString("invoiceDate");
+				customerID = invoiceRs.getInt("customerID");
+				salesPersonID=invoiceRs.getInt("salesPersonID");
+				
+				//get Person Code from personID 
+				ps = conn.prepareStatement(getSalePersonCodeQ);
+				ps.setInt(1, invoiceID);
+				personRs = ps.executeQuery();
+				if(personRs.next()) {
+					salesPersonCode = personRs.getString("personCode");
+				}
+				
+				//get customer Code from customerID 
+				ps = conn.prepareStatement(getCustomerCodeQ);
+				ps.setInt(1, invoiceID);
+				customerRs = ps.executeQuery();
+				if(customerRs.next()) {
+					customerCode = customerRs.getString("customerCode");
+				}
+				
+				//get productList for an invoice.
+				productList = new LinkedHashMap<Product,Integer>();
+				ps = conn.prepareStatement(getInvoiceProductQ);
+				ps.setInt(1, invoiceID);
+				invoiceProductRs = ps.executeQuery();
+				while(invoiceProductRs.next()) {
+					productID = invoiceProductRs.getInt("productID");
+					unit = invoiceProductRs.getInt("unit");
+					note = invoiceProductRs.getString("note");
+					
+					ps = conn.prepareStatement(getProductCode);
+					ps.setInt(1, productID);
+					productRs = ps.executeQuery();
+					if(productRs.next()) {
+						productCode = productRs.getString("productCode");
+					}
+
+					p = DataConverter.findProduct(productCode, DataConverter.getProducts());
+					
+					// check if there is ticket associate with tick or not
+					if(p instanceof ParkingPass && note!= null) {
+						// find associated ticket with parkingpass.
+						Product associatedTicket =  DataConverter.findProduct(note,DataConverter.getProducts());
+						if(associatedTicket instanceof MovieTicket) {
+							// deep copy
+							p = new ParkingPass((ParkingPass)p);
+							MovieTicket m = (MovieTicket) associatedTicket;
+							((ParkingPass)p).setTicket(m);				
+						}else if(associatedTicket instanceof SeasonPass) {
+							// deep copy
+							p = new ParkingPass((ParkingPass)p);
+							SeasonPass s = (SeasonPass) associatedTicket;
+							((ParkingPass)p).setTicket(s);
+						}
+						
+					}
+					//store product into a hashmap
+					productList.put(p, unit);
+				}
+				
+				i = new Invoice( invoiceCode, customerCode, salesPersonCode, invoiceDate, productList) ;
+				DataConverter.getInvoices().add(i);
+			}// end while
+			
+			 conn.close();
+			 ps.close();
+			 customerRs.close();
+			 personRs.close();
+			 invoiceProductRs.close();
+			 productRs.close();
+			 invoiceRs.close();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
+
+	public static void toMovieTicketObjectFromDB() {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		conn = ConnectionFactory.getOne();
+		String selectMovieTickets = "SELECT * FROM MovieTickets JOIN Products on MovieTickets.productID = Products.id";
+		try {
+			ps = conn.prepareStatement(selectMovieTickets);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				String dateTime = rs.getString("dateTime");
+				String movieName = rs.getString("movieName");
+				int addressID = rs.getInt("addressID");
+				String screenNumber = rs.getString("screenNumber");
+				double pricePerUnit = (double) rs.getFloat("pricePerUnit");
+				String productCode  = rs.getString("productCode");
+				String productType = rs.getString("productType");
+				
+				Address address = toAddressObjectFromDB(addressID);
+				MovieTicket movieTicket = new MovieTicket(productCode, productType, movieName, dateTime, address, screenNumber, pricePerUnit);
+				DataConverter.getProducts().add(movieTicket);
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void toSeasonPassObjectFromDB() {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		conn = ConnectionFactory.getOne();
+		String selectSeasonPasses = "SELECT * FROM SeasonPasses JOIN Products on SeasonPasses.productID = Products.id";
+		try {
+			ps = conn.prepareStatement(selectSeasonPasses);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				String productCode  = rs.getString("productCode");
+				String productType = rs.getString("productType");
+				String name = rs.getString("name");
+				String startDate = rs.getString("startDate");
+				String endDate = rs.getString("endDate");
+				double cost = (double) rs.getFloat("cost");
+				SeasonPass seasonPass = new SeasonPass(productCode, productType, name, startDate, endDate, cost);
+				DataConverter.getProducts().add(seasonPass);
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void toParkingPassObjectFromDB() {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		conn = ConnectionFactory.getOne();
+		String selectParkingPasses = "SELECT * FROM ParkingPasses JOIN Products on ParkingPasses.productID = Products.id";
+		try {
+			ps = conn.prepareStatement(selectParkingPasses);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				String productCode  = rs.getString("productCode");
+				String productType = rs.getString("productType");
+				double parkingFee = (double) rs.getFloat("fee");
+				ParkingPass parkingPass = new ParkingPass(productCode, productType, parkingFee);
+				DataConverter.getProducts().add(parkingPass);
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void toRefreshmentObjectFromDB() {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		conn = ConnectionFactory.getOne();
+		String selectRefreshments = "SELECT * FROM Refreshments JOIN Products on Refreshments.productID = Products.id";
+		try {
+			ps = conn.prepareStatement(selectRefreshments);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				String productCode  = rs.getString("productCode");
+				String productType = rs.getString("productType");
+				String name = rs.getString("name");
+				double cost = (double) rs.getFloat("cost");				
+				Refreshment refreshment = new Refreshment(productCode, productType, name, cost);
+				DataConverter.getProducts().add(refreshment);
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+}
 }
