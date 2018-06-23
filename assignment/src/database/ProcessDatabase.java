@@ -22,11 +22,20 @@ import product.Product;
 import product.Refreshment;
 import product.SeasonPass;
 
+
+/**
+* This class defines methods for fetching data
+* from existing databases and creating appropriate objects.
+* @authors Dat Nguyen and Reid Stagemeyer
+* @version 1.0 
+* @since 6-17-18
+*/
+
 public class ProcessDatabase {
 	
 	/** 
-	 * This method retrieve Person data from Database then 
-	 * create Object according to attribute
+	 * This method retrieves Person data from Database then 
+	 * creates a Person Object according to the pulled data.
 	 */
 	public static void toPersonObject() {
 		
@@ -58,14 +67,15 @@ public class ProcessDatabase {
 			ps = conn.prepareStatement(getPersonQuery);
 			personRs = ps.executeQuery();
 			while(personRs.next()) {
+				// grab the columns
 				personCode = personRs.getString("personCode");
 				lastName = personRs.getString("lastName");
 				firstName = personRs.getString("firstName");
 				int addressID = personRs.getInt("addressID");
 				int personID = personRs.getInt("id");
-				
+				// create Address object
 				a = ProcessDatabase.toAddressObjectFromDB(addressID);
-				// create a set to store email and deposite to create an object 
+				// create a list to store emails and use when creating Person object 
 				ArrayList<String> emails = new ArrayList<String>();
 				String email = null;
 				//seperate query to get email Address 
@@ -78,20 +88,30 @@ public class ProcessDatabase {
 				}
 				
 				//create a person Object 
-				//Person(String personCode, String lastName, String firstName, Address address, Set<String> emails)
 				p = new Person(personCode,lastName,firstName,a,emails);
 				
 				//add to Person list 
 				DataConverter.getPersons().add(p);
 			}
+			countryRs.close();
+			stateRs.close();
+			addressRs.close();
+			emailRs.close(); 
+			personRs.close();
+			ps.close();
+			conn.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
 	}
+	
+	/**
+	* This method retrieves Customer data from Database then 
+	* creates a Customer Object according to the pulled data.
+	*/
 	public static void toCustomerObjectFromDB() {
 		
-		//	public Customer(String customerCode, String customerName, String customerType, String personCode, Address customerAddress) {
 		final String getPersonCodeQ = "SELECT personCode FROM Persons p "
 							+ "JOIN Customers c ON p.id=c.primaryContactID WHERE c.id=?";
 		final String getCustomerInfoQ = "SELECT * FROM Customers";
@@ -129,6 +149,7 @@ public class ProcessDatabase {
 				//get Address 
 				a = ProcessDatabase.toAddressObjectFromDB(addressID);
 				
+				//determine type of customer and create object
 				if(customerType.equalsIgnoreCase("S")||customerType.equals("Student")) {
 					c = new Student(customerCode,customerName,personCode,a);
 				}else if(customerType.equalsIgnoreCase("G")||customerType.equals("General")){
@@ -140,15 +161,20 @@ public class ProcessDatabase {
 				
 				//retrieve data from persons Table DB 
 			}// end while
+			personRs.close();
+			customerRs.close();
+			ps.close();
+			conn.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
-		
-		
-		
 	}
 	
+	 /*
+	 * This method retrieves Address data from Database then 
+	 * creates an Address Object according to the pulled data.
+	 */
 	public static Address toAddressObjectFromDB(int addressID) {
 		final String getAddressQuery = "SELECT * FROM Addresses WHERE id=?;";
 		final String getStateQuery = "SELECT name,countryID FROM StateCountries WHERE id=?;";
@@ -185,8 +211,7 @@ public class ProcessDatabase {
 				while(stateRs.next()) {
 					state = stateRs.getString("name");
 					int countryID = stateRs.getInt("countryID");
-					
-					//innner oiceData.executeSqlScript("assignment04/createDatabaseTable.sql");query to get country attribute 
+					// inner query to get country
 					// restate the preparedStatement 
 					ps = conn.prepareStatement(getCountryQuery);
 					ps.setInt(1, countryID);
@@ -195,30 +220,27 @@ public class ProcessDatabase {
 						country = countryRs.getString("name");
 					}// end stateRs.next() loop 
 					
-				}// end stateRs.next( lop 
+				}// end stateRs.next() loop 
 				a = new Address(street,city,state,country,zipcode);
 			
 			}// end addressRs.next() while loop
+			countryRs.close();
+			stateRs.close();
+			addressRs.close();
 			ps.close();
-			conn.close();
+ 			conn.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return a;
 	}
 	
+	 /*
+	 * This method retrieves Invoice data from Database then 
+	 * creates an Invoice Object according to the pulled data.
+	 */
 	public static void toInvoiceObjectFromDB() {
-		//	public Invoice(String invoiceCode,String customerCode,String salePersonCode,String invoiceDate,HashMap<Product,Integer> productList) {
-		/*
-		+----+-------------+------------+---------------+-------------+
-		| id | invoiceCode | customerID | salesPersonID | invoiceDate |
-		+----+-------------+------------+---------------+-------------+
-		|  1 | INV001      |          1 |            16 | 2016-09-03  |
-		|  2 | INV002      |          2 |            17 | 2016-11-10  |
-		|  3 | INV003      |          5 |            18 | 2016-11-26  |
-		|  4 | INV004      |          3 |            12 | 2016-10-16  |
-		+----+-------------+------------+---------------+-------------+
- 		*/
+		
 		final String getInvoiceQ = "SELECT * FROM Invoices i;";
 		final String getCustomerCodeQ = "SELECT customerCode FROM Customers c JOIN Invoices i ON c.id=i.customerID WHERE i.id=?;";
 		final String getSalePersonCodeQ = "SELECT personCode FROM Persons p JOIN Invoices i ON p.id=i.salesPersonID WHERE i.id=?;";
@@ -290,7 +312,7 @@ public class ProcessDatabase {
 
 					p = DataConverter.findProduct(productCode, DataConverter.getProducts());
 					
-					// check if there is ticket associate with tick or not
+					// check if there is ticket associate with ticket or not
 					if(p instanceof ParkingPass && note!= null) {
 						// find associated ticket with parkingpass.
 						Product associatedTicket =  DataConverter.findProduct(note,DataConverter.getProducts());
@@ -328,7 +350,10 @@ public class ProcessDatabase {
 		}
 	}
 	
-
+	 /*
+	 * This method retrieves MovieTicket data from Database then 
+	 * creates a MovieTicket Object according to the pulled data.
+	 */
 	public static void toMovieTicketObjectFromDB() {
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -346,16 +371,24 @@ public class ProcessDatabase {
 				double pricePerUnit = (double) rs.getFloat("pricePerUnit");
 				String productCode  = rs.getString("productCode");
 				String productType = rs.getString("productType");
-				
+				//create address object
 				Address address = toAddressObjectFromDB(addressID);
+				//create movie-ticket and add
 				MovieTicket movieTicket = new MovieTicket(productCode, productType, movieName, dateTime, address, screenNumber, pricePerUnit);
 				DataConverter.getProducts().add(movieTicket);
-			}	
+			}
+			rs.close();
+			ps.close();
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	 /*
+	 * This method retrieves SeasonPass data from Database then 
+	 * creates an SeasonPass Object according to the pulled data.
+	 */
 	public static void toSeasonPassObjectFromDB() {
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -375,11 +408,18 @@ public class ProcessDatabase {
 				SeasonPass seasonPass = new SeasonPass(productCode, productType, name, startDate, endDate, cost);
 				DataConverter.getProducts().add(seasonPass);
 			}	
+			rs.close();
+			ps.close();
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	 /*
+	 * This method retrieves ParkingPass data from Database then 
+	 * creates a ParkingPass Object according to the pulled data.
+	 */
 	public static void toParkingPassObjectFromDB() {
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -396,11 +436,18 @@ public class ProcessDatabase {
 				ParkingPass parkingPass = new ParkingPass(productCode, productType, parkingFee);
 				DataConverter.getProducts().add(parkingPass);
 			}	
+			rs.close();
+			ps.close();
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	 /*
+	 * This method retrieves Refreshment data from Database then 
+	 * creates an Refreshment Object according to the pulled data.
+	 */
 	public static void toRefreshmentObjectFromDB() {
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -417,7 +464,10 @@ public class ProcessDatabase {
 				double cost = (double) rs.getFloat("cost");				
 				Refreshment refreshment = new Refreshment(productCode, productType, name, cost);
 				DataConverter.getProducts().add(refreshment);
-			}	
+			}
+			rs.close();
+			ps.close();
+			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
