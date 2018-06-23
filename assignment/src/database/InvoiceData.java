@@ -77,7 +77,7 @@ public class InvoiceData {
 		String query = "INSERT INTO Persons (personCode, lastName, firstName, addressID)"
 				+ "VALUES (?, ?, ?, ?)";
 		
-		// check if the address have alrady exist or not if no, then add.
+		// check if the address already exists, if not, then add.
 		int existAddress = InvoiceData.getAddressID(street, city, stateCountryID, zip);
 		
 		//add new Address if does not exist already
@@ -174,7 +174,7 @@ public class InvoiceData {
 		try {
 			int existAddress = InvoiceData.getAddressID(street, city, stateCountryID, zip);
 			
-			//add new Address if does not exist already
+			//add new Address if it does not exist already
 			if(existAddress != 0) {
 				 addressID=  existAddress;
 			}else {
@@ -246,10 +246,13 @@ public class InvoiceData {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		InvoiceData.addProduct(productCode, "M");
+		// get ID from product just added
 		int productID = InvoiceData.getProductID(productCode);
 		conn = ConnectionFactory.getOne();	
 		int stateCountryID = InvoiceData.getStateCountryID(state);
+		// add the address
 		InvoiceData.addAddress(street, city, stateCountryID, zip);
+		// get ID from address
 		int addressID = InvoiceData.getAddressID(street, city, stateCountryID, zip);
 		String insertMovieTicket = "INSERT INTO MovieTickets (dateTime, movieName, addressID, screenNumber, pricePerUnit, productID) "
 				+ "VALUES (?, ?, ?, ?, ?, ?)";
@@ -327,7 +330,7 @@ public class InvoiceData {
 			ConnectionFactory.release(conn);
 			ps.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
@@ -363,7 +366,6 @@ public class InvoiceData {
 			ConnectionFactory.release(conn);
 			ps.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -393,14 +395,12 @@ public class InvoiceData {
 			ConnectionFactory.release(conn);
 			ps.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	/**
 	 * 11. Adds an invoice record to the database with the given data.
-	 ***********************Error ******************
 	 * 
 	 **/
 	public static void addInvoice(String invoiceCode, String customerCode, String salesPersonCode, String invoiceDate) {
@@ -427,7 +427,6 @@ public class InvoiceData {
 			ConnectionFactory.release(conn);
 			ps.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -440,7 +439,7 @@ public class InvoiceData {
 	 */
 
 	public static void addMovieTicketToInvoice(String invoiceCode, String productCode, int quantity) {
-		//query to create new invoice to database 
+		//query to create new invoice product to database 
 		String getInvoiceIDQ = "(SELECT id FROM Invoices i WHERE i.invoiceCode=?)";
 		String getProductIDQ = "(SELECT id FROM Products p WHERE p.productCode=?)";	
 		String addMovieToInvoiceQ = "INSERT INTO InvoiceProducts(invoiceID,productID,unit) VALUES ("+getInvoiceIDQ+","+getProductIDQ+",?)";
@@ -453,7 +452,7 @@ public class InvoiceData {
 		ResultSet rs = null;
 		
 		try {
-			// create new row of invoice
+			// create new row of invoice product
 			ps = conn.prepareStatement(addMovieToInvoiceQ);
 			ps.setString(1, invoiceCode);
 			ps.setString(2, productCode);
@@ -464,7 +463,6 @@ public class InvoiceData {
 			ConnectionFactory.release(conn);
 			ps.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -475,7 +473,7 @@ public class InvoiceData {
 	 * the given begin/end dates
 	 */
 	public static void addSeasonPassToInvoice(String invoiceCode, String productCode, int quantity) {
-		//query to create new invoice to database 
+		//query to create new invoice product to database 
 		String getInvoiceIDQ = "(SELECT id FROM Invoices i WHERE i.invoiceCode=?)";
 		String getProductIDQ = "(SELECT id FROM Products p WHERE p.productCode=?)";	
 		String addSeasonPassToInvoiceQ = "INSERT INTO InvoiceProducts(invoiceID,productID,unit) VALUES ("+getInvoiceIDQ+","+getProductIDQ+",?)";
@@ -485,7 +483,7 @@ public class InvoiceData {
 		ResultSet rs = null;
 		
 		try {
-			// create new row of invoice
+			// create new row of invoice product
 			ps = conn.prepareStatement(addSeasonPassToInvoiceQ);
 			ps.setString(1, invoiceCode);
 			ps.setString(2, productCode);
@@ -496,7 +494,6 @@ public class InvoiceData {
 			ConnectionFactory.release(conn);
 			ps.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -508,7 +505,7 @@ public class InvoiceData {
      * NOTE: ticketCode may be null
      */
     public static void addParkingPassToInvoice(String invoiceCode, String productCode, int quantity, String ticketCode) {
-    	//query to create new invoice to database 
+    		//query to create new invoice product to database 
 		String getInvoiceIDQ = "(SELECT id FROM Invoices i WHERE i.invoiceCode=?)";
 		String getProductIDQ = "(SELECT id FROM Products p WHERE p.productCode=?)";	
 		String addSeasonPassToInvoiceQ = "INSERT INTO InvoiceProducts(invoiceID,productID,unit,note) VALUES ("+getInvoiceIDQ+","+getProductIDQ+",?,?)";
@@ -518,7 +515,7 @@ public class InvoiceData {
 		ResultSet rs = null;
 		
 		try {
-			// create new row of invoice
+			// create new row of invoice product
 			ps = conn.prepareStatement(addSeasonPassToInvoiceQ);
 			ps.setString(1, invoiceCode);
 			ps.setString(2, productCode);
@@ -530,7 +527,6 @@ public class InvoiceData {
 			ConnectionFactory.release(conn);
 			ps.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
@@ -541,7 +537,7 @@ public class InvoiceData {
      * number of quantity. 
      */
     public static void addRefreshmentToInvoice(String invoiceCode, String productCode, int quantity) {
-    	//query to create new invoice to database 
+    		//query to create new invoice product to database 
 		String getInvoiceIDQ = "(SELECT id FROM Invoices i WHERE i.invoiceCode=?)";
 		String getProductIDQ = "(SELECT id FROM Products p WHERE p.productCode=?)";	
 		String addSeasonPassToInvoiceQ = "INSERT INTO InvoiceProducts(invoiceID,productID,unit) VALUES ("+getInvoiceIDQ+","+getProductIDQ+",?)";
@@ -566,7 +562,7 @@ public class InvoiceData {
     }
     
     /***********************************************************************************************************/
-    /***********************************************Additional Function*****************************************/
+    /***********************************************Additional Functions*****************************************/
     /***********************************************************************************************************/
     
     
@@ -598,6 +594,14 @@ public class InvoiceData {
     	}
     }
     
+    /**
+    * adds an invoice product, overloaded method including note (associated ticket)
+    * @param invoiceCode
+    * @param productCode
+    * @param units
+    * @param note associated ticket with product
+    *
+    */
     public static void addInvoiceProduct(String invoiceCode, String productCode, int units, String note) {
       	Connection conn = null;
     	PreparedStatement ps = null;
@@ -621,6 +625,13 @@ public class InvoiceData {
     	}
     }
     
+    /*
+    * adds an address 
+    * @param street
+    * @param city
+    * @param stateCountryID
+    * @param zipcode
+    */
     public static void addAddress(String street, String city, int stateCountryID, String zipcode) {
     	Connection conn = null;
 		  PreparedStatement ps = null;
@@ -641,8 +652,13 @@ public class InvoiceData {
 		}
     }
     
+    /*
+    * adds a product
+    * @param productCode
+    * @param productType
+    */
     public static void addProduct(String productCode, String productType) {
-    	Connection conn = null;
+    		  Connection conn = null;
 		  PreparedStatement ps = null;
 		  conn = ConnectionFactory.getOne();
 		  String insertProduct = "INSERT INTO Products (productCode, productType) "
@@ -661,8 +677,13 @@ public class InvoiceData {
 				
     }
     
+    /**
+    * Gets the primary key, id, from the Countries table 
+    * @param country the country to be searched for 
+    *
+    */ 
     public static int getCountryID(String country) {
-    	Connection conn = null;
+    		  Connection conn = null;
 		  PreparedStatement ps = null;
 		  ResultSet rs = null;
 		  conn = ConnectionFactory.getOne();
@@ -684,8 +705,13 @@ public class InvoiceData {
 		  return countryID;
     }
     
+    /**
+    * Gets the primary key, id, from the StateCountries table 
+    * @param stateCountry the stateCountry to be searched for 
+    *
+    */ 
     public static int getStateCountryID(String stateCountry) {
-    	Connection conn = null;
+    	          Connection conn = null;
 		  PreparedStatement ps = null;
 		  ResultSet rs = null;
 		  conn = ConnectionFactory.getOne();
@@ -708,6 +734,14 @@ public class InvoiceData {
 		  return stateCountryID;
     }
     
+    /**
+    * Gets the primary key, id, from the Addresses table 
+    * @param street
+    * @param city
+    * @param stateCountryID
+    * @param zipcode
+    *
+    */ 
     public static int getAddressID(String street, String city, int stateCountryID, String zipcode) {
     	Connection conn = null;
 		  PreparedStatement ps = null;
@@ -734,6 +768,10 @@ public class InvoiceData {
 		  return addressID;
     }
     
+    /**
+    * Gets the primary key, id, from the Products table 
+    * @param productCode the product to search for 
+    */
     public static int getProductID(String productCode) {
     	Connection conn = null;
 		  PreparedStatement ps = null;
@@ -759,7 +797,7 @@ public class InvoiceData {
    
     
     /**
-     * This Method delete all data currently exist in database table
+     * This Method deletes all data that currently exists in database table
      */
     public static void deleteDatabaseTable() {
     	String deleteT1 = "DELETE FROM `InvoiceProducts`;";
