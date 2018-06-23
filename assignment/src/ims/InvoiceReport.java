@@ -11,6 +11,10 @@ package ims;
 
 import java.util.Map.Entry;
 
+import com.jvc.ext.CreateDatabaseTable;
+import com.jvc.ext.InvoiceData;
+import com.jvc.ext.ProcessDatabase;
+
 import customer.Student;
 import product.MovieTicket;
 import product.ParkingPass;
@@ -25,10 +29,30 @@ public class InvoiceReport {
 	public static void main(String[] args) {
 		
 		// read and process data from file.
-		DataConverter.readPersonFile();
-		DataConverter.readCustomerFile();
-		DataConverter.readProductFile();
-		DataConverter.readInvoiceFile();
+//		DataConverter.readPersonFile();
+//		DataConverter.readCustomerFile();
+//		DataConverter.readProductFile();
+//		DataConverter.readInvoiceFile();
+//		
+		//InvoiceData.deleteDatabaseTable();
+		//InvoiceData.executeSqlScript("assignment04/createDatabaseTable.sql");
+		//CreateDatabaseTable.createTable();
+		System.out.println("============================================================================================++");
+		ProcessDatabase.toPersonObject();
+		System.out.println("============================================================================================++");
+
+		ProcessDatabase.toCustomerObjectFromDB();
+		System.out.println("============================================================================================++");
+
+		//DataConverter.readProductFile();
+		ProcessDatabase.toMovieTicketObjectFromDB();
+		ProcessDatabase.toSeasonPassObjectFromDB();
+		ProcessDatabase.toParkingPassObjectFromDB();
+		ProcessDatabase.toRefreshmentObjectFromDB();
+		System.out.println("============================================================================================++");
+		
+		ProcessDatabase.toInvoiceObjectFromDB();
+		System.out.println("============================================================================================++");
 		
 		// invoice variables for invoice report
 		double overallSubTotal = 0.0;
