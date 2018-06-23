@@ -14,11 +14,19 @@ import ims.Invoice;
 import ims.Person;
 import product.Product;
 
+/**
+* This class defines methods for fetching data
+* from existing databases and creating appropriate objects.
+* @authors Dat Nguyen and Reid Stagemeyer
+* @version 1.0 
+* @since 6-17-18
+*/
+
 public class ProcessDatabase {
 	
 	/** 
-	 * This method retrieve Person data from Database then 
-	 * create Object according to attribute
+	 * This method retrieves Person data from Database then 
+	 * creates a Person Object according to the pulled data.
 	 */
 	public static void toPersonObject() {
 		
@@ -50,14 +58,15 @@ public class ProcessDatabase {
 			ps = conn.prepareStatement(getPersonQuery);
 			personRs = ps.executeQuery();
 			while(personRs.next()) {
+				//grab the columns
 				personCode = personRs.getString("personCode");
 				lastName = personRs.getString("lastName");
 				firstName = personRs.getString("firstName");
 				int addressID = personRs.getInt("addressID");
 				int personID = personRs.getInt("id");
-				
+				//create the Address object
 				a = ProcessDatabase.toAddressObjectFromDB(addressID);
-				// create a set to store email and deposite to create an object 
+				// create a list to store emails and use when creating Person object 
 				ArrayList<String> emails = new ArrayList<String>();
 				String email = null;
 				//seperate query to get email Address 
@@ -70,21 +79,31 @@ public class ProcessDatabase {
 				}
 				
 				//create a person Object 
-				//Person(String personCode, String lastName, String firstName, Address address, Set<String> emails)
 				p = new Person(personCode,lastName,firstName,a,emails);
-				System.out.println(p);
 				
 				//add to Person list 
 				DataConverter.getPersons().add(p);
 			}
+			countryRs.close();
+			stateRs.close();
+			addressRs.close();
+			emailRs.close(); 
+			personRs.close();
+			ps.close();
+			conn.close();
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
 	}
+	
+	/**
+	* This method retrieves Customer data from Database then 
+	* creates a Customer Object according to the pulled data.
+	*/
 	public static void toCustomerObjectFromDB() {
 		
-		//	public Customer(String customerCode, String customerName, String customerType, String personCode, Address customerAddress) {
 		final String getPersonCodeQ = "SELECT personCode FROM Persons p "
 							+ "JOIN Customers c ON p.id=c.primaryContactID WHERE c.id=?";
 		final String getCustomerInfoQ = "SELECT * FROM Customers";
@@ -119,28 +138,30 @@ public class ProcessDatabase {
 				if(personRs.next()) {
 					personCode = personRs.getString("personCode");
 				}
-				System.out.println("primary contact person Code:"+personCode);
 				
 				//get Address 
 				a = ProcessDatabase.toAddressObjectFromDB(addressID);
 				
 				c = new Customer(customerCode,customerName,customerType,personCode,a);
-				System.out.println(c);
 				
-				// add customer to LIst 
+				// add customer to List 
 				DataConverter.getCustomers().add(c);
 				
-				//retrieve data from persons Table DB 
 			}// end while
+			
+			personRs.close();
+			customerRs.close();
+			ps.close();
+			conn.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
-		
-		
 	}
 	
+	/*
+	 * This method retrieves Address data from Database then 
+	 * creates an Address Object according to the pulled data.
+	 */
 	public static Address toAddressObjectFromDB(int addressID) {
 		final String getAddressQuery = "SELECT * FROM Addresses WHERE id=?;";
 		final String getStateQuery = "SELECT name,countryID FROM StateCountries WHERE id=?;";
@@ -176,9 +197,8 @@ public class ProcessDatabase {
 				stateRs = ps.executeQuery();
 				while(stateRs.next()) {
 					state = stateRs.getString("name");
-					int countryID = stateRs.getInt("countryID");
-					
-					//innner oiceData.executeSqlScript("assignment04/createDatabaseTable.sql");query to get country attribute 
+					int countryID = stateRs.getInt("countryID"); 
+					// inner query to get country 
 					// restate the preparedStatement 
 					ps = conn.prepareStatement(getCountryQuery);
 					ps.setInt(1, countryID);
@@ -187,12 +207,16 @@ public class ProcessDatabase {
 						country = countryRs.getString("name");
 					}// end stateRs.next() loop 
 					
-				}// end stateRs.next( lop 
+				}// end stateRs.next() loop 
 				a = new Address(street,city,state,country,zipcode);
 			
 			}// end addressRs.next() while loop
+			countryRs.close();
+			stateRs.close();
+			addressRs.close();
 			ps.close();
 			conn.close();
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
