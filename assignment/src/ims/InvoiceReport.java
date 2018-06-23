@@ -1,8 +1,8 @@
 /**
  * @Authors Dat Nguyen and Reid Stagemeyer 
- * @Version 1.0 
+ * @Version 2.0 
  * 
- * Reads data from flat files and creates appropriate products, 
+ * Reads data from database and creates appropriate products, 
  * people, customers, and invoices.  Generates a formatted invoice
  * report for all the invoices in the system.
  * 
@@ -38,19 +38,22 @@ public class InvoiceReport {
 		//InvoiceData.executeSqlScript("assignment04/createDatabaseTable.sql");
 		//CreateDatabaseTable.createTable();
 		System.out.println("============================================================================================++");
+		//create person objects
 		ProcessDatabase.toPersonObject();
 		System.out.println("============================================================================================++");
-
+		//create customer objects 
 		ProcessDatabase.toCustomerObjectFromDB();
 		System.out.println("============================================================================================++");
 
 		//DataConverter.readProductFile();
+		
+		//create various products
 		ProcessDatabase.toMovieTicketObjectFromDB();
 		ProcessDatabase.toSeasonPassObjectFromDB();
 		ProcessDatabase.toParkingPassObjectFromDB();
 		ProcessDatabase.toRefreshmentObjectFromDB();
 		System.out.println("============================================================================================++");
-		
+		//create Invoice objects 
 		ProcessDatabase.toInvoiceObjectFromDB();
 		System.out.println("============================================================================================++");
 		
