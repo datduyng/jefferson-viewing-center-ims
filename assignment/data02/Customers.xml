@@ -1,0 +1,82 @@
+<?xml version="1.0"?> 
+ <list>
+  <general>
+    <customerCode>C001</customerCode>
+    <customerType>General</customerType>
+    <customerName>Bill&apos;s Volume Sales</customerName>
+    <customerAddress>
+      <street>123 Bottoms St</street>
+      <city>Lincoln</city>
+      <state>NE</state>
+      <zipCode>68588-0115</zipCode>
+      <country>USA</country>
+    </customerAddress>
+  </general>
+  <student>
+    <customerCode>C002</customerCode>
+    <customerType>Student</customerType>
+    <primaryContact>
+      <personCode>wtf72</personCode>
+      <lastName>Miles</lastName>
+      <firstName>Les</firstName>
+      <address>
+        <street>8754 Turnpike Lane.</street>
+        <city>Dallas</city>
+        <state>WY</state>
+        <zipCode>75031</zipCode>
+        <country>USA</country>
+      </address>
+      <emails>
+        <email>lester@d.com</email>
+      </emails>
+    </primaryContact>
+    <customerName>The Knights Templar</customerName>
+    <customerAddress>
+      <street>1223 Discreet Location</street>
+      <city>Somewhere</city>
+      <state>CA</state>
+      <zipCode>62401</zipCode>
+      <country>USA</country>
+    </customerAddress>
+  </student>
+  <student>
+    <customerCode>C003</customerCode>
+    <customerType>Student</customerType>
+    <primaryContact>
+      <personCode>zzz3</personCode>
+      <lastName>Lebowski</lastName>
+      <firstName>Big</firstName>
+      <address>
+        <street>666 N 99th Street</street>
+        <city>Oklahoma City</city>
+        <state>OK</state>
+        <zipCode>68116</zipCode>
+        <country>USA</country>
+      </address>
+      <emails>
+        <email>bski@ventura.com</email>
+        <email>big_lebo@aol.com</email>
+      </emails>
+    </primaryContact>
+    <customerName>Dirty Mike and the Boyz</customerName>
+    <customerAddress>
+      <street>The Alley Cove</street>
+      <city> New York City</city>
+      <state>NY</state>
+      <zipCode>90210</zipCode>
+      <country>USA</country>
+    </customerAddress>
+  </student>
+  <general>
+    <customerCode>C004</customerCode>
+    <customerType>General</customerType>
+    <customerName>Mc Donald</customerName>
+    <customerAddress>
+      <street> asdasd</street>
+      <city> New York City</city>
+      <state>NY</state>
+      <zipCode>90210</zipCode>
+      <country>USA</country>
+    </customerAddress>
+  </general>
+</list> 

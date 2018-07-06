@@ -1,0 +1,93 @@
+=========================
+Executive Report
+=========================
+Invoice   Customer                                                    SalesPerson                Subtotal           Fees          Taxes      Discounts          Total
+INV002    The Knights Templar           -Student                       Miles, Les           $        54.88 $         6.75 $         2.89 $        -7.28 $        57.24
+INV003    Bill's Volume Sales           -General                       Lebowski, Big        $       150.40 $          0.0 $         9.02 $          0.0 $       159.42
+INV006    Dirty Mike and the Boyz       -Student                       Lebowski, Big        $        10.86 $         6.75 $         0.59 $        -1.46 $        16.74
+INV007    The Knights Templar           -Student                       Madison, Billy       $        68.00 $         6.75 $         3.88 $        -9.32 $        69.31
+===========================================================================================================================================================
+TOTALS                                                                                      $       284.13 $        20.25 $        16.39 $       -18.07 $       302.71
+
+Invoice INV002
+==================================
+SalePerson: Miles, Les
+Customer Info:
+The Knights Templar(C002)
+-Student
+Miles, Les-
+1223 Discreet Location,
+
+-----------------------------
+Code	Item												   SubTotal	     Tax	Total
+fa45	MovieTicket 'Space Jam' @     2234 Dudley St,                                                   $     34.88  $      2.09  $     36.97
+	2018-5-22 12:10 (3 units @$12.50/unit - Tue/Thu 7% off
+
+90	ParkingPass fa45 (5 units @$10.00/unit /w 3 free)                                               $     20.00  $      0.80  $     20.80
+													==============================
+SUBTOTAL                                                                                                $     54.88  $      2.89  $     57.77
+DISCOUNT ( 8% STUDENT & NO TAX)                                                                                                   $     -7.28
+ADDITIONAL FEE (Student)                                                                                                          $      6.75
+TOTAL:                                                                                                                            $     57.24
+
+					Thank you
+
+Invoice INV003
+==================================
+SalePerson: Lebowski, Big
+Customer Info:
+Bill's Volume Sales(C001)
+-General
+Madison, Billy-
+123 Bottoms St,
+
+-----------------------------
+Code	Item												   SubTotal	     Tax	Total
+b29e	SeasonPass Winter Special (2 units @$ 120.0 (0.56 prorated)+ $8.00 fee)                         $    150.40  $      9.02  $    159.42
+													==============================
+SUBTOTAL                                                                                                $    150.40  $      9.02  $    159.42
+TOTAL:                                                                                                                            $    159.42
+
+					Thank you
+
+Invoice INV006
+==================================
+SalePerson: Lebowski, Big
+Customer Info:
+Dirty Mike and the Boyz(C003)
+-Student
+Lebowski, Big-
+The Alley Cove,
+
+-----------------------------
+Code	Item												   SubTotal	     Tax	Total
+122e	SeasonPass summmer spcecial (1 units @$ 0.0 + $8.00 fee)                                        $      8.00  $      0.48  $      8.48
+ff23	Refreshment (1 units @ $3.01/unit/w 5% off)                                                     $      2.86  $      0.11  $      2.97
+													==============================
+SUBTOTAL                                                                                                $     10.86  $      0.59  $     11.45
+DISCOUNT ( 8% STUDENT & NO TAX)                                                                                                   $     -1.46
+ADDITIONAL FEE (Student)                                                                                                          $      6.75
+TOTAL:                                                                                                                            $     16.74
+
+					Thank you
+
+Invoice INV007
+==================================
+SalePerson: Madison, Billy
+Customer Info:
+The Knights Templar(C002)
+-Student
+Miles, Les-
+1223 Discreet Location,
+
+-----------------------------
+Code	Item												   SubTotal	     Tax	Total
+90	ParkingPass  (1 units @$10.00/unit )                                                            $     10.00  $      0.40  $     10.40
+z1e4	SeasonPass Easter Pass (1 units @$ 50.0 + $8.00 fee)                                            $     58.00  $      3.48  $     61.48
+													==============================
+SUBTOTAL                                                                                                $     68.00  $      3.88  $     71.88
+DISCOUNT ( 8% STUDENT & NO TAX)                                                                                                   $     -9.32
+ADDITIONAL FEE (Student)                                                                                                          $      6.75
+TOTAL:                                                                                                                            $     69.31
+
+					Thank you
